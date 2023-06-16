@@ -44,24 +44,6 @@ class ArtEntrada extends Component
         $this->validateOnly($propertyName);
     }
 
-    // public function confirmacion()
-    // {
-    //     $this->notification()->confirm([
-    //         'title'       => 'Notificacion',
-    //         'description' => 'Save the information?',
-    //         'icon'        => 'question',
-    //             'accept'  => [
-    //                 'label'  => 'Yes, save it',
-    //                 'method' => 'store',
-    //                 'params' => 'Saved',
-    //             ],
-    //             'reject' => [
-    //                 'label'  => 'No, cancel',
-    //                 'method' => 'cancel',
-    //             ],
-    //     ]);
-    // }
-
     public function store()
     {
         $this->validate();
