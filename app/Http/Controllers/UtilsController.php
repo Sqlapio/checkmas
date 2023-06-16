@@ -554,7 +554,6 @@ class UtilsController extends Controller
 
 
             $total = $entradas - $salidas;
-            dd($total);
             return $total;
 
         } catch (\Throwable $th) {
