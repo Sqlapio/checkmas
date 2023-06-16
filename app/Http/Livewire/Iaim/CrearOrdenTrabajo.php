@@ -41,6 +41,7 @@ class CrearOrdenTrabajo extends Component
     public $area_es = 'hidden';
     public $botton_grid = 'hidden';
     public $save = '';
+    public $ocultar = '';
 
     protected $listeners = ['aero_selected'];
 
@@ -109,7 +110,36 @@ class CrearOrdenTrabajo extends Component
 
     public function mostrar_grid()
     {
+        $this->dialog()->confirm([
+
+            'title'       => 'Notificacion',
+            'description' => 'Desea agregar materiales a una orden de trabajo ya registrada?',
+            'icon'        => 'question',
+            'accept'      => [
+                'label'  => 'Si',
+                'method' => 'ver_grid',
+                'params' => 'Saved',
+
+            ],
+            'reject' => [
+                'label'  => 'Cancelar',
+                'method' => 'cancelar',
+            ],
+
+        ]);
+
+    }
+
+    public function ver_grid()
+    {
+        $this->ocultar = 'hidden';
         $this->grid = '';
+        
+    }
+
+    public function cancelar()
+    {
+        $this->reset();
     }
 
     public function eliminar_materiales($id)
@@ -137,24 +167,51 @@ class CrearOrdenTrabajo extends Component
             $ot->codigo_ot = UtilsController::crear_codigo_ot($this->aeropuerto, $this->area);
             $ot->aeropuerto = $this->aeropuerto;
             $ot->area = $this->area;
-            $ot->reportado_por = $this->reportado_por;
+            $ot->reportado_por = strtolower($this->reportado_por);
             $ot->division = $user->division;
             $ot->coordinacion = $user->coordinacion;
-            $ot->descripcion_general = $this->descripcion_general;
+            $ot->descripcion_general = strtolower($this->descripcion_general);
             $ot->usr_res_nombre = $user->nombre.' '.$user->apellido;
             $ot->usr_res_cedula = $user->ci_rif;
             $ot->usr_res_cargo = $user->cargo;
             $ot->usr_res_correo = $user->email;
-            $ot->save();
 
-            $this->botton_grid = '';
+            /**
+             * Restriccion agregada para evitar la duplicidad en el cuerpo de la orden
+             * de trabajo y mantener la integridad de la data almacenada 
+             */
+            $ultimo = IaimOrdenTrabajo::all()->last();
+            $aeropuerto = $ultimo->aeropuerto;
+            $area = $ultimo->area;
+            $coordinacion = $user->coordinacion;
+            $descripcion_general = $ultimo->descripcion_general;
+            if( $aeropuerto == $this->aeropuerto &&
+                $area == $this->area && 
+                $coordinacion == $user->coordinacion && 
+                $descripcion_general == $this->descripcion_general)
+                
+            {
+                $this->notification()->error(
+                    $title = 'Error!',
+                    $description = 'El campo Descripcion General esta duplicado'
+                );
 
-            $this->codigo_ot = $ot->codigo_ot;
+                $this->reset();
+                
+            }else{
 
-            $this->notification()->success(
-                $title = 'Exito!',
-                $description = 'La Orden de trabajo fue creada con exito'
-            );
+                $ot->save();
+
+                $this->botton_grid = '';
+
+                $this->codigo_ot = $ot->codigo_ot;
+
+                $this->notification()->success(
+                    $title = 'Exito!',
+                    $description = 'La Orden de trabajo fue creada con exito'
+                );
+
+            }   
 
 
         } catch (\Throwable $th) {
