@@ -3,6 +3,20 @@ use App\Models\Iaim_Articulo;
 use App\Models\IaimOrdenTrabajo;
 $articulos = Iaim_Articulo::all();
 $ots = IaimOrdenTrabajo::all();
+
+/*
+    QUERY $OTS
+    Solo seleciona las ots que no tienen materiales asignados
+*/
+// $ots = DB::table('iaim_orden_trabajos as i')
+//         ->select('i.*')
+//         ->leftJoin('iaim_material_orden_trabajos as q', function ($join)
+//         {
+//             $join->on('q.codigo_ot', '=', 'i.codigo_ot');
+//         })
+//         ->whereNull('q.codigo_ot')
+//         ->get();
+
 @endphp
 <div class="p-5">
     <h1 class="text-xl mb-2 fobt-bold">Orden de Trabajo</h1>
@@ -12,9 +26,10 @@ $ots = IaimOrdenTrabajo::all();
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-4 mb-4 mt-8">
             <div class="p-2">
                 <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Fecha</label>
-                <x-input icon="pencil" wire:model="fecha_ot" value="{{ $fecha_ot }}" class="focus:ring-check-blue focus:border-check-blue"/>
+                <x-input icon="pencil" wire:model="fecha_ot" value="{{ $fecha_ot }}" class="focus:ring-check-blue focus:border-check-blue cursor-none"/>
             </div>
         </div>
+        <div class="{{ $ocultar }}">
         {{-- Aeropuerto y area --}}
         <div class="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-4 mt-8">
             <div class="p-2">
@@ -69,7 +84,8 @@ $ots = IaimOrdenTrabajo::all();
                 <span>GUARDAR</span>
             </button>
         </div>
-        <div class="p-2 {{ $botton_grid }}">
+        </div>
+        <div class="p-2">
             <button type="submit" wire:click.prevent="mostrar_grid()" class="justify-end rounded-md border border-transparent bg-check-blue py-2 px-4 text-sm font-bold text-white shadow-sm hover:bg-check-green">
                 <svg xmlns="http://www.w3.org/2000/svg" wire:loading wire:target="mostrar_grid" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="animate-spin h-5 w-5 mr-3">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
@@ -173,6 +189,14 @@ $ots = IaimOrdenTrabajo::all();
             <div class="bg-white px-4 py-3 items-center justify-between border-t border-gray-200 sm:px-6">
                 {{-- Paginacion --}}
                 {{ $data->links() }}
+            </div>
+            <div class="p-2">
+                <button type="submit" wire:click.prevent="mostrar_grid()" class="flex justify-end rounded-md border border-transparent bg-check-blue py-2 px-4 text-sm font-bold text-white shadow-sm hover:bg-check-green">
+                    <svg xmlns="http://www.w3.org/2000/svg" wire:loading wire:target="mostrar_grid" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="animate-spin h-5 w-5 mr-3">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+                    </svg>
+                    <span>FINALIZAR</span>
+                </button>
             </div>
         </div>
         
