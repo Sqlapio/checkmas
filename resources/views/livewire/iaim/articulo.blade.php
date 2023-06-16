@@ -14,7 +14,7 @@ $categorias = Iaim_Categoria::all();
             {{-- Descripcion --}}
             <div class="p-2">
                 <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Descripcion</label>
-                <x-input icon="pencil" wire:model.defer="descripcion"  class="focus:ring-check-blue focus:border-check-blue"/>
+                <x-input icon="pencil" wire:model.defer="descripcion"  class="focus:ring-check-blue focus:border-check-blue valLetras"/>
             </div>
             {{-- categoria --}}
             <div class="p-2">
@@ -34,12 +34,12 @@ $categorias = Iaim_Categoria::all();
             {{-- precio unitario --}}
             <div class="p-2">
                 <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Precio Unitario</label>
-                <x-input icon="pencil" wire:model.defer="precio_unitario"  class="focus:ring-check-blue focus:border-check-blue"/>
+                <x-input icon="pencil" wire:model.defer="precio_unitario"  class="focus:ring-check-blue focus:border-check-blue cantidad"/>
             </div>
             {{-- stock --}}
             <div class="p-2">
                 <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Minimo stock</label>
-                <x-input icon="pencil" wire:model.defer="cantidad_minima"  class="focus:ring-check-blue focus:border-check-blue"/>
+                <x-input icon="pencil" wire:model.defer="cantidad_minima"  class="focus:ring-check-blue focus:border-check-blue number"/>
             </div>
             <div class="p-2 mt-auto">
                 <button type="submit" wire:click.prevent="store()" class="w-full justify-end rounded-md border border-transparent bg-check-blue py-2 px-4 text-sm font-bold text-white shadow-sm hover:bg-check-green">
@@ -122,4 +122,12 @@ $categorias = Iaim_Categoria::all();
             {{ $data->links() }}
         </div>
     </div>
+    <script>
+        $('.number').on('input', function () { 
+            this.value = this.value.replace(/[^0-9]/g,'');
+        });
+        $('.cantidad').on('input', function () { 
+            this.value = this.value.replace(/[^0-9.,]/g,'');
+        });
+    </script>
 </div>
