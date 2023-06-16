@@ -39,22 +39,25 @@
     @php
         use Carbon\Carbon;
         $fecha = Carbon::now();
-        $qc = new QuickChart();
-        $qc->setConfig("{
-            type: 'pie',
-            data: {
-                labels: ['20257202','27842278','27893301','32968532','53270474','54987451','76392842','91127503','92804682'],
-                datasets: [{ data: ['60','70','70','600','45','780','800','40','100'] }],
-            },
-        }");
-    $jj = $qc->getUrl();
     @endphp
     <div class="container-fluid">
-        <div class="d-flex justify-content-between">
-            <img class="imagen" src="../public/images/iaim/iaim-logo.png" alt="" width="40" height="auto">
-            <img class="imagen" src="../public/images/check_logo.png" alt="" width="150" height="auto">
+        {{-- Contenedor de logos --}}
+        <div class="tabla_logos">
+            <table style="border: 0px;">
+                <tr style="border: 0px; background-color: #ebf3fc;">
+                    <td style="border: 0px; padding: 5px">
+                        <img class="imagen" src="../public/images/iaim/iaim-logo.png" alt="" width="40" height="auto">
+                    </td>
+                    <td style="border: 0px; text-align: right;">
+                        <img class="imagen" src="../public/images/check_logo.png" alt="" width="150" height="auto">
+                    </td>
+                </tr>
+            </table>
         </div>
-        </div>
+
+        <br>
+        <br>
+        
         <div class="d-flex justify-content-end">
             <p  class="fecha text-end">Fecha: {{ Carbon::parse($fecha)->format('d-m-Y') }}</p>
         </div>
@@ -88,10 +91,6 @@
                 <th class="table-primary" colspan="2">Total Articulos: {{ $count }}</th>
             </tr>
         </table>
-
-        <div>
-            <img src="{{ $jj }}" alt="">
-        </div>
         
       </div>
 

@@ -1,6 +1,6 @@
 // Validacion solo numeros
 jQuery(".valNumber").on("input", function () {
-    this.value = this.value.replace(/^([0-9]+\.?[0-9]{0,2})$/g, "");
+    this.value = this.value.replace(/[^qwertyuioplkjhgfdsazxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM]/g,'');
 });
 
 // Validacion solo letras
@@ -9,8 +9,8 @@ jQuery(".valLetras").on("input", function () {
 });
 
 // Validacion solo numero y letras
-jQuery(".valNumLetras").on("input", function () {
-    this.value = this.value.replace(/[^qwertyuioplkjhgfdsazxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890]/g, "");
+jQuery(".valNum").on("input", function () {
+    this.value = this.value.replace(/[^1234567890]/g, "");
 });
 
 jQuery(".precioUnitario").on("input", function () {
