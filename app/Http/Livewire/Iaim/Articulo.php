@@ -69,14 +69,30 @@ class Articulo extends Component
             $articulo->codigo = rand(10000000,99999999);
             $articulo->cantidad_minima = $this->cantidad_minima;
             $articulo->usuario_responsable = $user->nombre.' '.$user->apellido;
-            $articulo->save();
 
-            $this->reset();
+            /**
+             * @param $duplicado
+             * Se agrega para evitar que el articulo sea guardado varias veces.
+             */
+            $duplicado = ModelsArticulo::where('descripcion', $this->descripcion)->get();
+            if(count($duplicado) >= 1)
+            {
+                $this->notification()->error(
+                    $title = 'Articulo duplicado!',
+                    $description = 'El articulo ya se encuentra registrado'
+                );
+            }else{
 
-            $this->notification()->success(
-                $title = 'Articulo Creado!',
-                $description = 'El articulo '.$articulo->codigo.' fue creado correctamente'
-            );
+                $articulo->save();
+
+                $this->reset();
+
+                $this->notification()->success(
+                    $title = 'Articulo Creado!',
+                    $description = 'El articulo '.$articulo->codigo.' fue creado correctamente'
+                );
+
+            }
 
         } catch (\Throwable $th) {
             dd($th);
