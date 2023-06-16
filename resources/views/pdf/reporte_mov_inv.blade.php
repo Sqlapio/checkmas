@@ -99,6 +99,18 @@
 
         ));
 
+        $chart_bar = new QuickChart(array(
+            'width' => 280,
+            'height' => 180
+
+        ));
+
+        $chart_bar_sal = new QuickChart(array(
+            'width' => 280,
+            'height' => 180
+
+        ));
+
         $array = json_encode($totales);
         $data = str_replace('"', "'", $array);
 
@@ -129,7 +141,94 @@
             }
         ");
 
+        $chart_bar->setConfig("
+
+            {
+                type: 'horizontalBar',
+                data: {
+                    labels: $fecha_entradas,
+                    datasets: [
+                        { 
+                            data: $entradas,
+                            backgroundColor: 'rgb(0 24 90)',
+                            borderRadius: 10,
+                            categoryPercentage: 0.5,
+                            barPercentage: 0.5
+                        },
+                    ],
+                },
+                options: {
+                    legend: {
+                        display: false,
+                    },
+                    plugins: {
+                        datalabels: {
+                            display: true,
+                            align: 'end',
+                            anchor: 'end',
+                            padding: 4,
+                            color: 'rgb(0 24 90)'
+                        }
+                    },
+                    layout: {
+                        padding: {
+                            left: 10,
+                            right: 50,
+                            top: 10,
+                            bottom: 10  
+                        }
+                    }
+                }
+            }
+
+        ");
+
+        $chart_bar_sal->setConfig("
+
+            {
+                type: 'horizontalBar',
+                data: {
+                    labels: $fecha_salidas,
+                    datasets: [
+                        { 
+                            data: $salidas,
+                            backgroundColor: 'rgb(237 89 42)',
+                            borderRadius: 10,
+                            categoryPercentage: 0.5,
+                            barPercentage: 0.5
+                        },
+                    ],
+                },
+                options: {
+                    legend: {
+                        display: false,
+                    },
+                    plugins: {
+                        datalabels: {
+                            display: true,
+                            align: 'end',
+                            anchor: 'end',
+                            padding: 4,
+                            color: 'rgb(237 89 42)'
+                        }
+                    },
+                    layout: {
+                        padding: {
+                            left: 10,
+                            right: 50,
+                            top: 10,
+                            bottom: 10  
+                        }
+                    }
+                    
+                }
+            }
+
+        ");
+
         $grafico = $chart->getUrl();
+        $grafico_bar = $chart_bar->getUrl();
+        $grafico_bar_sal = $chart_bar_sal->getUrl();
 
     @endphp
     <div class="container-fluid">
@@ -137,7 +236,7 @@
         {{-- Contenedor de logos --}}
         <div class="tabla_logos">
             <table style="border: 0px;">
-                <tr style="border: 0px; background-color: #71cafa;">
+                <tr style="border: 0px; background-color: #ebf3fc;">
                     <td style="border: 0px; padding: 5px">
                         <img class="imagen" src="../public/images/iaim/iaim-logo.png" alt="" width="40" height="auto">
                     </td>
@@ -156,11 +255,13 @@
             <p  class="fecha text-end">Fecha: {{ Carbon::parse($fecha)->format('d-m-Y') }}</p>
         </div> --}}
 
+        {{-- Parte 1 --}}
         <div class="">
             <p  class="fecha_rango" style="margin-bottom: 3px;">Reporte movimiento de inventario para: {{ Carbon::parse($fecha_ini_inv)->format('d-m-Y') }} al {{ Carbon::parse($fecha_fin_inv)->format('d-m-Y') }}</p>
             <p  class="fecha_rango">Producto: {{ $descripcion }}</p>
         </div>
 
+        {{-- linia 1 --}}
         <div class="linea"></div>
 
         <table style="border: 0px;">
@@ -235,6 +336,41 @@
                 </td>
             </tr>
         </table>
+
+        <br>
+        <br>
+        <br>
+
+
+        {{-- Parte 2 --}}
+        <div class="">
+            <p  class="fecha_rango" style="margin-bottom: 3px;">Detalle de movimientos</p>
+        </div>
+        <table style="border: 0px;">
+            <tr style="border: 0px;">
+                <td style="border: 0px;">
+                    <p  class="fecha_rango" style="">Entradas</p>
+                    <div class="linea"></div>
+                </td>
+                <td style="border: 0px;">
+                    <p  class="fecha_rango" style="">Salidas</p>
+                    <div class="linea"></div>
+                </td>
+            </tr>
+            <tr style="border: 0px;">
+                <td style="border: 0px;">
+                    <div class="chart">
+                        <img src="{{'data:image/png;base64,' . base64_encode(file_get_contents(@$grafico_bar))}}" alt="image" >
+                    </div>
+                </td>
+                <td style="border: 0px;">
+                    <div class="chart">
+                        <img src="{{'data:image/png;base64,' . base64_encode(file_get_contents(@$grafico_bar_sal))}}" alt="image" >
+                    </div>
+                </td>
+            </tr>
+        </table>
+
         
       </div>
 
