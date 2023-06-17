@@ -22,7 +22,6 @@
 
     }
     p{
-        margin-bottom: 15px;
         font-weight: bold;
         font-size: 1rem;
         font-family: 'Creato Display', sans-serif;
@@ -34,6 +33,25 @@
         font-size: 0.9rem;
     }
 
+    .footer {
+        position: fixed;
+        bottom: -60px;
+        left: 0px;
+        right: 0px;
+        height: 50px;
+        text-align: center;
+        line-height: 35px;
+        padding: 10px;
+        font-size: 12px;
+    }
+
+    .linea {
+        border-top: 1px solid black;
+        height: 2px;
+        max-width: 100%;
+        padding: 0;
+    }
+
     </style>
 <body>
     @php
@@ -41,18 +59,36 @@
         $fecha = Carbon::now();
     @endphp
     <div class="container-fluid">
-        <div class="d-flex justify-content-between">
-            <img class="imagen" src="../public/images/iaim/iaim-logo.png" alt="" width="40" height="auto">
-            <img class="imagen" src="../public/images/check_logo.png" alt="" width="150" height="auto">
+        {{-- Contenedor de logos --}}
+        <div class="tabla_logos">
+            <table style="border: 0px;">
+                <tr style="border: 0px; background-color: #ebf3fc;">
+                    <td style="border: 0px; padding: 5px">
+                        <img class="imagen" src="../public/images/iaim/iaim-logo.png" alt="" width="40" height="auto">
+                    </td>
+                    <td style="border: 0px; text-align: right;">
+                        <img class="imagen" src="../public/images/check_logo.png" alt="" width="150" height="auto">
+                    </td>
+                </tr>
+            </table>
         </div>
+
+        <br>
+        <br>
+
         </div>
         <div class="d-flex justify-content-end">
             <p  class="fecha text-end">Fecha: {{ Carbon::parse($fecha)->format('d-m-Y') }}</p>
         </div>
 
+        <br>
+        <br>
+
         {{-- Titulo --}}
-        <p>RESUMEN CARGA DE INVENTARIO</p>
-        <table>
+        <p style="margin-bottom: 5px;">RESUMEN CARGA DE INVENTARIO</p>
+        {{-- linia 1 --}}
+        <div class="linea"></div>
+        <table style="margin-top: 20px;">
             <tr>
                 <th class="table-primary">ID</th>
                 <th class="table-primary">Descripcion</th>
@@ -77,9 +113,10 @@
                 <th class="table-primary" colspan="2">Total de movimientos: {{ $count }}</th>
             </tr>
         </table>
+        <footer class="footer">
+            © SIAIM 2023. All rights reserved. by StarkMedios - Checkmas
+        </footer>
       </div>
-
-      {{-- <div width="100%" align="center">Reporte generado {{ now() }} por: www.checkmas.com</div> --}}
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
     

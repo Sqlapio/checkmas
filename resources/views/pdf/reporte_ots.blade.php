@@ -13,9 +13,9 @@
     }
     table, td, th {
       border: 1px solid black;
-      font-size: 0.5rem;
+      font-size: 0.8rem;
     }
-
+    
     table {
       border-collapse: collapse;
       width: 100%;
@@ -28,10 +28,76 @@
         font-family: 'Creato Display', sans-serif;
     }
 
+    .text_rango{
+        margin-bottom: 3px;
+        font-size: 0.7rem;
+        font-family: 'Creato Display', sans-serif;
+    }
+
     .fecha{
         text-align:right;
         font-weight: bold;
         font-size: 0.9rem;
+    }
+
+    .fecha_rango{
+        text-align:left;
+        font-size: 0.8rem;
+        font-family: 'Creato Display', sans-serif;
+    }
+
+    .linea {
+        border-top: 1px solid black;
+        height: 2px;
+        max-width: 100%;
+        padding: 0;
+        margin: 20px auto 0 auto;
+    }
+
+    #main {
+        width: 100%;
+        height: 100px;
+        border: 1px solid #c3c3c3;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .chart{
+        margin-top: 20px;
+    }
+
+    .circulo {
+        display: block;
+        padding: 5px
+        border: 1px solid blue;    
+        background-color: yellow;
+        height: 6px;
+        width: 6px;
+        border-radius: 50%; 
+    }
+
+    .leyenda{
+        display: inline-block;
+    }
+
+    .t{
+        border: none;
+    }
+
+    .tabla_logos{
+        margin-bottom: 20px;
+    }
+
+    .footer {
+        position: fixed;
+        bottom: -60px;
+        left: 0px;
+        right: 0px;
+        height: 50px;
+        text-align: center;
+        line-height: 35px;
+        padding: 10px;
+        font-size: 12px;
     }
 
     </style>
@@ -39,48 +105,246 @@
     @php
         use Carbon\Carbon;
         $fecha = Carbon::now();
+
+        $chart = new QuickChart(array(
+            'width' => 180,
+            'height' => 180
+
+        ));
+
+        $chart_bar = new QuickChart();
+
+        // $chart_bar_sal = new QuickChart(array(
+        //     'width' => 280,
+        //     'height' => 180
+
+        // ));
+
+        $array = json_encode($array_data);
+        // $data = str_replace('"', "'", $array);
+
+
+        $chart->setConfig("
+            {
+                type: 'doughnut',
+                data: {
+                    datasets: [
+                    {
+                        data: $array,
+                        backgroundColor: ['rgb(0 24 90)', 'rgb(101 169 225)'],
+                        borderWidth: 0,
+                    },
+                    ],
+                },
+                options: {
+                    cutoutPercentage: 80,
+                    legend: {
+                        display: false,
+                    },
+                    plugins: {
+                        datalabels: {
+                            display: false,
+                        },
+                    },
+                },
+            }
+        ");
+        $chart_bar->setConfig("
+
+            {
+                type: 'bar',
+                data: {
+                    labels: $fechas,
+                    datasets: [
+                        { 
+                            data: $totales_ots,
+                            backgroundColor: 'rgb(0 24 90)',
+                            borderRadius: 10,
+                            categoryPercentage: 0.5,
+                            barPercentage: 0.5
+                        },
+                    ],
+                },
+                options: {
+                    legend: {
+                        display: false,
+                    }
+                }
+            }
+
+        ");
+        // $chart_bar_sal->setConfig("
+
+        //     {
+        //         type: 'horizontalBar',
+        //         data: {
+        //             labels: $fecha_salidas,
+        //             datasets: [
+        //                 { 
+        //                     data: $salidas,
+        //                     backgroundColor: 'rgb(237 89 42)',
+        //                     borderRadius: 10,
+        //                     categoryPercentage: 0.5,
+        //                     barPercentage: 0.5
+        //                 },
+        //             ],
+        //         },
+        //         options: {
+        //             legend: {
+        //                 display: false,
+        //             },
+        //             plugins: {
+        //                 datalabels: {
+        //                     display: true,
+        //                     align: 'end',
+        //                     anchor: 'end',
+        //                     padding: 4,
+        //                     color: 'rgb(237 89 42)'
+        //                 }
+        //             },
+        //             layout: {
+        //                 padding: {
+        //                     left: 10,
+        //                     right: 50,
+        //                     top: 10,
+        //                     bottom: 10  
+        //                 }
+        //             }
+                    
+        //         }
+        //     }
+
+        // ");
+
+        $grafico = $chart->getUrl();
+        $grafico_bar = $chart_bar->getUrl();
+        // $grafico_bar_sal = $chart_bar_sal->getUrl();
+
     @endphp
     <div class="container-fluid">
-        <div class="d-flex justify-content-between">
-            <img class="imagen" src="../public/images/iaim/iaim-logo.png" alt="" width="40" height="auto">
-            <img class="imagen" src="../public/images/check_logo.png" alt="" width="150" height="auto">
-        </div>
-        </div>
-        <div class="d-flex justify-content-end">
-            <p  class="fecha text-end">Fecha: {{ Carbon::parse($fecha)->format('d-m-Y') }}</p>
+
+        {{-- Contenedor de logos --}}
+        <div class="tabla_logos">
+            <table style="border: 0px;">
+                <tr style="border: 0px; background-color: #ebf3fc;">
+                    <td style="border: 0px; padding: 5px">
+                        <img class="imagen" src="../public/images/iaim/iaim-logo.png" alt="" width="40" height="auto">
+                    </td>
+                    <td style="border: 0px; text-align: right;">
+                        <img class="imagen" src="../public/images/check_logo.png" alt="" width="150" height="auto">
+                    </td>
+                </tr>
+            </table>
         </div>
 
-        {{-- Titulo --}}
-        <p>RESUMEN DE INVENTARIO</p>
-        <table>
-            <tr>
-                <th class="table-primary">ID</th>
-                <th class="table-primary">Descripcion</th>
-                <th class="table-primary">Codigo</th>
-                <th class="table-primary">Proveedor</th>
-                <th class="table-primary">Precio Unitario</th>
-                <th class="table-primary">Stock Minimo</th>
-                <th class="table-primary">Responsable</th>
+        <br>
+        <br>
+
+        {{-- Parte 1 --}}
+        <div class="">
+            <p  class="fecha_rango" style="margin-bottom: 3px;">Reporte ordenes de trabajo para: {{ Carbon::parse($fecha_inicio_ot)->format('d-m-Y') }} al {{ Carbon::parse($fecha_fin_ot)->format('d-m-Y') }}</p>
+        </div>
+
+        {{-- linia 1 --}}
+        <div class="linea"></div>
+        <table style="border: 0px;">
+            <tr style="border: 0px;">
+                {{-- chart --}}
+                <td width="20" style="border: 0px;">
+                    <div class="chart">
+                        <img src="{{'data:image/png;base64,' . base64_encode(file_get_contents(@$grafico))}}" alt="image" >
+                    </div>
+                </td>
+                {{-- leyenda --}}
+                <td width="70" style="border: 0px;">
+                    <div>
+                        <table style="border: 0px;">
+                            <tr style="border: 0px;">
+                                <td style="border: 0px;">
+                                    <div style="height: 10px;
+                                                width: 10px;
+                                                background-color: rgb(0 24 90);
+                                                border-radius: 50%;">
+                                    </div>
+                                </td>
+                                <td style="border: 0px; font-size: 0.7rem;">Total ordenes de trabajo</td>
+                            </tr>
+                            <tr style="border: 0px;">
+                                <td style="border: 0px;">
+                                    <div style="height: 10px;
+                                                width: 10px;
+                                                background-color: rgb(101 169 225);
+                                                border-radius: 50%;">
+                                    </div>
+                                </td>
+                                <td style="border: 0px; font-size: 0.7rem;">Total estatus: {{ $des_estatus }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+                {{-- calculos --}}
+                <td width="70" style="border: 0px;">
+                    <div>
+                        <table style="border: 0px;">
+                            <tr style="border: 0px;">
+
+                                <td style="border: 0px; font-size: 0.7rem; font-weight: bold;">{{ $total_ots }}</td>
+                                <td style="border: 0px; font-size: 0.7rem; font-weight: bold;">100%</td>
+
+                            </tr>
+                            <tr style="border: 0px;">
+
+                                <td style="border: 0px; font-size: 0.7rem; font-weight: bold;">{{ $total }}</td>
+                                <td style="border: 0px; font-size: 0.7rem; font-weight: bold;">{{ round(($total * 100) / $total_ots, 2) }}%</td>
+
+                            </tr>
+                        </table>
+                    </div>
+                </td>
             </tr>
-            @foreach($data as $item)
-            <tr style="font-size: 0.5rem;">
-                <td width="20">{{ $item->id }}</td>
-                <td width="45">{{ $item->descripcion }}</td>
-                <td width="45">{{ $item->codigo }}</td>
-                <td width="40">{{ $item->proveedor }}</td>
-                <td width="30">{{ $item->precio_unitario }}</td>
-                <td width="30">{{ $item->cantidad_minima }}</td>
-                <td width="50">{{ $item->usuario_responsable }}</td>
-            </tr>
-            @endforeach
         </table>
-        <table>
-            <tr>
-                <th class="table-primary" colspan="2">Total Articulos: {{ $count }}</th>
+
+        <br>
+        <br>
+        <br>
+
+        {{-- Parte 2 --}}
+        <div class="">
+            <p  class="fecha_rango" style="margin-bottom: 3px;">Detalle individual</p>
+            <p  class="fecha_rango" style="">Ordenes de trabajo: {{ $des_estatus }}</p>
+        </div>
+        <div class="linea"></div>
+        <table style="border: 0px;">
+            <tr style="border: 0px;">
+                <td style="border: 0px; wigth: 100%;">
+                    <div class="chart" style="wigth: 100%;">
+                        <img src="{{'data:image/png;base64,' . base64_encode(file_get_contents(@$grafico_bar))}}" alt="image" >
+                    </div>
+                </td>
+                <td style="border: 0px;">
+                    <div>
+                        <table>
+                            <tr>
+                                <th style="text-align: center; background-color: rgb(0 24 90); color: white;" class="table-primary">Totales</th>
+                                <th style=" text-align: center; background-color: rgb(0 24 90); color: white;" class="table-primary">Fecha</th>
+                            </tr>
+                            @foreach($res2 as $item)
+                            <tr>
+                                <td style="text-align: center;">{{ $item->total_ot }}</td>
+                                <td style="text-align: center;">{{ $item->fechas }}</td>
+                            </tr>
+                            @endforeach
+                        </table>
+                    </div>
+                </td>
             </tr>
         </table>
-        
-      </div>
+
+        <footer class="footer">
+            © SIAIM 2023. All rights reserved. by StarkMedios - Checkmas
+        </footer>
+  
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
 </body>

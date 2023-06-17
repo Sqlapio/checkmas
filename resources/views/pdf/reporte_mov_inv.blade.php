@@ -88,11 +88,24 @@
         margin-bottom: 20px;
     }
 
+    .footer {
+        position: fixed;
+        bottom: -60px;
+        left: 0px;
+        right: 0px;
+        height: 50px;
+        text-align: center;
+        line-height: 35px;
+        padding: 10px;
+        font-size: 12px;
+    }
+
     </style>
 <body>
     @php
         use Carbon\Carbon;
         $fecha = Carbon::now();
+
         $chart = new QuickChart(array(
             'width' => 180,
             'height' => 180
@@ -114,7 +127,7 @@
         $array = json_encode($totales);
         $data = str_replace('"', "'", $array);
 
-        // dd($text2);
+
         $chart->setConfig("
             {
                 type: 'doughnut',
@@ -140,7 +153,6 @@
                 },
             }
         ");
-
         $chart_bar->setConfig("
 
             {
@@ -182,7 +194,6 @@
             }
 
         ");
-
         $chart_bar_sal->setConfig("
 
             {
@@ -250,11 +261,6 @@
         <br>
         <br>
 
-        {{-- Fecha del reporte --}}
-        {{-- <div class="d-flex justify-content-end">
-            <p  class="fecha text-end">Fecha: {{ Carbon::parse($fecha)->format('d-m-Y') }}</p>
-        </div> --}}
-
         {{-- Parte 1 --}}
         <div class="">
             <p  class="fecha_rango" style="margin-bottom: 3px;">Reporte movimiento de inventario para: {{ Carbon::parse($fecha_ini_inv)->format('d-m-Y') }} al {{ Carbon::parse($fecha_fin_inv)->format('d-m-Y') }}</p>
@@ -263,7 +269,6 @@
 
         {{-- linia 1 --}}
         <div class="linea"></div>
-
         <table style="border: 0px;">
             <tr style="border: 0px;">
                 {{-- chart --}}
@@ -341,7 +346,6 @@
         <br>
         <br>
 
-
         {{-- Parte 2 --}}
         <div class="">
             <p  class="fecha_rango" style="margin-bottom: 3px;">Detalle de movimientos</p>
@@ -371,8 +375,11 @@
             </tr>
         </table>
 
-        
-      </div>
+        <footer class="footer">
+            © SIAIM 2023. All rights reserved. by StarkMedios - Checkmas
+        </footer>
+  
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
 </body>
