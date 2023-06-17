@@ -22,7 +22,6 @@
 
     }
     p{
-        margin-bottom: 15px;
         font-weight: bold;
         font-size: 1rem;
         font-family: 'Creato Display', sans-serif;
@@ -32,6 +31,25 @@
         text-align:right;
         font-weight: bold;
         font-size: 0.9rem;
+    }
+
+    .footer {
+        position: fixed;
+        bottom: -60px;
+        left: 0px;
+        right: 0px;
+        height: 50px;
+        text-align: center;
+        line-height: 35px;
+        padding: 10px;
+        font-size: 12px;
+    }
+
+    .linea {
+        border-top: 1px solid black;
+        height: 2px;
+        max-width: 100%;
+        padding: 0;
     }
 
     </style>
@@ -57,14 +75,19 @@
 
         <br>
         <br>
-        
+
         <div class="d-flex justify-content-end">
             <p  class="fecha text-end">Fecha: {{ Carbon::parse($fecha)->format('d-m-Y') }}</p>
         </div>
 
+        <br>
+        <br>
+
         {{-- Titulo --}}
-        <p>RESUMEN DE INVENTARIO</p>
-        <table>
+        <p style="margin-bottom: 5px;">RESUMEN DE INVENTARIO</p>
+        {{-- linia 1 --}}
+        <div class="linea"></div>
+        <table style="margin-top: 20px;">
             <tr>
                 <th class="table-primary">ID</th>
                 <th class="table-primary">Descripcion</th>
@@ -91,8 +114,11 @@
                 <th class="table-primary" colspan="2">Total Articulos: {{ $count }}</th>
             </tr>
         </table>
-        
-      </div>
+        <footer class="footer">
+            © SIAIM 2023. All rights reserved. by StarkMedios - Checkmas
+        </footer>
+    </div>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
 </body>
