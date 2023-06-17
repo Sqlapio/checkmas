@@ -11,42 +11,36 @@ $categorias = Iaim_Categoria::all();
     </div>
     <div class="overflow-auto rounded-lg shadow md:block">
         <div class="grid grid-cols-1 md:grid-cols-6 gap-4 mb-4 mt-8">
+            {{-- Descripcion --}}
             <div class="p-2">
                 <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Descripcion</label>
-                <x-input icon="pencil" wire:model="entrada"  class="focus:ring-check-blue focus:border-check-blue"/>
+                <x-input icon="pencil" wire:model.defer="descripcion"  class="focus:ring-check-blue focus:border-check-blue valLetras"/>
             </div>
+            {{-- categoria --}}
             <div class="p-2">
                 <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Categoria</label>
-                <x-native-select wire:model="articulo_id" class="focus:ring-check-blue focus:border-check-blue">
+                <x-native-select wire:model.defer="categoria" class="focus:ring-check-blue focus:border-check-blue">
                     <option value="">...</option>
                         @foreach($categorias as $item)
                             <option value="{{ $item->descripcion }}">{{ $item->descripcion }}</option>
                         @endforeach
                 </x-native-select>
             </div>
+            {{-- proveedor --}}
             <div class="p-2">
                 <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Proveedor</label>
-                <x-input icon="pencil" wire:model="entrada"  class="focus:ring-check-blue focus:border-check-blue"/>
+                <x-input icon="pencil" wire:model.defer="proveedor"  class="focus:ring-check-blue focus:border-check-blue"/>
             </div>
+            {{-- precio unitario --}}
             <div class="p-2">
                 <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Precio Unitario</label>
-                <x-input icon="pencil" wire:model="entrada"  class="focus:ring-check-blue focus:border-check-blue"/>
+                <x-input icon="pencil" wire:model.defer="precio_unitario"  class="focus:ring-check-blue focus:border-check-blue cantidad"/>
             </div>
+            {{-- stock --}}
             <div class="p-2">
                 <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Minimo stock</label>
-                <x-input icon="pencil" wire:model="entrada"  class="focus:ring-check-blue focus:border-check-blue"/>
+                <x-input icon="pencil" wire:model.defer="cantidad_minima"  class="focus:ring-check-blue focus:border-check-blue number"/>
             </div>
-            {{-- <div class="p-2">
-                <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Descripcion</label>
-                <x-native-select wire:model="articulo_id" class="focus:ring-check-blue focus:border-check-blue">
-                    <option value="">...</option>
-
-                </x-native-select>
-            </div> --}}
-            {{-- <div class="p-2">
-                <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Cantidad entrante</label>
-                <x-input icon="pencil" wire:model="entrada"  class="focus:ring-check-blue focus:border-check-blue"/>
-            </div> --}}
             <div class="p-2 mt-auto">
                 <button type="submit" wire:click.prevent="store()" class="w-full justify-end rounded-md border border-transparent bg-check-blue py-2 px-4 text-sm font-bold text-white shadow-sm hover:bg-check-green">
                     <svg xmlns="http://www.w3.org/2000/svg" wire:loading wire:target="store" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="animate-spin h-5 w-5 mr-3">
@@ -128,4 +122,12 @@ $categorias = Iaim_Categoria::all();
             {{ $data->links() }}
         </div>
     </div>
+    <script>
+        $('.number').on('input', function () { 
+            this.value = this.value.replace(/[^0-9]/g,'');
+        });
+        $('.cantidad').on('input', function () { 
+            this.value = this.value.replace(/[^0-9.,]/g,'');
+        });
+    </script>
 </div>

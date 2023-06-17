@@ -529,13 +529,15 @@ class UtilsController extends Controller
     {
         try {
 
+            /**
+             * @todo Se debe realizar ajustes para que el query que calcula el total de existencias
+             * reconsca el formato de fecha de forma correcta.
+             */
+
             $data_entradas = DB::table("iaim_movimiento_inventarios")
                 ->select(DB::raw("SUM(entrada) as entradas"))
                 ->where('codigo', $codigo)
-                ->orderBy("created_at")
-                // ->groupBy(DB::raw("year(created_at)"))
                 ->get();
-            Debugbar::infor($data_entradas);
             foreach($data_entradas as $item)
             {
                 $entradas = $item->entradas;
@@ -544,8 +546,6 @@ class UtilsController extends Controller
             $data_salidas = DB::table("iaim_movimiento_inventarios")
                 ->select(DB::raw("SUM(salida) as salidas"))
                 ->where('codigo', $codigo)
-                ->orderBy("created_at")
-                // ->groupBy(DB::raw("year(created_at)"))
                 ->get();
             foreach($data_salidas as $item)
             {
@@ -557,7 +557,6 @@ class UtilsController extends Controller
             return $total;
 
         } catch (\Throwable $th) {
-            Debugbar::addThrowable($th);
             Log::error('- Class UtilsControllers - Se ha producido un error al ejecutar la funcion.'.$th->getMessage());
         }
     }
