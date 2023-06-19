@@ -41,7 +41,7 @@ class UtilsController extends Controller
             }
             return $estado;
         } catch (\Throwable $th) {
-            Log::error('- Class UtilsControllers - Se ha producido un error al ejecutar la funcion.'.$th->getMessage());
+            Log::error('- Class UtilsControllers - Se ha producido un error al ejecutar la función.'.$th->getMessage());
         }
     }
 
@@ -54,7 +54,7 @@ class UtilsController extends Controller
             }
             return $agencia;
         } catch (\Throwable $th) {
-            Log::error('- Class UtilsControllers - Se ha producido un error al ejecutar la funcion.'.$th->getMessage());
+            Log::error('- Class UtilsControllers - Se ha producido un error al ejecutar la función.'.$th->getMessage());
         }
     }
 
@@ -70,7 +70,7 @@ class UtilsController extends Controller
                 ->sum('costo_preCli');
             return $inver;
         } catch (\Throwable $th) {
-            Log::error('- Class UtilsControllers - Se ha producido un error al ejecutar la funcion.'.$th->getMessage());
+            Log::error('- Class UtilsControllers - Se ha producido un error al ejecutar la función.'.$th->getMessage());
         }
     }
 
@@ -83,7 +83,7 @@ class UtilsController extends Controller
                 ->where('id', $id)
                 ->update(['contador' => $total]);
         } catch (\Throwable $th) {
-            Log::error('- Class UtilsControllers - Se ha producido un error al ejecutar la funcion.'.$th->getMessage());
+            Log::error('- Class UtilsControllers - Se ha producido un error al ejecutar la función.'.$th->getMessage());
         }
     }
 
@@ -95,7 +95,7 @@ class UtilsController extends Controller
                 ->where('id', $id)
                 ->update(['activo' => 1]);
         } catch (\Throwable $th) {
-            Log::error('- Class UtilsControllers - Se ha producido un error al ejecutar la funcion.'.$th->getMessage());
+            Log::error('- Class UtilsControllers - Se ha producido un error al ejecutar la función.'.$th->getMessage());
         }
     }
 
@@ -109,7 +109,7 @@ class UtilsController extends Controller
                     'ultima_conexion' => date('d-m-Y h:m:s a')
                 ]);
         } catch (\Throwable $th) {
-            Log::error('- Class UtilsControllers - Se ha producido un error al ejecutar la funcion.'.$th->getMessage());
+            Log::error('- Class UtilsControllers - Se ha producido un error al ejecutar la función.'.$th->getMessage());
         }
     }
 
@@ -125,7 +125,7 @@ class UtilsController extends Controller
 
             return number_format($valor, 2, ',', '.');
         } catch (\Throwable $th) {
-            Log::error('- Class UtilsControllers - Se ha producido un error al ejecutar la funcion.'.$th->getMessage());
+            Log::error('- Class UtilsControllers - Se ha producido un error al ejecutar la función.'.$th->getMessage());
         }
     }
 
@@ -143,7 +143,7 @@ class UtilsController extends Controller
             $pdf = Pdf::loadView('pdf.ots', compact('data', 'count_r', 'count_a', 'count_e', 'count_f'));
             return $pdf->stream('reporte_ots.pdf');
         } catch (\Throwable $th) {
-            Log::error('- Class UtilsControllers - Se ha producido un error al ejecutar la funcion.'.$th->getMessage());
+            Log::error('- Class UtilsControllers - Se ha producido un error al ejecutar la función.'.$th->getMessage());
         }
     }
 
@@ -157,7 +157,7 @@ class UtilsController extends Controller
             $pdf = Pdf::loadView('pdf.tickets', compact('data', 'count_a', 'count_c'));
             return $pdf->stream('reporte_tickets.pdf');
         } catch (\Throwable $th) {
-            Log::error('- Class UtilsControllers - Se ha producido un error al ejecutar la funcion.'.$th->getMessage());
+            Log::error('- Class UtilsControllers - Se ha producido un error al ejecutar la función.'.$th->getMessage());
         }
     }
 
@@ -176,7 +176,7 @@ class UtilsController extends Controller
 
             return $res;
         } catch (\Throwable $th) {
-            Log::error('- Class UtilsControllers - Se ha producido un error al ejecutar la funcion.'.$th->getMessage());
+            Log::error('- Class UtilsControllers - Se ha producido un error al ejecutar la función.'.$th->getMessage());
         }
     }
 
@@ -209,7 +209,7 @@ class UtilsController extends Controller
                     ->update(['total_ticket_abiertos' => $total_ticket_abiertos]);
             }
         } catch (\Throwable $th) {
-            Log::error('- Class UtilsControllers - Se ha producido un error al ejecutar la funcion.'.$th->getMessage());
+            Log::error('- Class UtilsControllers - Se ha producido un error al ejecutar la función.'.$th->getMessage());
         }
     }
 
@@ -240,7 +240,7 @@ class UtilsController extends Controller
                     'total_inversion_mp_mc' => $total_inversion_mp + $total_inversion_mc
                 ]);
         } catch (\Throwable $th) {
-            Log::error('- Class UtilsControllers - Se ha producido un error al ejecutar la funcion.'.$th->getMessage());
+            Log::error('- Class UtilsControllers - Se ha producido un error al ejecutar la función.'.$th->getMessage());
         }
     }
 
@@ -262,7 +262,7 @@ class UtilsController extends Controller
                     'total_inversion_mp_mc' => $total_inversion_mp + $total_inversion_mc
                 ]);
         } catch (\Throwable $th) {
-            Log::error('- Class UtilsControllers - Se ha producido un error al ejecutar la funcion.'.$th->getMessage());
+            Log::error('- Class UtilsControllers - Se ha producido un error al ejecutar la función.'.$th->getMessage());
         }
     }
 
@@ -287,7 +287,7 @@ class UtilsController extends Controller
             ]);
 
         } catch (\Throwable $th) {
-            Log::error('- Class UtilsControllers - Se ha producido un error al ejecutar la funcion.'.$th->getMessage());
+            Log::error('- Class UtilsControllers - Se ha producido un error al ejecutar la función.'.$th->getMessage());
         }
     }
 
@@ -381,7 +381,7 @@ class UtilsController extends Controller
                     ]);
             }
         } catch (\Throwable $th) {
-            Log::error('- Class UtilsControllers - Se ha producido un error al ejecutar la funcion.'.$th->getMessage());
+            Log::error('- Class UtilsControllers - Se ha producido un error al ejecutar la función.'.$th->getMessage());
         }
     }
 
@@ -481,7 +481,7 @@ class UtilsController extends Controller
             return $pdf->stream('reporte_articulos.pdf');
 
         } catch (\Throwable $th) {
-            Log::error('- Class UtilsControllers - Se ha producido un error al ejecutar la funcion.'.$th->getMessage());
+            Log::error('- Class UtilsControllers - Se ha producido un error al ejecutar la función.'.$th->getMessage());
         }
     }
 
@@ -509,7 +509,7 @@ class UtilsController extends Controller
             return $pdf->stream('reporte_salidas.pdf');
 
         } catch (\Throwable $th) {
-            Log::error('- Class UtilsControllers - Se ha producido un error al ejecutar la funcion.'.$th->getMessage());
+            Log::error('- Class UtilsControllers - Se ha producido un error al ejecutar la función.'.$th->getMessage());
         }
     }
 
@@ -522,7 +522,7 @@ class UtilsController extends Controller
             return $pdf->stream('reporte_ficha_tecnica.pdf');
 
         } catch (\Throwable $th) {
-            Log::error('- Class UtilsControllers - Se ha producido un error al ejecutar la funcion.'.$th->getMessage());
+            Log::error('- Class UtilsControllers - Se ha producido un error al ejecutar la función.'.$th->getMessage());
         }
     }
 
@@ -558,7 +558,7 @@ class UtilsController extends Controller
             return $total;
 
         } catch (\Throwable $th) {
-            Log::error('- Class UtilsControllers - Se ha producido un error al ejecutar la funcion.'.$th->getMessage());
+            Log::error('- Class UtilsControllers - Se ha producido un error al ejecutar la función.'.$th->getMessage());
         }
     }
 
@@ -614,7 +614,7 @@ class UtilsController extends Controller
             return $pdf->stream('reporte_orden_compra.pdf');
 
         } catch (\Throwable $th) {
-            Log::error('- Class UtilsControllers - Se ha producido un error al ejecutar la funcion.'.$th->getMessage());
+            Log::error('- Class UtilsControllers - Se ha producido un error al ejecutar la función.'.$th->getMessage());
         }
     }
 
@@ -627,7 +627,7 @@ class UtilsController extends Controller
             return $pdf->download('reporte_cert_orden_compra.pdf');
 
         } catch (\Throwable $th) {
-            Log::error('- Class UtilsControllers - Se ha producido un error al ejecutar la funcion.'.$th->getMessage());
+            Log::error('- Class UtilsControllers - Se ha producido un error al ejecutar la función.'.$th->getMessage());
         }
     }
 
@@ -676,7 +676,7 @@ class UtilsController extends Controller
 
         } catch (\Throwable $th) {
             Debugbar::addThrowable($th);
-            Log::error('- Class UtilsControllers - Se ha producido un error al ejecutar la funcion.'.$th->getMessage());
+            Log::error('- Class UtilsControllers - Se ha producido un error al ejecutar la función.'.$th->getMessage());
         }
         
     }
@@ -713,7 +713,7 @@ class UtilsController extends Controller
         } catch (\Throwable $th) {
             dd($th);
             Debugbar::addThrowable($th);
-            Log::error('- Class UtilsControllers - Se ha producido un error al ejecutar la funcion.'.$th->getMessage());
+            Log::error('- Class UtilsControllers - Se ha producido un error al ejecutar la función.'.$th->getMessage());
         }
         
     }
@@ -736,7 +736,7 @@ class UtilsController extends Controller
         } catch (\Throwable $th) {
             dd($th);
             Debugbar::addThrowable($th);
-            Log::error('- Class UtilsControllers - Se ha producido un error al ejecutar la funcion.'.$th->getMessage());
+            Log::error('- Class UtilsControllers - Se ha producido un error al ejecutar la función.'.$th->getMessage());
         }
         
     }

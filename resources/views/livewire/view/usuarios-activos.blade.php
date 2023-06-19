@@ -26,7 +26,7 @@
                     </th>
 
                     <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                        Ultima conexion
+                        Ultima conexión
                     </th>
 
                     <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -117,7 +117,7 @@
             @else
             <div class="text-sm font-bold text-green-700">Estatus: Activo</div> 
             @endif
-            <div class="text-sm font-medium text-yellow-700">Ultima Conexion: {{ $item->updated_at }}</div>
+            <div class="text-sm font-medium text-yellow-700">Ultima conexión: {{ $item->updated_at }}</div>
             <div class="text-sm font-medium text-yellow-500">Total Conexiones: {{ $item->contador }}</div>
         </div>
         @endforeach
