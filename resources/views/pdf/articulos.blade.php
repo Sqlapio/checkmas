@@ -90,11 +90,11 @@
         <table style="margin-top: 20px;">
             <tr>
                 <th class="table-primary">ID</th>
-                <th class="table-primary">Descripcion</th>
-                <th class="table-primary">Codigo</th>
+                <th class="table-primary">Descripción</th>
+                <th class="table-primary">Código</th>
                 <th class="table-primary">Proveedor</th>
                 <th class="table-primary">Precio Unitario</th>
-                <th class="table-primary">Stock Minimo</th>
+                <th class="table-primary">Stock Mínimo</th>
                 <th class="table-primary">Responsable</th>
             </tr>
             @foreach($data as $item)
@@ -111,7 +111,7 @@
         </table>
         <table>
             <tr>
-                <th class="table-primary" colspan="2">Total Articulos: {{ $count }}</th>
+                <th class="table-primary" colspan="2">Total Artículos: {{ $count }}</th>
             </tr>
         </table>
         <footer class="footer">

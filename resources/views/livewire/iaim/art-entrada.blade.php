@@ -52,11 +52,11 @@ $articulos = Iaim_Articulo::all();
                     </th>
 
                     <th scope="col" class="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-white">
-                        Codigo
+                        Código
                     </th>
 
                     <th scope="col" class="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-white">
-                        Descripcion
+                        Descripción
                     </th>
 
                     <th scope="col" class="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-white">
