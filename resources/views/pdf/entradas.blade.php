@@ -91,8 +91,8 @@
         <table style="margin-top: 20px;">
             <tr>
                 <th class="table-primary">ID</th>
-                <th class="table-primary">Descripcion</th>
-                <th class="table-primary">Codigo</th>
+                <th class="table-primary">Descripción</th>
+                <th class="table-primary">Código</th>
                 <th class="table-primary">Entrada</th>
                 <th class="table-primary">Fecha de entrada</th>
                 <th class="table-primary">Responsable</th>

@@ -74,7 +74,7 @@ class ArtEntrada extends Component
             $this->reset();
 
             $this->notification()->success(
-                $title = 'Exito!',
+                $title = 'Éxito!',
                 $description = 'La carga de inventario fue realizada correctamente'
             );
            

@@ -78,8 +78,8 @@ class Articulo extends Component
             if(count($duplicado) >= 1)
             {
                 $this->notification()->error(
-                    $title = 'Articulo duplicado!',
-                    $description = 'El articulo ya se encuentra registrado'
+                    $title = 'Artículo duplicado!',
+                    $description = 'El artículo ya se encuentra registrado'
                 );
             }else{
 
@@ -88,8 +88,8 @@ class Articulo extends Component
                 $this->reset();
 
                 $this->notification()->success(
-                    $title = 'Articulo Creado!',
-                    $description = 'El articulo '.$articulo->codigo.' fue creado correctamente'
+                    $title = 'Artículo Creado!',
+                    $description = 'El artículo '.$articulo->codigo.' fue creado correctamente'
                 );
 
             }
