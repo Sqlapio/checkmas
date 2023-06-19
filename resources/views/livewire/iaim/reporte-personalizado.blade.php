@@ -20,7 +20,7 @@
                     <x-input type="date" wire:model.defer="fecha_fin_inv"  class="focus:ring-check-blue focus:border-check-blue"/>
                 </div>
                 <div class="p-2">
-                    <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Articulo</label>
+                    <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Artículo</label>
                     <x-native-select wire:model.defer="codigo" class="focus:ring-check-blue focus:border-check-blue">
                         <option value="">...</option>
                             @foreach($articulos as $item)

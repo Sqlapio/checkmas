@@ -20,7 +20,7 @@ $ots = IaimOrdenTrabajo::all();
 @endphp
 <div class="p-5">
     <h1 class="text-xl mb-2 fobt-bold">Orden de Trabajo</h1>
-    <h1 class="text-sm mb-2">Codigo: {{ $codigo_ot }}</h1>
+    <h1 class="text-sm mb-2">Código: {{ $codigo_ot }}</h1>
     <div class="overflow-auto rounded-lg shadow md:block">
         {{-- Fecha --}}
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-4 mb-4 mt-8">
@@ -58,7 +58,7 @@ $ots = IaimOrdenTrabajo::all();
                 <x-native-select wire:model.defer="area" class="focus:ring-check-blue focus:border-check-blue">
                     <option value="">...</option>
                     <option value="copa">Copa</option>
-                    <option value="america">America</option>
+                    <option value="america">América</option>
                 </x-native-select>
             </div>
             <div class="p-2 ocultar" id="edif_sede" style="display:none;">
@@ -71,7 +71,7 @@ $ots = IaimOrdenTrabajo::all();
         </div>
         <div class="grid grid-cols-1 md:grid-cols-1 gap-4 mb-4 mt-8">
             <div class="p-2">
-                <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Descripcion General</label>
+                <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Descripción General</label>
                 <x-textarea wire:model.defer="descripcion_general" placeholder="Describa especificamente la razon del reporte" class="focus:ring-check-blue focus:border-check-blue"/>
             </div>   
         </div>
@@ -96,7 +96,7 @@ $ots = IaimOrdenTrabajo::all();
         <div class="{{ $grid }}">
             <div class="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4 gap-4 mb-4 mt-8">
                 <div class="p-2 cursor-none">
-                    <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Codigo Ot</label>
+                    <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Código Ot</label>
                     <x-native-select wire:model.defer="codigo_ot" class="focus:ring-check-blue focus:border-check-blue">
                         <option value="">...</option>
                             @foreach($ots as $item)
@@ -134,7 +134,7 @@ $ots = IaimOrdenTrabajo::all();
                             <th scope="col" class="py-3.5 px-4 text-sm font-semibold text-left rtl:text-right text-white">
                                 <div class="flex items-center gap-x-3">
                                     <button class="flex items-center gap-x-2">
-                                        <span class="ml-1">Codigo</span>
+                                        <span class="ml-1">Código</span>
                                         <svg class="h-3" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M2.13347 0.0999756H2.98516L5.01902 4.79058H3.86226L3.45549 3.79907H1.63772L1.24366 4.79058H0.0996094L2.13347 0.0999756ZM2.54025 1.46012L1.96822 2.92196H3.11227L2.54025 1.46012Z" fill="currentColor" stroke="currentColor" stroke-width="0.1" />
                                             <path d="M0.722656 9.60832L3.09974 6.78633H0.811638V5.87109H4.35819V6.78633L2.01925 9.60832H4.43446V10.5617H0.722656V9.60832Z" fill="currentColor" stroke="currentColor" stroke-width="0.1" />
@@ -147,7 +147,7 @@ $ots = IaimOrdenTrabajo::all();
                                 Producto
                             </th>
                             <th scope="col" class="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-white">
-                                Categoria
+                                Categoría
                             </th>
                             <th scope="col" class="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-white">
                                 Cantidad

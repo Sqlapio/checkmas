@@ -7,7 +7,7 @@ $ots = IaimOrdenTrabajo::where('status', '2')->get();
 <div class="contents">
     <div class="p-5 tabla_ots">
 
-        <h1 class="text-xl mb-4">Certificacion Orden de trabajo</h1>
+        <h1 class="text-xl mb-4">Certificación Orden de trabajo</h1>
         <div class="botton grid justify-items-end mt-5 {{ $atr_botton }}">
             {{-- Botton agregar materiales --}}
             <div class="p-2 mt-auto">
@@ -22,7 +22,7 @@ $ots = IaimOrdenTrabajo::where('status', '2')->get();
         <div class="py-5 mt-4 {{ $atr_tablas }}">
             <div class="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4 gap-4 mb-4 mt-8">
                 <div class="p-2 cursor-none">
-                    <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Codigo:</label>
+                    <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Código:</label>
                     <x-native-select wire:model.defer="codigo_ot" wire:change="$emit('ot_selected', $event.target.value)" class="focus:ring-check-blue focus:border-check-blue">
                         <option value="">...</option>
                             @foreach($ots as $item)
@@ -55,13 +55,13 @@ $ots = IaimOrdenTrabajo::where('status', '2')->get();
                                 Certificada por:
                             </th>
                             <th scope="col" class="w-20 px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-white dark:text-gray-400">
-                                Fecha certificacion
+                                Fecha certificación
                             </th>
                             <th scope="col" class="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-white dark:text-gray-400">
                                 Rango fechas
                             </th>
                             <th scope="col" class="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-white dark:text-gray-400">
-                                Duracion y personal
+                                Duración y personal
                             </th>
                             <th scope="col" class="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-white dark:text-gray-400">
                                 Observaciones
@@ -86,6 +86,9 @@ $ots = IaimOrdenTrabajo::where('status', '2')->get();
                                                 <x-badge emerald label="Certificada" />
                                                 <p class="mt-1 text-xs font-semibold text-gray-00 dark:text-gray-400">Por: {{ $item->usr_cer_nombre }}</p>
                                         </div>  
+                                        <h2 class="text-xs font-bold text-gray-800 dark:text-white ">Fecha certificación: {{ $item->fecha_cert_ot }}</h2>
+                                        <p class="text-xs font-normal text-gray-600 dark:text-gray-400">División: {{ $item->usr_cer_division }}</p>
+                                        <p class="text-xs font-normal text-gray-600 dark:text-gray-400">Coordinación: {{ $item->usr_cer_coordinacion }}</p>    
                                     </div>
                                 </div>
                             </td>
@@ -93,7 +96,7 @@ $ots = IaimOrdenTrabajo::where('status', '2')->get();
                                 <div class="flex items-center gap-x-2 mr-8">
                                     <div>
                                         <h2 class="text-xs font-bold text-gray-800 dark:text-white ">Nombre: {{ $item->usr_cer_nombre }}</h2>
-                                        <p class="text-xs font-normal text-gray-600 dark:text-gray-400">Cedula: {{ $item->usr_cer_cedula }}</p>
+                                        <p class="text-xs font-normal text-gray-600 dark:text-gray-400">Cédula: {{ $item->usr_cer_cedula }}</p>
                                         <p class="text-xs font-normal text-gray-600 dark:text-gray-400">Cargor: {{ $item->usr_cer_cargo }}</p>
                                         <p class="text-xs font-normal text-gray-600 dark:text-gray-400">Firma: {{ $item->usr_cer_firma }}</p>
                                     </div>
@@ -113,7 +116,7 @@ $ots = IaimOrdenTrabajo::where('status', '2')->get();
                             <td class="px-4 py-4 text-xs text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                 <div class="flex items-center gap-x-2 mr-8">
                                     <div> 
-                                        <h2 class="text-xs font-bold text-gray-800 dark:text-white ">Nro. dias: {{ $item->can_dias }}</h2>
+                                        <h2 class="text-xs font-bold text-gray-800 dark:text-white ">Nro. días: {{ $item->can_dias }}</h2>
                                         <p class="text-xs font-normal text-gray-600 dark:text-gray-400">Nro. trabajadores: {{ $item->can_trabajadores }}</p>
                                     </div>
                                 </div>
@@ -150,10 +153,10 @@ $ots = IaimOrdenTrabajo::where('status', '2')->get();
                             <thead class="bg-check-blue">
                                 <tr>
                                     <th scope="col" class="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-white dark:text-gray-400">
-                                        Division
+                                        División
                                     </th>
                                     <th scope="col" class="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-white dark:text-gray-400">
-                                        Coordinacion
+                                    Coordinación
                                     </th>
                                     <th scope="col" class="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-white dark:text-gray-400">
                                         Fecha
@@ -193,7 +196,7 @@ $ots = IaimOrdenTrabajo::where('status', '2')->get();
                                         </div>
                                     </th>
                                     <th scope="col" class="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-white dark:text-gray-400">
-                                        Nro. cedula
+                                        Nro. Cédula
                                     </th>
                                     <th scope="col" class="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-white dark:text-gray-400">
                                         Cargo
@@ -234,15 +237,15 @@ $ots = IaimOrdenTrabajo::where('status', '2')->get();
                                     <th scope="col" class="py-3.5 px-4 text-sm font-semibold text-left rtl:text-right text-white dark:text-gray-400">
                                         <div class="flex items-center gap-x-3">
                                             <button class="flex items-center gap-x-2">
-                                                <span class="ml-1">Fecha Inicio/Aprobacion</span>
+                                                <span class="ml-1">Fecha Inicio/Aprobación</span>
                                             </button>
                                         </div>
                                     </th>
                                     <th scope="col" class="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-white dark:text-gray-400">
-                                        Fecha culminacion
+                                        Fecha culminación
                                     </th>
                                     <th scope="col" class="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-white dark:text-gray-400">
-                                        Nro. de dias
+                                        Nro. de días
                                     </th>
                                     <th scope="col" class="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-white dark:text-gray-400">
                                         Nro. de trabajadores

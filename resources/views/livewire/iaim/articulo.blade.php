@@ -13,12 +13,12 @@ $categorias = Iaim_Categoria::all();
         <div class="grid grid-cols-1 md:grid-cols-6 gap-4 mb-4 mt-8">
             {{-- Descripcion --}}
             <div class="p-2">
-                <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Descripcion</label>
+                <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Descripción</label>
                 <x-input icon="pencil" wire:model.defer="descripcion"  class="focus:ring-check-blue focus:border-check-blue valLetras"/>
             </div>
             {{-- categoria --}}
             <div class="p-2">
-                <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Categoria</label>
+                <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Categoría</label>
                 <x-native-select wire:model.defer="categoria" class="focus:ring-check-blue focus:border-check-blue">
                     <option value="">...</option>
                         @foreach($categorias as $item)
@@ -38,7 +38,7 @@ $categorias = Iaim_Categoria::all();
             </div>
             {{-- stock --}}
             <div class="p-2">
-                <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Minimo stock</label>
+                <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Mínimo stock</label>
                 <x-input icon="pencil" wire:model.defer="cantidad_minima"  class="focus:ring-check-blue focus:border-check-blue number"/>
             </div>
             <div class="p-2 mt-auto">
@@ -69,15 +69,15 @@ $categorias = Iaim_Categoria::all();
                     </th>
 
                     <th scope="col" class="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-white">
-                        Codigo
+                        Código
                     </th>
 
                     <th scope="col" class="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-white">
-                        Descripcion
+                        Descripción
                     </th>
 
                     <th scope="col" class="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-white">
-                        Categoria
+                        Categoría
                     </th>
 
                     <th scope="col" class="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-white">
