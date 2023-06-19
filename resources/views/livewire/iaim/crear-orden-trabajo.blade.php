@@ -59,7 +59,7 @@ $ots = IaimOrdenTrabajo::all();
         <div class="grid grid-cols-1 md:grid-cols-1 gap-4 mb-4 mt-8">
             <div class="p-2">
                 <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Descripción General</label>
-                <x-textarea wire:model.defer="descripcion_general" placeholder="Describa especificamente la razon del reporte" class="focus:ring-check-blue focus:border-check-blue"/>
+                <x-textarea wire:model.defer="descripcion_general" placeholder="Describa especificamente la razón del reporte" class="focus:ring-check-blue focus:border-check-blue"/>
             </div>   
         </div>
         {{-- Botton guardar ot --}}
