@@ -3,8 +3,15 @@
     <div class="p-5 tabla_ots">
         <h1 class="text-xl mb-4">Ordenes de trabajo</h1>
         <div class="py-5 mt-4" id="search">
-            <div class="flex justify-between">
-                <input wire:model="buscar" type="search" name="buscar" class="border-b border-gray-200 py-2 text-sm rounded-full sm:w-1/3 md:w-1/4 shadow-lg focus:ring-check-blue focus:border-check-blue" placeholder="Buscar..." autocomplete="off">
+            <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Filtros</label>
+            <div class="flex justify-start gap-x-5">
+                <x-input wire:model="buscar" class="focus:ring-check-blue focus:border-check-blue sm:w-1/3 md:w-60" placeholder="Buscar..."/>
+                <x-native-select wire:model="fil_status" class="focus:ring-check-blue focus:border-check-blue">
+                    <option value="">Estatus</option>
+                    <option value="1">Registrada</option>
+                    <option value="2">Aprobada</option>
+                </x-native-select>
+                <x-checkbox id="right-label" label="Hoy" wire:model="fil_hoy" class="flex items-center justify-center"/>
             </div>
         </div>
         <div class="overflow-auto rounded-lg shadow hidden md:block">
