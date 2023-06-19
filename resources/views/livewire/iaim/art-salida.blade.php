@@ -22,9 +22,9 @@ $ordenes = IaimOrdenTrabajo::all();
                         @endforeach
                 </x-native-select>
             </div>
-            <div class="p-2">
-                <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Cantidad Saliente</label>
-                <x-input icon="pencil" wire:model="salida"  class="focus:ring-check-blue focus:border-check-blue"/>
+            <div class="p-2" x-data="{ count: 0 }">
+                <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Cantidad saliente</label>
+                <x-inputs.number wire:model.defer="salida" class="number"/>
             </div>
             <div class="p-2">
                 <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Orden de trabajo</label>
@@ -107,5 +107,13 @@ $ordenes = IaimOrdenTrabajo::all();
             {{ $data->links() }}
         </div>
     </div>
+    <script>
+        $('.number').on('input', function () { 
+            this.value = this.value.replace(/[^1-9]/g,'');
+        });
+        $('.cantidad').on('input', function () { 
+            this.value = this.value.replace(/[^1-9.,]/g,'');
+        });
+    </script>
 </div>
 
