@@ -112,7 +112,7 @@ class CrearOrdenTrabajo extends Component
     {
         $this->dialog()->confirm([
 
-            'title'       => 'Notificacion',
+            'title'       => 'Notificación',
             'description' => 'Desea agregar materiales a una orden de trabajo ya registrada?',
             'icon'        => 'question',
             'accept'      => [
@@ -193,7 +193,7 @@ class CrearOrdenTrabajo extends Component
             {
                 $this->notification()->error(
                     $title = 'Error!',
-                    $description = 'El campo Descripcion General esta duplicado'
+                    $description = 'El campo Descripción General esta duplicado'
                 );
 
                 $this->reset();
@@ -207,7 +207,7 @@ class CrearOrdenTrabajo extends Component
                 $this->codigo_ot = $ot->codigo_ot;
 
                 $this->notification()->success(
-                    $title = 'Exito!',
+                    $title = 'Éxito!',
                     $description = 'La Orden de trabajo fue creada con exito'
                 );
 
@@ -251,7 +251,7 @@ class CrearOrdenTrabajo extends Component
             if($materiales->existencia_total == 0)
             {
                 $this->notification()->error(
-                    $title = 'NOTIFICACION!',
+                    $title = 'NOTIFICACIÓN !',
                     $description = 'El producto No '.$materiales->codigo_producto.' tiene existencia cero(0). No puede ser cargado en la orden de trabajo'
                 );
                 $this->reset(['codigo_producto', 'cantidad']);
@@ -260,7 +260,7 @@ class CrearOrdenTrabajo extends Component
             elseif($materiales->cantidad >= $materiales->existencia_total)
             {
                 $this->notification()->error(
-                    $title = 'NOTIFICACION!',
+                    $title = 'NOTIFICACIÓN!',
                     $description = 'El la cantidad solicitada no puede ser igual o mayor a la existencia total'
                 );
                 $this->reset(['codigo_producto', 'cantidad']);
@@ -269,7 +269,7 @@ class CrearOrdenTrabajo extends Component
             {
                 $materiales->save();
                 $this->notification()->success(
-                    $title = 'NOTIFICACION!',
+                    $title = 'NOTIFICACIÓN!',
                     $description = 'El producto No '.$materiales->codigo_producto.' fue agregado a la orden de trabajo'
                 );
                 $this->reset(['codigo_producto', 'cantidad']);

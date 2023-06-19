@@ -71,8 +71,8 @@ class ListarOrdenTrabajo extends Component
                         'fecha_aprobacion'   => date('d-m-Y')
                     ]);
             $this->notification()->success(
-                $title = 'EXITO!',
-                $description = 'El estatus de la orden fue actualizado con exito'
+                $title = 'ÉXITO!',
+                $description = 'El estatus de la orden fue actualizado con éxito'
             );
             $this->reset();
         } catch (\Throwable $th) {
@@ -85,7 +85,7 @@ class ListarOrdenTrabajo extends Component
     {
         DB::table('iaim_material_orden_trabajos')->where('codigo_producto', $codigo) ->where('codigo_ot', $this->codigo_ot)->delete();
         $this->notification()->error(
-            $title = 'NOTIFICACION!',
+            $title = 'NOTIFICACIÓN!',
             $description = 'El producto No '.$codigo.' fue eliminado de forma correcta'
         );
     }

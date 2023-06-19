@@ -167,7 +167,7 @@ $jj = $qc->getUrl();
                 <div class="flex-auto p-4">
                     <div class="flex flex-wrap">
                         <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
-                            <h5 class="text-blueGray-400 uppercase text-xs mb-4">Ots<br>en ejecucion<br>al {{ Carbon::parse($fecha)->format('d-m-Y') }}</h5>
+                            <h5 class="text-blueGray-400 uppercase text-xs mb-4">Ots<br>en ejecución<br>al {{ Carbon::parse($fecha)->format('d-m-Y') }}</h5>
                             <x-total_ots_ejecucion />
                         </div>
                         <div class="relative w-auto pl-4 flex-initial">

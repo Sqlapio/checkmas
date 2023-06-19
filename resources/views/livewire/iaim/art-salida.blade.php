@@ -14,7 +14,7 @@ $ordenes = IaimOrdenTrabajo::all();
     <div class="overflow-auto rounded-lg shadow md:block">
         <div class="grid grid-cols-1 md:grid-cols-5 gap-4 mb-4 mt-8">
             <div class="p-2">
-                <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Descripcion</label>
+                <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Descripción</label>
                 <x-native-select wire:model="articulo_id" class="focus:ring-check-blue focus:border-check-blue">
                     <option value="">...</option>
                         @foreach($articulos as $item)
@@ -64,11 +64,11 @@ $ordenes = IaimOrdenTrabajo::all();
                     </th>
 
                     <th scope="col" class="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-white">
-                        Codigo
+                        Código
                     </th>
 
                     <th scope="col" class="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-white">
-                        Descripcion
+                        Descripción
                     </th>
 
                     <th scope="col" class="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-white">

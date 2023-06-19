@@ -74,7 +74,7 @@
           @foreach($data as $item)
           <tr>
             <th style="border: 0px;" colspan="2"></th>
-            <th class="table-primary">CODIGO ORDEN DE TRABAJO</th>
+            <th class="table-primary">CÓDIGO ORDEN DE TRABAJO</th>
         </tr>
         <tr>
           <td  style="border: none;" colspan="2">
@@ -83,8 +83,8 @@
           <td>{{ $item->codigo_ot }}</td>
         </tr>
             <tr>
-                <th class="table-primary">DIVISION</th>
-                <th class="table-primary">COORDINACION</th>
+                <th class="table-primary">DIVISIÓN</th>
+                <th class="table-primary">COORDINACIÓN</th>
                 <th class="table-primary">FECHA</th>
             </tr>
             
@@ -106,7 +106,7 @@
               <th class="table-primary">CEDULA DE IDENTIDAD</th>
               <th class="table-primary">CARGO</th>
               <th class="table-primary">FIRMA</th>
-              <th class="table-primary">CERTIFICA INSPECCION</th>
+              <th class="table-primary">CERTIFICA INSPECCIÓN</th>
           </tr>
           @foreach($data as $item)
           <tr style="font-size: 0.8rem;">
@@ -121,11 +121,11 @@
 
       <table>
         <tr>
-          <th colspan="3" class="table-primary">DETALLES DE LA INSPECCION</th>
+          <th colspan="3" class="table-primary">DETALLES DE LA INSPECCIÓN</th>
         </tr>
         <tr>
-            <th class="table-primary">UBICACION</th>
-            <th class="table-primary">DESCRIPCION GENERAL</th>
+            <th class="table-primary">UBICACIÓN</th>
+            <th class="table-primary">DESCRIPCIÓN GENERAL</th>
             <th class="table-primary">REPORTADO POR:</th>
         </tr>
         @foreach($data as $item)
@@ -141,11 +141,11 @@
 
     <table>
       <tr>
-        <th colspan="3" class="table-primary">VALORACION</th>
+        <th colspan="3" class="table-primary">VALORACIÓN</th>
       </tr>
       <tr>
-          <th class="table-primary">VALORACION DE LA URGENCIA</th>
-          <th class="table-primary">VALORACION DE LA OBRA</th>
+          <th class="table-primary">VALORACIÓN DE LA URGENCIA</th>
+          <th class="table-primary">VALORACIÓN DE LA OBRA</th>
           <th class="table-primary">OTRAS DIVISIONES</th>
       </tr>
       @foreach($data as $item)
@@ -169,9 +169,9 @@
       <th colspan="4" class="table-primary">MATERIALES Y HERRAMIENTAS</th>
     </tr>
     <tr>
-        <th class="table-primary">CODIGO PRODUCTO</th>
-        <th class="table-primary">DESCRIPCION</th>
-        <th class="table-primary">CATEGORIA</th>
+        <th class="table-primary">CÓDIGO PRODUCTO</th>
+        <th class="table-primary">DESCRIPCIÓN</th>
+        <th class="table-primary">CATEGORÍA</th>
         <th class="table-primary">CANTIDAD</th>
     </tr>
     @foreach($dataProductos as $item)

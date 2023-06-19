@@ -53,7 +53,7 @@
         <table>
             <tr>
                 <th class="table-primary">Id</th>
-                <th class="table-primary">codigo</th>
+                <th class="table-primary">Código</th>
                 <th class="table-primary">Qr condensadora</th>
                 <th class="table-primary">Tipo condensadora</th>
                 <th class="table-primary">Voltaje</th>

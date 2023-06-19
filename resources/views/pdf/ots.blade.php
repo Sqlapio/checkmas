@@ -76,7 +76,7 @@
             <tr>
                 <th class="table-primary" colspan="2">Total Ots creadas: {{ $count_r }}</th>
                 <th class="table-primary" colspan="2">Total Ots aprobadas: {{ $count_a }}</th>
-                <th class="table-primary" colspan="2">Total Ots en ejecucion: {{ $count_e }}</th>
+                <th class="table-primary" colspan="2">Total Ots en ejecución: {{ $count_e }}</th>
                 <th class="table-primary" colspan="2">Total Ots finalizadas: {{ $count_f }}</th>
             </tr>
         </table>
