@@ -59,11 +59,13 @@
                                             @if($item->status == '1')
                                                 <x-badge outline sky label="Registrada" />
                                             @elseif($item->status == '2')
-                                                <x-badge green label="Aprobada" />
+                                                <x-badge sky label="Aprobada" />
                                                 <p class="mt-1 text-xs font-semibold text-gray-600 dark:text-gray-400">Por: {{ $item->aprobada_por }}</p>
+                                            @elseif($item->status == '3')
+                                                <x-badge emerald label="Certificada" />
+                                                <p class="mt-1 text-xs font-semibold text-gray-00 dark:text-gray-400">Por: {{ $item->aprobada_por }}</p>
                                             @endif
                                         </div>
-                                        
                                     </div>
                                 </div>
                             </td>
@@ -89,42 +91,30 @@
                             </td>
                             <td class="w-1/6 px-4 py-4 text-xs text-gray-500 text-justify dark:text-gray-300">
                                 @if($item->valor_obra == '0')
-                                <x-badge outline gray label="Sin valorar" />
+                                <x-badge flat label="Sin valorar" />
                                 @endif
                                 @if($item->valor_obra == 'facil')
-                                <x-badge md outline sky label="Facil" />
+                                <x-badge md flat sky label="Facil" />
                                 @endif
                                 @if($item->valor_obra == 'media')
-                                <x-badge md outline orange label="Media" />
+                                <x-badge md flat warning label="Media" />
                                 @endif
                                 @if($item->valor_obra == 'dificil')
-                                <x-badge md outline red label="Dificil" />
+                                <x-badge md flat red label="Dificil" />
                                 @endif
                             </td>
                             <td class="w-1/6 px-4 py-4 text-xs text-gray-500 text-justify dark:text-gray-300">
                                 @if($item->valor_urgencia == '0')
-                                <x-badge outline gray label="Sin valorar" />
+                                <x-badge flat label="Sin valorar" />
                                 @endif
                                 @if($item->valor_urgencia == 'baja')
-                                <x-badge md outline sky label="Baja" />
+                                <x-badge md flat sky label="Baja" />
                                 @endif
                                 @if($item->valor_urgencia == 'media')
-                                <x-badge md outline orange label="Media" />
+                                <x-badge md flat warning label="Media" />
                                 @endif
                                 @if($item->valor_urgencia == 'alta')
-                                
-                                  <div class="inline-flex items-center px-3 py-1 rounded-md gap-x-2 text-red-500 bg-red-100/60 border-2 border-red-800">
-                                        <span class="relative flex h-3 w-3">
-                                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                                            <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
-                                        </span>
-                                        <div class="flex items-center gap-x-2">
-                                            <div>
-                                                <h2 class="text-sm font-bold text-red-800 dark:text-white ">Alta</h2>
-                                            </div>
-                                        </div>
-                                    </div>
-                                
+                                <x-badge md flat red label="Alta" />
                                 @endif
                             </td>
                             <td class="px-4 py-4 text-xs text-gray-500 text-justify dark:text-gray-300">
