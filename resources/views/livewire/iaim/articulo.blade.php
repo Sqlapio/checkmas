@@ -37,9 +37,9 @@ $categorias = Iaim_Categoria::all();
                 <x-input icon="pencil" wire:model.defer="precio_unitario"  class="focus:ring-check-blue focus:border-check-blue cantidad"/>
             </div>
             {{-- stock --}}
-            <div class="p-2">
+            <div class="p-2" x-data="{ count: 0 }">
                 <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Mínimo stock</label>
-                <x-input icon="pencil" wire:model.defer="cantidad_minima"  class="focus:ring-check-blue focus:border-check-blue number"/>
+                <x-inputs.number wire:model.defer="cantidad_minima" class="number"/>
             </div>
             <div class="p-2 mt-auto">
                 <button type="submit" wire:click.prevent="store()" class="w-full justify-end rounded-md border border-transparent bg-check-blue py-2 px-4 text-sm font-bold text-white shadow-sm hover:bg-check-green">
@@ -124,10 +124,10 @@ $categorias = Iaim_Categoria::all();
     </div>
     <script>
         $('.number').on('input', function () { 
-            this.value = this.value.replace(/[^0-9]/g,'');
+            this.value = this.value.replace(/[^1-9]/g,'');
         });
         $('.cantidad').on('input', function () { 
-            this.value = this.value.replace(/[^0-9.,]/g,'');
+            this.value = this.value.replace(/[^1-9.,]/g,'');
         });
     </script>
 </div>
