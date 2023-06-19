@@ -4,19 +4,6 @@ use App\Models\IaimOrdenTrabajo;
 $articulos = Iaim_Articulo::all();
 $ots = IaimOrdenTrabajo::all();
 
-/*
-    QUERY $OTS
-    Solo seleciona las ots que no tienen materiales asignados
-*/
-// $ots = DB::table('iaim_orden_trabajos as i')
-//         ->select('i.*')
-//         ->leftJoin('iaim_material_orden_trabajos as q', function ($join)
-//         {
-//             $join->on('q.codigo_ot', '=', 'i.codigo_ot');
-//         })
-//         ->whereNull('q.codigo_ot')
-//         ->get();
-
 @endphp
 <div class="p-5">
     <h1 class="text-xl mb-2 fobt-bold">Orden de Trabajo</h1>
@@ -115,7 +102,7 @@ $ots = IaimOrdenTrabajo::all();
                 </div>
                 <div class="p-2" x-data="{ count: 0 }" class="flex items-center gap-x-3">
                     <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Cantidad</label>
-                    <x-inputs.number wire:model.defer="cantidad"/>
+                    <x-inputs.number wire:model.defer="cantidad" class="number"/>
                 </div>
                 {{-- Botton agregar materiales --}}
                 <div class="p-2 mt-auto">
@@ -210,6 +197,15 @@ $ots = IaimOrdenTrabajo::all();
                 $("#"+value).show();
             });
         });
+
+        $('.number').on('input', function () { 
+            this.value = this.value.replace(/[^1-9]/g,'');
+        });
+
+        $('.cantidad').on('input', function () { 
+            this.value = this.value.replace(/[^1-9.,]/g,'');
+        });
+    </script>
 
     </script>
 </div>
