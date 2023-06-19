@@ -154,7 +154,7 @@
                     <p class="text-xs font-normal text-gray-600 dark:text-gray-400">@lang('messages.tablas.servicio') {{ $item->tipoServicio }}</p>
                     <p class="text-xs font-normal text-gray-600 dark:text-gray-400">@lang('messages.tablas.agencia') {{ $item->agencia }}</p>
                     <p class="text-xs font-normal text-gray-600 dark:text-gray-400">@lang('messages.tablas.estado') {{ $item->estado }}</p>
-                    {{-- <p class="text-xs font-normal text-gray-600 dark:text-gray-400">Razon: {{ $item->observaciones }}</p> --}}
+                    {{-- <p class="text-xs font-normal text-gray-600 dark:text-gray-400">Razón: {{ $item->observaciones }}</p> --}}
                 </div>
             </div>
             <div class="flex justify-between mt-6">
