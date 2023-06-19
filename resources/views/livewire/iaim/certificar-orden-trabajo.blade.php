@@ -79,6 +79,13 @@ $ots = IaimOrdenTrabajo::where('status', '2')->get();
                                 <div class="flex items-center gap-x-2 mr-8">
                                     <div>
                                         <h2 class="text-xs font-bold text-gray-800 dark:text-white ">{{ $item->codigo_ot }}</h2>
+                                        <h2 class="text-xs font-bold text-gray-800 dark:text-white ">Fecha certificacion: {{ $item->fecha_cert_ot }}</h2>
+                                        <p class="text-xs font-normal text-gray-600 dark:text-gray-400">Division: {{ $item->usr_cer_division }}</p>
+                                        <p class="text-xs font-normal text-gray-600 dark:text-gray-400">Coordinacion: {{ $item->usr_cer_coordinacion }}</p>
+                                        <div class="mt-2">
+                                                <x-badge emerald label="Certificada" />
+                                                <p class="mt-1 text-xs font-semibold text-gray-00 dark:text-gray-400">Por: {{ $item->usr_cer_nombre }}</p>
+                                        </div>  
                                         <h2 class="text-xs font-bold text-gray-800 dark:text-white ">Fecha certificación: {{ $item->fecha_cert_ot }}</h2>
                                         <p class="text-xs font-normal text-gray-600 dark:text-gray-400">División: {{ $item->usr_cer_division }}</p>
                                         <p class="text-xs font-normal text-gray-600 dark:text-gray-400">Coordinación: {{ $item->usr_cer_coordinacion }}</p>    
