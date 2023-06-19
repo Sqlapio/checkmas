@@ -93,7 +93,8 @@ class ListarOrdenTrabajo extends Component
     public function render()
     {
         return view('livewire.iaim.listar-orden-trabajo', [
-            'data' => IaimOrdenTrabajo::orderBy('id', 'desc')
+            'data' => IaimOrdenTrabajo::where('status','<', 3)
+            ->orderBy('id', 'desc')
             ->paginate(5),
             'materiales' => IaimMaterialOrdenTrabajo::where('codigo_ot', $this->codigo_ot)
             ->paginate(5),
