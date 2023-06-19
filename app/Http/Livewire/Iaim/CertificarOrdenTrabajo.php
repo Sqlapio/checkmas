@@ -182,6 +182,12 @@ class CertificarOrdenTrabajo extends Component
 
     }
 
+    public function imprimir($id)
+    {
+        redirect()->to('/reporte/cert/ot/'.$id);
+
+    }
+
     
     public function render()
     {
