@@ -167,7 +167,7 @@ class CertificarOrdenTrabajo extends Component
 
                     $this->notification()->success(
                         $title = 'ÉXITO!',
-                        $description = 'La orden de trabajo fue certificada con exito'
+                        $description = 'La orden de trabajo fue certificada con éxito'
                     );
             //code...
         } catch (\Throwable $th) {

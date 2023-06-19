@@ -1,6 +1,6 @@
 
 <div class="p-5">
-    <h1 class="text-xl mb-4">Carga de Acticulos</h1>
+    <h1 class="text-xl mb-4">Carga de Artículos</h1>
     <div class="py-5 mt-4">
         <div class="flex justify-between">
             <input wire:model="buscar" type="search" name="buscar" class="border-b border-gray-200 py-2 text-sm rounded-full sm:w-1/3 md:w-1/4 shadow-lg focus:ring-check-blue focus:border-check-blue" placeholder="Buscar..." autocomplete="off">
@@ -9,21 +9,21 @@
     <div class="overflow-auto rounded-lg shadow md:block">
         <div class="grid grid-cols-1 md:grid-cols-6 gap-4 mb-4 mt-8">
             <div class="p-2">
-                <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Descripcion</label>
+                <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Descripción</label>
                 <x-input icon="pencil" wire:model="descripcion"  class="focus:ring-check-blue focus:border-check-blue"/>
             </div>
             <div class="p-2">
-                <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Categoria</label>
+                <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Categoría</label>
                 <x-iaim_categorias />
             </div>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-6 gap-4 mb-4 mt-8">
             <div class="p-2">
-                <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Descripcion</label>
+                <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Descripción</label>
                 <x-input icon="pencil" wire:model="descripcion"  class="focus:ring-check-blue focus:border-check-blue"/>
             </div>
             <div class="p-2">
-                <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Categoria</label>
+                <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Categoría</label>
                 <x-iaim_categorias />
             </div>
             <div class="p-2">
@@ -35,7 +35,7 @@
                 <x-input icon="pencil" wire:model="precio_unitario"  class="focus:ring-check-blue focus:border-check-blue decimales"/>
             </div>
             <div class="p-2">
-                <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Stock minimo</label>
+                <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Stock mínimo</label>
                 <x-input icon="pencil" wire:model="cantidad_minima"  class="focus:ring-check-blue focus:border-check-blue decimales"/>
             </div>
             <div class="p-2 mt-auto">
@@ -43,7 +43,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" wire:loading wire:target="store" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="animate-spin h-5 w-5 mr-3">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
                     </svg>
-                    <span>CARGAR ARTICULO</span>
+                    <span>CARGAR ARTÍCULO</span>
                 </button>
             </div>
         </div>
@@ -54,7 +54,7 @@
                     <th scope="col" class="py-3.5 px-4 text-sm font-semibold text-left rtl:text-right text-white">
                         <div class="flex items-center gap-x-3">
                             <button class="flex items-center gap-x-2">
-                                <span class="ml-1">Codigo</span>
+                                <span class="ml-1">Código</span>
                                 <svg class="h-3" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M2.13347 0.0999756H2.98516L5.01902 4.79058H3.86226L3.45549 3.79907H1.63772L1.24366 4.79058H0.0996094L2.13347 0.0999756ZM2.54025 1.46012L1.96822 2.92196H3.11227L2.54025 1.46012Z" fill="currentColor" stroke="currentColor" stroke-width="0.1" />
                                     <path d="M0.722656 9.60832L3.09974 6.78633H0.811638V5.87109H4.35819V6.78633L2.01925 9.60832H4.43446V10.5617H0.722656V9.60832Z" fill="currentColor" stroke="currentColor" stroke-width="0.1" />
@@ -65,11 +65,11 @@
                     </th>
 
                     <th scope="col" class="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-white">
-                        Descripcion
+                        Descripción
                     </th>
 
                     <th scope="col" class="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-white">
-                        Categoria
+                        Categoría
                     </th>
 
                     <th scope="col" class="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-white">
@@ -81,7 +81,7 @@
                     </th>
 
                     <th scope="col" class="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-white">
-                        Cantidad minima
+                        Cantidad mínima
                     </th>
 
                     <th scope="col" class="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-white">

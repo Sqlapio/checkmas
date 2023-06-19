@@ -25,10 +25,10 @@
                                 </div>
                             </th>
                             <th scope="col" class="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-white dark:text-gray-400">
-                                Ubicacion y reporte
+                                Ubicación y reporte
                             </th>
                             <th scope="col" class="w-20 px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-white dark:text-gray-400">
-                                Descripcion general
+                                Descripción general
                             </th>
                             <th scope="col" class="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-white dark:text-gray-400">
                                 Inspeccionado por:
@@ -92,13 +92,13 @@
                                 <x-badge outline gray label="Sin valorar" />
                                 @endif
                                 @if($item->valor_obra == 'facil')
-                                <x-badge md outline sky label="Facil" />
+                                <x-badge md outline sky label="Fácil" />
                                 @endif
                                 @if($item->valor_obra == 'media')
                                 <x-badge md outline orange label="Media" />
                                 @endif
                                 @if($item->valor_obra == 'dificil')
-                                <x-badge md outline red label="Dificil" />
+                                <x-badge md outline red label="Difícil" />
                                 @endif
                             </td>
                             <td class="w-1/6 px-4 py-4 text-xs text-gray-500 text-justify dark:text-gray-300">
@@ -149,7 +149,7 @@
         </div>
     </div>
 
-    {{-- TABLA DE APROBACION DE ORDEN DE TRABAJO --}}
+    {{-- TABLA DE APROBACIÓN DE ORDEN DE TRABAJO --}}
     <div class="p-5 tabla_materiales {{ $mostrar }}">
         <p class="text-sm font-bold">APROBACION</p>
         <p class="text-xs mb-4">Codigo: {{ $codigo_ot }}</p>
@@ -192,9 +192,9 @@
                                 <td class="px-4 py-4 text-xs text-gray-500 dark:text-gray-300 ">
                                     <x-native-select wire:model="valor_obra" class="focus:ring-check-blue focus:border-check-blue">
                                         <option value="">...</option>
-                                        <option value="facil">Facil</option>
+                                        <option value="facil">Fácil</option>
                                         <option value="media">Media</option>
-                                        <option value="dificil">Dificil</option>
+                                        <option value="dificil">Difícil</option>
                                     </x-native-select>
                                 </td>
                                 <td class="px-4 py-4 text-xs text-gray-500 dark:text-gray-300 ">
@@ -237,7 +237,7 @@
                                 <th scope="col" class="py-3.5 px-4 text-sm font-semibold text-left rtl:text-right text-white dark:text-gray-400">
                                     <div class="flex items-center gap-x-3">
                                         <button class="flex items-center gap-x-2">
-                                            <span class="ml-1">Codigo</span>
+                                            <span class="ml-1">Código</span>
                                             <svg class="h-3" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M2.13347 0.0999756H2.98516L5.01902 4.79058H3.86226L3.45549 3.79907H1.63772L1.24366 4.79058H0.0996094L2.13347 0.0999756ZM2.54025 1.46012L1.96822 2.92196H3.11227L2.54025 1.46012Z" fill="currentColor" stroke="currentColor" stroke-width="0.1" />
                                                 <path d="M0.722656 9.60832L3.09974 6.78633H0.811638V5.87109H4.35819V6.78633L2.01925 9.60832H4.43446V10.5617H0.722656V9.60832Z" fill="currentColor" stroke="currentColor" stroke-width="0.1" />
@@ -250,7 +250,7 @@
                                     Producto
                                 </th>
                                 <th scope="col" class="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-white dark:text-gray-400">
-                                    Categoria
+                                    Categoría
                                 </th>
                                 <th scope="col" class="w-20 px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-white dark:text-gray-400">
                                     Cantidad
