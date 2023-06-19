@@ -20,9 +20,9 @@ $articulos = Iaim_Articulo::all();
                         @endforeach
                 </x-native-select>
             </div>
-            <div class="p-2">
+            <div class="p-2" x-data="{ count: 0 }">
                 <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Cantidad entrante</label>
-                <x-input icon="pencil" wire:model="entrada"  class="focus:ring-check-blue focus:border-check-blue"/>
+                <x-inputs.number wire:model.defer="entrada" class="number"/>
             </div>
             <div class="p-2 mt-auto">
                 <button type="submit" wire:click.prevent="store()" class="w-full justify-end rounded-md border border-transparent bg-check-blue py-2 px-4 text-sm font-bold text-white shadow-sm hover:bg-check-green">
@@ -33,8 +33,6 @@ $articulos = Iaim_Articulo::all();
                 </button>
             </div>
         </div>
-        
-
         <table class="w-full mt-12">
             <thead class="bg-check-blue">
                 <tr>
@@ -95,4 +93,12 @@ $articulos = Iaim_Articulo::all();
             {{ $data->links() }}
         </div>
     </div>
+    <script>
+        $('.number').on('input', function () { 
+            this.value = this.value.replace(/[^1-9]/g,'');
+        });
+        $('.cantidad').on('input', function () { 
+            this.value = this.value.replace(/[^1-9.,]/g,'');
+        });
+    </script>
 </div>

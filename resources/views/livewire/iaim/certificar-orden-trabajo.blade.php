@@ -261,10 +261,10 @@ $ots = IaimOrdenTrabajo::where('status', '2')->get();
                                         <x-input type="date" wire:model.defer="fecha_fin_ot" />
                                     </td>
                                     <td class="px-4 py-4 text-xs text-gray-500 dark:text-gray-300 ">
-                                        <x-inputs.number wire:model.defer="can_dias"/>
+                                        <x-inputs.number wire:model.defer="can_dias" class="number"/>
                                     </td>
                                     <td class="px-4 py-4 text-xs text-gray-500 text-justify dark:text-gray-300">
-                                        <x-inputs.number wire:model.defer="can_trabajadores"/>
+                                        <x-inputs.number wire:model.defer="can_trabajadores" class="number"/>
                                     </td>  
                                     <td class="px-4 py-4 text-xs text-gray-500 text-justify dark:text-gray-300">
                                         <x-input icon="pencil" placeholder="Observaciones y recomendaciones" wire:model.defer="observaciones"/>
@@ -400,5 +400,13 @@ $ots = IaimOrdenTrabajo::where('status', '2')->get();
             </div>
         </div>
     </div>
+    <script>
+        $('.number').on('input', function () { 
+            this.value = this.value.replace(/[^1-9]/g,'');
+        });
+        $('.cantidad').on('input', function () { 
+            this.value = this.value.replace(/[^1-9.,]/g,'');
+        });
+    </script>
 </div>
 
