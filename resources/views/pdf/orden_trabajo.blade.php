@@ -40,6 +40,10 @@
       margin: auto;
     }
 
+    .tabla_logos{
+        margin-bottom: 20px;
+    }
+
     </style>
 <body>
     @php
@@ -48,7 +52,19 @@
     @endphp
     <div class="container-fluid">
 
-              <img class="imagen" src="../public/images/iaim/banner.png" alt="" width="700" height="auto">
+        {{-- Contenedor de logos --}}
+        <div class="tabla_logos">
+          <table style="border: 0px;">
+              <tr style="border: 0px; background-color: #ebf3fc;">
+                  <td style="border: 0px; padding: 5px">
+                      <img class="imagen" src="../public/images/iaim/iaim-logo.png" alt="" width="40" height="auto">
+                  </td>
+                  <td style="border: 0px; text-align: right;">
+                      <img class="imagen" src="../public/images/check_logo.png" alt="" width="150" height="auto">
+                  </td>
+              </tr>
+          </table>
+        </div>
 
         {{-- Titulo --}}
         <p  class="fecha text-end">Fecha: {{ Carbon::parse($fecha)->format('d-m-Y h:m:s') }}</p>
