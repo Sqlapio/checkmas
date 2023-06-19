@@ -25,6 +25,12 @@ class ListarOrdenTrabajo extends Component
     public $otras_diviciones;
     public $mostrar = 'hidden';
 
+    public $buscar;
+    public $fil_status;
+    public $fil_cod_ot;
+    public $fil_hoy;
+    public $fil_semana;
+
     public function validateData()
     {
         $this->validate([
@@ -92,13 +98,27 @@ class ListarOrdenTrabajo extends Component
     
     public function render()
     {
-        return view('livewire.iaim.listar-orden-trabajo', [
-            'data' => IaimOrdenTrabajo::where('status','<', 3)
-            ->orderBy('id', 'desc')
-            ->paginate(5),
-            'materiales' => IaimMaterialOrdenTrabajo::where('codigo_ot', $this->codigo_ot)
-            ->paginate(5),
 
-        ]);
+        $data = IaimOrdenTrabajo::where('status','<', 3)
+            ->when($this->buscar, function($query, $aeropuerto) 
+            {
+                return $query->where('codigo_ot', 'like', "%{$this->buscar}%")
+                            ->orWhere('aeropuerto', 'like', "%{$this->buscar}%")
+                            ->orWhere('area', 'like', "%{$this->buscar}%");
+            })
+            ->when($this->fil_status, function($query, $status) 
+            {
+                return $query->where('status' , $this->fil_status);
+            })
+            ->when($this->fil_hoy, function($query, $hoy) 
+            {
+                return $query->where('fecha_ot' , date_format(now(), 'd-m-Y'));
+            })
+            ->orderBy('id', 'desc')
+            ->paginate(5);
+
+        $materiales = IaimMaterialOrdenTrabajo::where('codigo_ot', $this->codigo_ot)->paginate(5);
+
+        return view('livewire.iaim.listar-orden-trabajo', compact('data','materiales'));
     }
 }
