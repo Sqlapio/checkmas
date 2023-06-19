@@ -9,6 +9,7 @@ use App\Models\FichaTecnica;
 use App\Models\Iaim_Articulo;
 use App\Models\Iaim_Movimiento_Inventario;
 use App\Models\Iaim_OrdenCompra;
+use App\Models\IaimCertificacionOrdenTrabajo;
 use App\Models\IaimMaterialOrdenTrabajo;
 use App\Models\IaimOrdenTrabajo;
 use App\Models\Ot;
@@ -611,6 +612,19 @@ class UtilsController extends Controller
             $dataProductos = IaimMaterialOrdenTrabajo::where('codigo_ot',$codigo)->get();
             $pdf = Pdf::loadView('pdf.orden_trabajo', compact('data', 'dataProductos'));
             return $pdf->stream('reporte_orden_compra.pdf');
+
+        } catch (\Throwable $th) {
+            Log::error('- Class UtilsControllers - Se ha producido un error al ejecutar la funcion.'.$th->getMessage());
+        }
+    }
+
+    public function cert_orden_trabajo($id)
+    {
+        try {
+
+            $data = IaimCertificacionOrdenTrabajo::where('id',$id)->get();
+            $pdf = Pdf::loadView('pdf.cert_orden_trabajo', compact('data'));
+            return $pdf->download('reporte_cert_orden_compra.pdf');
 
         } catch (\Throwable $th) {
             Log::error('- Class UtilsControllers - Se ha producido un error al ejecutar la funcion.'.$th->getMessage());
