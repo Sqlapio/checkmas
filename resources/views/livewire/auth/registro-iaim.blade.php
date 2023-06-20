@@ -32,7 +32,7 @@
                         <x-native-select wire:model="cargo" class="focus:ring-check-blue focus:border-check-blue">
                             <option></option>
                             <option value="Intendente">INTENDENTE</option>
-                            <option value="Jefe de division">JEFE DE DIVISION</option>
+                            <option value="Jefe de división">JEFE DE DIVISIÓN</option>
                             <option value="Contratado">CONTRATADO</option>
                             <option value="Director">DIRECTOR</option>
                         </x-native-select>

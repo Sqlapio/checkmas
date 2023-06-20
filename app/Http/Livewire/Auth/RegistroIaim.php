@@ -128,7 +128,7 @@ class RegistroIaim extends Component
             }
 
         } catch (\Throwable $th) {
-            Log::error('Se ha producido un error al ejecutar la funcion.'.$th->getMessage());
+            Log::error('Se ha producido un error al ejecutar la función.'.$th->getMessage());
             $this->notification()->Error(
                 $title = 'Excepción!',
                 $description = $th->getMessage()
