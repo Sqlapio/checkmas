@@ -28,8 +28,14 @@ class ListarOrdenTrabajo extends Component
     public $buscar;
     public $fil_status;
     public $fil_cod_ot;
-    public $fil_hoy;
-    public $fil_semana;
+    public $fil_fecha;
+    public $fil_fecha_hoy;
+    public $fil_fecha_sem1;
+    public $fil_fecha_sem2;
+    public $fil_fecha_mes;
+    public $fil_fecha_ini_mes;
+    public $fil_fecha_fin_mes;
+    public $fil_urgencia;
 
     public function validateData()
     {
@@ -95,24 +101,62 @@ class ListarOrdenTrabajo extends Component
             $description = 'El producto No '.$codigo.' fue eliminado de forma correcta'
         );
     }
+
+    public function reset_filtros()
+    {
+        $this->reset(); 
+    }
     
     public function render()
     {
+        $date_hoy = date_format(now(), 'Y-m-d');
+        $date_semana = date("Y-m-d",strtotime($date_hoy."- 7 days"));
+        $date_mes = date("Y-m-d",strtotime($date_hoy."- 30 days"));
+
+        if($this->fil_fecha == 'hoy'){
+            $this->reset(['fil_fecha_sem1', 'fil_fecha_ini_mes']);
+            $this->fil_fecha_hoy = $date_hoy;
+        }
+        if($this->fil_fecha == 'semana'){
+            $this->reset('fil_fecha_hoy');
+            $this->fil_fecha_sem1 = $date_hoy;
+            $this->fil_fecha_sem2 = $date_semana;
+        }
+        if($this->fil_fecha == 'mes'){
+            $this->reset(['fil_fecha_hoy', 'fil_fecha_sem1']);
+            $this->fil_fecha_ini_mes = $date_hoy;
+            $this->fil_fecha_fin_mes = $date_mes;
+        }
 
         $data = IaimOrdenTrabajo::where('status','<', 3)
             ->when($this->buscar, function($query, $aeropuerto) 
             {
                 return $query->where('codigo_ot', 'like', "%{$this->buscar}%")
                             ->orWhere('aeropuerto', 'like', "%{$this->buscar}%")
-                            ->orWhere('area', 'like', "%{$this->buscar}%");
+                            ->orWhere('area', 'like', "%{$this->buscar}%")
+                            ->orWhere('division', 'like', "%{$this->buscar}%")
+                            ->orWhere('reportado_por', 'like', "%{$this->buscar}%")
+                            ->orWhere('usr_res_cedula', 'like', "%{$this->buscar}%");
             })
             ->when($this->fil_status, function($query, $status) 
             {
                 return $query->where('status' , $this->fil_status);
             })
-            ->when($this->fil_hoy, function($query, $hoy) 
+            ->when($this->fil_urgencia, function($query, $urgencia) 
             {
-                return $query->where('fecha_ot' , date_format(now(), 'd-m-Y'));
+                return $query->where('valor_urgencia' , $this->fil_urgencia);
+            })
+            ->when($this->fil_fecha_hoy, function($query, $hoy) 
+            {
+                return $query->whereBetween('created_at', [$this->fil_fecha_hoy.' 00:00:00', $this->fil_fecha_hoy.' 23:00:00']);
+            })
+            ->when($this->fil_fecha_sem1,  function($query, $rango) 
+            {
+                return $query->whereBetween('created_at', [$this->fil_fecha_sem2.' 00:00:00', $this->fil_fecha_sem1.' 23:00:00']);
+            })
+            ->when($this->fil_fecha_ini_mes,  function($query, $rango) 
+            {
+                return $query->whereBetween('created_at', [$this->fil_fecha_ini_mes.' 00:00:00', $this->fil_fecha_fin_mes.' 23:00:00']);
             })
             ->orderBy('id', 'desc')
             ->paginate(5);
