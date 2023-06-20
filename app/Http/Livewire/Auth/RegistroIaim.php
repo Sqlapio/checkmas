@@ -86,6 +86,18 @@ class RegistroIaim extends Component
         }
     }
 
+    public function eValcargo($value)
+    {
+
+        if ($value == 'Jefe de division') 
+        {
+            return 'Jefe de división';
+        }else
+        {
+            return $value;
+        }
+    }
+
     public function store()
     {
 
@@ -98,7 +110,7 @@ class RegistroIaim extends Component
             $resgistro->nombre = $this->nombre;
             $resgistro->apellido = $this->apellido;
             $resgistro->ci_rif = $this->ci_rif;
-            $resgistro->cargo = $this->cargo;
+            $resgistro->cargo = $this->eValcargo(cargo);
             $resgistro->rol = $this->rol($this->cargo);
             $resgistro->division = $this->division;
             $resgistro->coordinacion = $this->coordinacion;
