@@ -221,15 +221,17 @@ class CertificarOrdenTrabajo extends Component
                 return $query->where('codigo_ot', 'like', "%{$this->buscar}%")
                             ->orWhere('fecha_cer_ot', 'like', "%{$this->buscar}%")
                             ->orWhere('usr_cer_nombre', 'like', "%{$this->buscar}%")
-                            ->orWhere('usr_cer_cargo', 'like', "%{$this->buscar}%");
+                            ->orWhere('usr_cer_cargo', 'like', "%{$this->buscar}%")
+                            ->orWhere('usr_cer_coordinacion', 'like', "%{$this->buscar}%")
+                            ->orWhere('usr_cer_division', 'like', "%{$this->buscar}%");
             })
             ->when($this->fil_fecha_ini, function($query, $status) 
             {
-                return $query->where('fecha_inicio_ot' , Carbon::createFromFormat('Y-m-d', $this->fil_fecha_ini)->format('d-m-Y'));
+                return $query->orwhere('fecha_inicio_ot' , Carbon::createFromFormat('Y-m-d', $this->fil_fecha_ini)->format('d-m-Y'));
             })
             ->when($this->fil_fecha_fin, function($query, $status) 
             {
-                return $query->where('fecha_fin_ot' , date_format($this->fil_fecha_fin, 'd-m-Y'));
+                return $query->orwhere('fecha_fin_ot' , Carbon::createFromFormat('Y-m-d', $this->fil_fecha_fin)->format('d-m-Y'));
             })
             ->paginate(5);
 
