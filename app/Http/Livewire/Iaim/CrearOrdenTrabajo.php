@@ -6,6 +6,7 @@ use App\Http\Controllers\UtilsController;
 use App\Models\IaimMaterialOrdenTrabajo;
 use App\Models\IaimOrdenTrabajo;
 use Barryvdh\Debugbar\Facades\Debugbar;
+use Carbon\Carbon;
 use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -42,6 +43,8 @@ class CrearOrdenTrabajo extends Component
     public $botton_grid = 'hidden';
     public $save = '';
     public $ocultar = '';
+
+    public $fil_fecha;
 
     protected $listeners = ['aero_selected'];
 
@@ -285,8 +288,10 @@ class CrearOrdenTrabajo extends Component
     {
         $this->fecha_ot = date('d-m-Y h:m:s a');
         return view('livewire.iaim.crear-orden-trabajo', [
-            'data' => IaimMaterialOrdenTrabajo::where('codigo_ot', $this->codigo_ot)
-            ->paginate(4)
+            'data' => IaimMaterialOrdenTrabajo::where('codigo_ot', $this->codigo_ot)->paginate(4),
+            'ot_por_fecha' => IaimOrdenTrabajo::where('created_at', 'like', "%{$this->fil_fecha}%")
+            ->where('status', 1)
+            ->get()
         ]);
     }
 }
