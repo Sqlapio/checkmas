@@ -110,7 +110,7 @@ class RegistroIaim extends Component
             $resgistro->nombre = $this->nombre;
             $resgistro->apellido = $this->apellido;
             $resgistro->ci_rif = $this->ci_rif;
-            $resgistro->cargo = $this->eValcargo(cargo);
+            $resgistro->cargo = $this->eValcargo($this->cargo);
             $resgistro->rol = $this->rol($this->cargo);
             $resgistro->division = $this->division;
             $resgistro->coordinacion = $this->coordinacion;
