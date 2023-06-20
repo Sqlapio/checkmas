@@ -1,7 +1,14 @@
 <div class="min-h-screen flex flex-col gap-4 sm:justify-center items-center pt-6 sm:pt-0">
     <div>
-        <x-jet-authentication-card-logo />
+        <table>
+
+        <tr>
+            <td><x-jet-authentication-card-logo /></td>
+        </tr>
+
+        </table>
     </div>
+
     <div class="mx-auto max-w-full sm:max-w-md mb-8 px-4 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
         <div class="grid grid-cols-4">
             <div class="col-span-4">
