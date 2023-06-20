@@ -22,9 +22,9 @@ $ordenes = IaimOrdenTrabajo::all();
                         @endforeach
                 </x-native-select>
             </div>
-            <div class="p-2">
-                <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Cantidad Saliente</label>
-                <x-input icon="pencil" wire:model="salida"  class="focus:ring-check-blue focus:border-check-blue"/>
+            <div class="p-2" x-data="{ count: 0 }">
+                <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Cantidad saliente</label>
+                <x-inputs.number wire:model.defer="salida" class="number"/>
             </div>
             <div class="p-2">
                 <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Orden de trabajo</label>
@@ -53,7 +53,7 @@ $ordenes = IaimOrdenTrabajo::all();
                     <th scope="col" class="py-3.5 px-4 text-sm font-semibold text-left rtl:text-right text-white">
                         <div class="flex items-center gap-x-3">
                             <button class="flex items-center gap-x-2">
-                                <span class="ml-1">ID Aticulo</span>
+                                <span class="ml-1">ID Artículo</span>
                                 <svg class="h-3" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M2.13347 0.0999756H2.98516L5.01902 4.79058H3.86226L3.45549 3.79907H1.63772L1.24366 4.79058H0.0996094L2.13347 0.0999756ZM2.54025 1.46012L1.96822 2.92196H3.11227L2.54025 1.46012Z" fill="currentColor" stroke="currentColor" stroke-width="0.1" />
                                     <path d="M0.722656 9.60832L3.09974 6.78633H0.811638V5.87109H4.35819V6.78633L2.01925 9.60832H4.43446V10.5617H0.722656V9.60832Z" fill="currentColor" stroke="currentColor" stroke-width="0.1" />
@@ -107,5 +107,13 @@ $ordenes = IaimOrdenTrabajo::all();
             {{ $data->links() }}
         </div>
     </div>
+    <script>
+        $('.number').on('input', function () { 
+            this.value = this.value.replace(/[^1-9]/g,'');
+        });
+        $('.cantidad').on('input', function () { 
+            this.value = this.value.replace(/[^1-9.,]/g,'');
+        });
+    </script>
 </div>
 
