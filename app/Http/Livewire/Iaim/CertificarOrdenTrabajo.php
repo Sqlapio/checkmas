@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Iaim;
 use App\Http\Controllers\UtilsController;
 use App\Models\IaimCertificacionOrdenTrabajo;
 use App\Models\IaimOrdenTrabajo;
+use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Queue\Listener;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -52,6 +53,10 @@ class CertificarOrdenTrabajo extends Component
 
     public $atr_tablas = 'hidden';
     public $atr_botton = '';
+
+    public $buscar;
+    public $fil_fecha_ini;
+    public $fil_fecha_fin;
 
     public function ot_selected($value)
     {
@@ -188,10 +193,15 @@ class CertificarOrdenTrabajo extends Component
 
     }
 
+    public function reset_filtros()
+    {
+        $this->reset(); 
+    }
+
     
     public function render()
     {
-
+        Debugbar::info(date($this->fil_fecha_ini, 'd-m-Y'));
         $user = Auth::user();
 
         $this->usr_cer_nombre = $user->nombre.' '.$user->apellido;
@@ -202,8 +212,24 @@ class CertificarOrdenTrabajo extends Component
         $this->usr_cer_division = $user->division;
         $this->usr_cer_coordinacion = $user->coordinacion;
 
-        return view('livewire.iaim.certificar-orden-trabajo', [
-            'data' => IaimCertificacionOrdenTrabajo::orderBy('id', 'asc')->paginate(5)
-        ]);
+        $data = IaimCertificacionOrdenTrabajo::orderBy('id', 'desc')
+            ->when($this->buscar, function($query, $buscar) 
+            {
+                return $query->where('codigo_ot', 'like', "%{$this->buscar}%")
+                            ->orWhere('fecha_cer_ot', 'like', "%{$this->buscar}%")
+                            ->orWhere('usr_cer_nombre', 'like', "%{$this->buscar}%")
+                            ->orWhere('usr_cer_cargo', 'like', "%{$this->buscar}%");
+            })
+            ->when($this->fil_fecha_ini, function($query, $status) 
+            {
+                return $query->where('fecha_inicio_ot' , date_format($this->fil_fecha_ini, 'd-m-Y'));
+            })
+            ->when($this->fil_fecha_fin, function($query, $status) 
+            {
+                return $query->where('fecha_fin_ot' , date_format($this->fil_fecha_fin, 'd-m-Y'));
+            })
+            ->paginate(5);
+
+        return view('livewire.iaim.certificar-orden-trabajo', compact('data'));
     }
 }
