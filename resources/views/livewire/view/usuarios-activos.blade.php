@@ -34,6 +34,7 @@
                     </th>
                 </tr>
             </thead>
+
             <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
                 @foreach ($data as $item)
                 <tr>
@@ -48,6 +49,10 @@
                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                         <img class="object-cover w-auto h-7" src="{{ asset('images/DEL-TESORO-COLOR.png') }}" alt="">
                     </td>
+                    @endif
+                    @if($item->empresa == 'IAIM')
+                    <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                        <img class="object-cover w-auto h-7" src="{{ asset('images/iaim-logo.png') }}" alt="">
                     @endif
                     {{-- Estatus de usuarios --}}
                     @if($item->activo == '0')
