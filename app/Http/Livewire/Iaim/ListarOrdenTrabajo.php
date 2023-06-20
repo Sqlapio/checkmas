@@ -156,7 +156,7 @@ class ListarOrdenTrabajo extends Component
             })
             ->when($this->fil_fecha_ini_mes,  function($query, $rango) 
             {
-                return $query->whereBetween('created_at', [$this->fil_fecha_ini_mes.' 00:00:00', $this->fil_fecha_fin_mes.' 23:00:00']);
+                return $query->whereBetween('created_at', [$this->fil_fecha_fin_mes.' 00:00:00', $this->fil_fecha_ini_mes.' 23:00:00']);
             })
             ->orderBy('id', 'desc')
             ->paginate(5);
