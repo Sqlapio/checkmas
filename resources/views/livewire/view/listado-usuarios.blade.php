@@ -162,8 +162,10 @@
                 <img class="object-cover w-20 h-auto" src="{{ asset('images/logo-trx.png') }}" alt="">
                 @endif
                 @if($item->empresa == 'Banco del Tesoro')
-
                 <img class="object-cover w-auto h-7" src="{{ asset('images/DEL-TESORO-COLOR.png') }}" alt="">
+                @endif
+                @if($item->empresa == 'IAIM')
+                <img class="object-cover w-auto h-7" src="{{ asset('images/iaim/iaim-logo.png') }}" alt="">
                 @endif
                 <div class="text-sm font-bold text-right text-gray-700">{{ $item->cargo }}</div>
             </div>
