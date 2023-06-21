@@ -9,70 +9,78 @@ $hoy = date('d/m/Y');
 <div class="p-5">
     <h1 class="text-xl mb-2 fobt-bold">Orden de Trabajo</h1>
     <h1 class="text-sm mb-2">Código: {{ $codigo_ot }}</h1>
+
+    {{-- CONTENEDOR PRINCIPAL --}}
     <div class="overflow-auto rounded-lg shadow md:block">
+
         {{-- Fecha --}}
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 lg:grid-cols-5 gap-4 mb-4 mt-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-4 mb-4 mt-8">
             <div class="p-2">
                 <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Fecha</label>
                 <x-input wire:model="fecha_ot" value="{{ $fecha_ot }}" class="focus:ring-check-blue focus:border-check-blue cursor-none" disabled/>
             </div>
         </div>
+
+        {{-- Formulario para crear la orden de trabajo --}}
         <div class="{{ $ocultar }}">
-        {{-- Aeropuerto y area --}}
-        <div class="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-4 mt-8">
-            <div class="p-2">
-                <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Reportado por:</label>
-                <x-input icon="pencil" wire:model.defer="reportado_por"  class="focus:ring-check-blue focus:border-check-blue"/>
+            {{-- Aeropuerto y area --}}
+            <div class="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-4 mt-8">
+                <div class="p-2">
+                    <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Reportado por:</label>
+                    <x-input icon="pencil" wire:model.defer="reportado_por"  class="focus:ring-check-blue focus:border-check-blue"/>
+                </div>
+                <div class="p-2">
+                    <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Aeropuerto</label>
+                    <x-native-select id="aeropuerto" wire:model.defer="aeropuerto"  class="focus:ring-check-blue focus:border-check-blue">
+                        <option value="">...</option>
+                        <option value="nacional">Nacional</option>
+                        <option value="internacional">Internacional</option>
+                        <option value="edif_sede">Edificio Sede</option>
+                    </x-native-select>
+                </div>
+                <div class="p-2 ocultar" id="nacional" style="display:none;">
+                    <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Area</label>
+                    <x-native-select wire:model.defer="area" class="focus:ring-check-blue focus:border-check-blue">
+                        <option value="">...</option>
+                        <option value="aeropostal">Aeropostal</option>
+                        <option value="conviasa">Conviasa</option>
+                    </x-native-select>
+                </div>
+                <div class="p-2 ocultar" id="internacional" style="display:none;">
+                    <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Area</label>
+                    <x-native-select wire:model.defer="area" class="focus:ring-check-blue focus:border-check-blue">
+                        <option value="">...</option>
+                        <option value="copa">Copa</option>
+                        <option value="america">América</option>
+                    </x-native-select>
+                </div>
+                <div class="p-2 ocultar" id="edif_sede" style="display:none;">
+                    <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Area</label>
+                    <x-native-select wire:model.defer="area" class="focus:ring-check-blue focus:border-check-blue">
+                        <option value="">...</option>
+                        <option value="no_aplica">No aplica</option>
+                    </x-native-select>
+                </div>
             </div>
-            <div class="p-2">
-                <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Aeropuerto</label>
-                <x-native-select id="aeropuerto" wire:model.defer="aeropuerto"  class="focus:ring-check-blue focus:border-check-blue">
-                    <option value="">...</option>
-                    <option value="nacional">Nacional</option>
-                    <option value="internacional">Internacional</option>
-                    <option value="edif_sede">Edificio Sede</option>
-                </x-native-select>
+            {{-- Descripcion general --}}
+            <div class="grid grid-cols-1 md:grid-cols-1 gap-4 mb-4 mt-8">
+                <div class="p-2">
+                    <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Descripción General</label>
+                    <x-textarea wire:model.defer="descripcion_general" placeholder="Describa especificamente la razón del reporte" class="focus:ring-check-blue focus:border-check-blue"/>
+                </div>   
             </div>
-            <div class="p-2 ocultar" id="nacional" style="display:none;">
-                <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Area</label>
-                <x-native-select wire:model.defer="area" class="focus:ring-check-blue focus:border-check-blue">
-                    <option value="">...</option>
-                    <option value="aeropostal">Aeropostal</option>
-                    <option value="conviasa">Conviasa</option>
-                </x-native-select>
-            </div>
-            <div class="p-2 ocultar" id="internacional" style="display:none;">
-                <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Area</label>
-                <x-native-select wire:model.defer="area" class="focus:ring-check-blue focus:border-check-blue">
-                    <option value="">...</option>
-                    <option value="copa">Copa</option>
-                    <option value="america">América</option>
-                </x-native-select>
-            </div>
-            <div class="p-2 ocultar" id="edif_sede" style="display:none;">
-                <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Area</label>
-                <x-native-select wire:model.defer="area" class="focus:ring-check-blue focus:border-check-blue">
-                    <option value="">...</option>
-                    <option value="no_aplica">No aplica</option>
-                </x-native-select>
+            {{-- Botton guardar ot --}}
+            <div class="p-2 {{ $save }}">
+                <button type="submit" wire:click.prevent="store_ot()" class="justify-end rounded-md border border-transparent bg-check-blue py-2 px-4 text-sm font-bold text-white shadow-sm hover:bg-check-green">
+                    <svg xmlns="http://www.w3.org/2000/svg" wire:loading wire:target="store_ot" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="animate-spin h-5 w-5 mr-3">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+                    </svg>
+                    <span>GUARDAR</span>
+                </button>
             </div>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-1 gap-4 mb-4 mt-8">
-            <div class="p-2">
-                <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Descripción General</label>
-                <x-textarea wire:model.defer="descripcion_general" placeholder="Describa especificamente la razón del reporte" class="focus:ring-check-blue focus:border-check-blue"/>
-            </div>   
-        </div>
-        {{-- Botton guardar ot --}}
-        <div class="p-2 {{ $save }}">
-            <button type="submit" wire:click.prevent="store_ot()" class="justify-end rounded-md border border-transparent bg-check-blue py-2 px-4 text-sm font-bold text-white shadow-sm hover:bg-check-green">
-                <svg xmlns="http://www.w3.org/2000/svg" wire:loading wire:target="store_ot" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="animate-spin h-5 w-5 mr-3">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
-                </svg>
-                <span>GUARDAR</span>
-            </button>
-        </div>
-        </div>
+
+        {{-- Boton agregar materiales --}}
         <div class="p-2">
             <button type="submit" wire:click.prevent="mostrar_grid()" class="justify-end rounded-md border border-transparent bg-check-blue py-2 px-4 text-sm font-bold text-white shadow-sm hover:bg-check-green">
                 <svg xmlns="http://www.w3.org/2000/svg" wire:loading wire:target="mostrar_grid" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="animate-spin h-5 w-5 mr-3">
@@ -82,8 +90,9 @@ $hoy = date('d/m/Y');
             </button>
         </div>
 
+        {{-- Grip para agregar los materiales (formulario) --}}
         <div class="{{ $grid }}">
-            <div class="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-5 xl:grid-cols-5 gap-4 mb-4">
+            <div class="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-5 gap-4 mb-4">
                 
                 {{-- FECHA DE OT --}}
                 <div class="p-2">
@@ -118,6 +127,7 @@ $hoy = date('d/m/Y');
                     <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Cantidad</label>
                     <x-inputs.number wire:model.defer="cantidad" class="number"/>
                 </div>
+
                 {{-- Botton agregar materiales --}}
                 <div class="p-2 mt-auto">
                     <button type="submit" wire:click.prevent="agregar_materiales()" class="justify-end rounded-xl border border-transparent bg-check-blue py-1 px-1 text-sm font-bold text-white shadow-sm hover:bg-check-green">
@@ -129,6 +139,8 @@ $hoy = date('d/m/Y');
                     </button>
                 </div>
             </div>
+
+                {{-- Tabla para mostrar los materiales cargados --}}
                 <table class="w-full mt-2">
                     <thead class="bg-check-blue">
                         <tr>
@@ -148,13 +160,10 @@ $hoy = date('d/m/Y');
                                 Producto
                             </th>
                             <th scope="col" class="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-white">
-                                Categoría
-                            </th>
-                            <th scope="col" class="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-white">
                                 Cantidad
                             </th>
                             <th scope="col" class="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-white">
-                                Existencia Total
+                                Existencia
                             </th>
                             <th scope="col" class="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-white">    
                             </th>
@@ -169,18 +178,13 @@ $hoy = date('d/m/Y');
                                 </div>
                             </td>
                             <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">{{ $item->descripcion }}</td>
-                            <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">{{ $item->categoria }}</td>
                             <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">{{ $item->cantidad }}</td>
                             <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">{{ $item->existencia_total }}</td>
                             <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                 <div class="p-2 mt-auto">
-                                    <button type="submit" wire:click.prevent="eliminar_materiales({{ $item->codigo_producto }})" class="justify-end rounded-xl border border-transparent bg-red-600 py-2 px-4 text-sm font-bold text-white shadow-sm hover:bg-check-green">
-                                        <span>
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                              </svg>                                                
-                                        </span>
-                                    </button>
+                                    <span>
+                                        <x-badge.circle md negative icon="x" wire:click.prevent="eliminar_materiales({{ $item->codigo_producto }})"/>                                                
+                                    </span>
                                 </div>
                             </td>
                         </tr>
