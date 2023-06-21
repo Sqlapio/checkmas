@@ -36,6 +36,17 @@
         font-weight: bold;
         font-size: 0.8rem;
     }
+    .footer {
+        position: fixed;
+        bottom: 12px;
+        left: 0px;
+        right: 0px;
+        height: 50px;
+        text-align: center;
+        line-height: 35px;
+        padding: 10px;
+        font-size: 12px;
+    }
     .logos{
       margin: auto;
     }
@@ -185,9 +196,11 @@
     </tr>
     @endforeach
 </table>
-      </div>
+    <footer class="footer">
+       © SIAIM 2023. All rights reserved. by StarkMedios - Checkmas
+    </footer>
+</div>
 
-      {{-- <div width="100%" align="center">Reporte generado {{ now() }} por: www.checkmas.com</div> --}}
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
     
