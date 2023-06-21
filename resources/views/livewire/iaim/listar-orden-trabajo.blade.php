@@ -88,7 +88,7 @@
                                                 <x-badge sky label="Aprobada" />
                                                 <p class="mt-1 text-xs font-semibold text-gray-600 dark:text-gray-400">Por: {{ $item->aprobada_por }}</p>
                                             @elseif($item->status == '3')
-                                                <x-badge emerald label="Certificada" />
+                                                <x-badge emerald label="Finalizada" />
                                                 <p class="mt-1 text-xs font-semibold text-gray-00 dark:text-gray-400">Por: {{ $item->aprobada_por }}</p>
                                             @endif
                                         </div>

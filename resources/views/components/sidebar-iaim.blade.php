@@ -80,7 +80,7 @@
                                   </svg>
                                                                     
                             </span>
-                            <span class="ml-3">Certificar</span>
+                            <span class="ml-3">FINALIZAR</span>
                         </a>
                     </li>
                 </div>
