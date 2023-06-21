@@ -5,6 +5,8 @@ namespace App\Http\Livewire\Iaim;
 use App\Http\Controllers\UtilsController;
 use App\Models\IaimCertificacionOrdenTrabajo;
 use App\Models\IaimOrdenTrabajo;
+use Barryvdh\Debugbar\Facades\Debugbar;
+use Carbon\Carbon;
 use Illuminate\Queue\Listener;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -53,6 +55,12 @@ class CertificarOrdenTrabajo extends Component
     public $atr_tablas = 'hidden';
     public $atr_botton = '';
 
+    public $buscar;
+    public $fil_fecha_ini;
+    public $fil_fecha_fin;
+
+    public $fil_hidden = '';
+
     public function ot_selected($value)
     {
         try {
@@ -75,6 +83,7 @@ class CertificarOrdenTrabajo extends Component
     {
         $this->atr_tablas = '';
         $this->atr_botton = 'hidden';
+        $this->fil_hidden = 'hidden';
     }
 
     public function validateData()
@@ -132,7 +141,7 @@ class CertificarOrdenTrabajo extends Component
                 $certificacion->ot_id = $id;
                 $certificacion->codigo_ot = $this->codigo_ot;
                 $certificacion->fecha_inicio_ot = $this->fecha_inicio_ot;
-                $certificacion->fecha_fin_ot = $this->fecha_fin_ot;
+                $certificacion->fecha_fin_ot = Carbon::createFromFormat('Y-m-d', $this->fecha_fin_ot)->format('d-m-Y');
                 $certificacion->fecha_cer_ot = date('d-m-Y');
                 $certificacion->usr_cer_nombre = $this->usr_cer_nombre;
                 $certificacion->usr_cer_cedula = $this->usr_cer_cedula;
@@ -188,10 +197,14 @@ class CertificarOrdenTrabajo extends Component
 
     }
 
+    public function reset_filtros()
+    {
+        $this->reset(); 
+    }
+
     
     public function render()
     {
-
         $user = Auth::user();
 
         $this->usr_cer_nombre = $user->nombre.' '.$user->apellido;
@@ -202,8 +215,26 @@ class CertificarOrdenTrabajo extends Component
         $this->usr_cer_division = $user->division;
         $this->usr_cer_coordinacion = $user->coordinacion;
 
-        return view('livewire.iaim.certificar-orden-trabajo', [
-            'data' => IaimCertificacionOrdenTrabajo::orderBy('id', 'asc')->paginate(5)
-        ]);
+        $data = IaimCertificacionOrdenTrabajo::orderBy('id', 'desc')
+            ->when($this->buscar, function($query, $buscar) 
+            {
+                return $query->where('codigo_ot', 'like', "%{$this->buscar}%")
+                            ->orWhere('fecha_cer_ot', 'like', "%{$this->buscar}%")
+                            ->orWhere('usr_cer_nombre', 'like', "%{$this->buscar}%")
+                            ->orWhere('usr_cer_cargo', 'like', "%{$this->buscar}%")
+                            ->orWhere('usr_cer_coordinacion', 'like', "%{$this->buscar}%")
+                            ->orWhere('usr_cer_division', 'like', "%{$this->buscar}%");
+            })
+            ->when($this->fil_fecha_ini, function($query, $status) 
+            {
+                return $query->orwhere('fecha_inicio_ot' , Carbon::createFromFormat('Y-m-d', $this->fil_fecha_ini)->format('d-m-Y'));
+            })
+            ->when($this->fil_fecha_fin, function($query, $status) 
+            {
+                return $query->orwhere('fecha_fin_ot' , Carbon::createFromFormat('Y-m-d', $this->fil_fecha_fin)->format('d-m-Y'));
+            })
+            ->paginate(5);
+
+        return view('livewire.iaim.certificar-orden-trabajo', compact('data'));
     }
 }

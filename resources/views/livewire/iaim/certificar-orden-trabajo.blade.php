@@ -9,7 +9,7 @@ $ots = IaimOrdenTrabajo::where('status', '2')->get();
 
         <h1 class="text-xl mb-4">Finalización de Orden de trabajo</h1>
         <div class="botton grid justify-items-end mt-5 {{ $atr_botton }}">
-            {{-- Botton agregar materiales --}}
+            {{-- Botton CERTIFICAR --}}
             <div class="p-2 mt-auto">
                 <button type="submit" wire:click.prevent="cert()" class="justify-end rounded-xl border border-transparent bg-check-blue py-2 px-4 text-sm font-bold text-white shadow-sm hover:bg-check-green">
                     <span>
@@ -19,6 +19,7 @@ $ots = IaimOrdenTrabajo::where('status', '2')->get();
             </div>
         </div>
 
+        {{-- CODIGO DE OT --}}
         <div class="py-5 mt-4 {{ $atr_tablas }}">
             <div class="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4 gap-4 mb-4 mt-8">
                 <div class="p-2 cursor-none">
@@ -34,6 +35,26 @@ $ots = IaimOrdenTrabajo::where('status', '2')->get();
         </div>
 
         {{-- TABLA PRINCIPAL PARA LISTAR LAS OREDENES FINALIZADAS --}}
+
+        <div class="py-5 mt-4" id="filtros">
+            {{-- Filtros --}}
+            <div class="flex justify-start gap-x-5 {{ $fil_hidden }}">
+                <x-input wire:model="buscar" class="focus:ring-check-blue focus:border-check-blue sm:w-1/3 md:w-60" placeholder="Buscar..."/>
+
+                <label class="opacity-60 block text-sm font-medium text-italblue my-auto">Fecha inicio:</label>
+                <x-input wire:model="fil_fecha_ini" class="focus:ring-check-blue focus:border-check-blue sm:w-1/3 md:w-60" type="date"/>
+
+                <label class="opacity-60 block text-sm font-medium text-italblue my-auto">Fecha fin:</label>
+                <x-input wire:model="fil_fecha_fin" class="focus:ring-check-blue focus:border-check-blue sm:w-1/3 md:w-60" type="date"/>
+                
+                <div class="p-2 my-auto opacity-60" wire:click='reset_filtros'>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 font-semibold text-orange-400">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+                      </svg>  
+                </div> 
+            </div>
+        </div>
+
         <div class="overflow-auto rounded-lg shadow {{ $atr_botton }}">
             <div class="tabla_ots" id="tabla_ot">
                 <table class="w-full">
@@ -85,6 +106,7 @@ $ots = IaimOrdenTrabajo::where('status', '2')->get();
                                         <div class="mt-2">
                                                 <x-badge emerald label="Finalizada" />
                                                 <p class="mt-1 text-xs font-semibold text-gray-00 dark:text-gray-400">Por: {{ $item->usr_cer_nombre }}</p>
+
                                         </div>    
                                     </div>
                                 </div>
@@ -163,13 +185,13 @@ $ots = IaimOrdenTrabajo::where('status', '2')->get();
                             <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
                                 <tr> 
                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
-                                        <x-input icon="pencil" wire:model.defer="usr_cer_division" class="cursor-none"/>
+                                        <x-input icon="pencil" wire:model.defer="usr_cer_division" class="cursor-none" disabled/>
                                     </td>
                                     <td class="px-4 py-4 text-xs text-gray-500 dark:text-gray-300 ">
-                                        <x-input icon="pencil" wire:model.defer="usr_cer_coordinacion" class="cursor-none"/>
+                                        <x-input icon="pencil" wire:model.defer="usr_cer_coordinacion" class="cursor-none" disabled/>
                                     </td>
                                     <td class="px-4 py-4 text-xs text-gray-500 text-justify dark:text-gray-300">
-                                        <x-input icon="pencil" wire:model.defer="fecha_cer_ot" class="cursor-none"/>
+                                        <x-input icon="pencil" wire:model.defer="fecha_cer_ot" class="cursor-none" disabled/>
                                     </td>    
                                 </tr>
                             </tbody>
@@ -206,16 +228,16 @@ $ots = IaimOrdenTrabajo::where('status', '2')->get();
                             <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
                                 <tr> 
                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
-                                        <x-input icon="pencil" wire:model.defer="usr_cer_nombre" class="cursor-none"/>
+                                        <x-input icon="pencil" wire:model.defer="usr_cer_nombre" class="cursor-none" disabled/>
                                     </td>
                                     <td class="px-4 py-4 text-xs text-gray-500 dark:text-gray-300 ">
-                                        <x-input icon="pencil" wire:model.defer="usr_cer_cedula" class="cursor-none"/>
+                                        <x-input icon="pencil" wire:model.defer="usr_cer_cedula" class="cursor-none" disabled/>
                                     </td>
                                     <td class="px-4 py-4 text-xs text-gray-500 dark:text-gray-300 ">
-                                        <x-input icon="pencil" wire:model.defer="usr_cer_cargo" class="cursor-none"/>
+                                        <x-input icon="pencil" wire:model.defer="usr_cer_cargo" class="cursor-none" disabled/>
                                     </td>
                                     <td class="px-4 py-4 text-xs text-gray-500 text-justify dark:text-gray-300">
-                                        <x-input icon="pencil" wire:model.defer="usr_cer_firma" class="cursor-none"/>
+                                        <x-input icon="pencil" wire:model.defer="usr_cer_firma" class="cursor-none" disabled/>
                                     </td>    
                                 </tr>
                             </tbody>
