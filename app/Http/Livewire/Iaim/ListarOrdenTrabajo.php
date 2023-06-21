@@ -24,6 +24,7 @@ class ListarOrdenTrabajo extends Component
     public $recomendaciones;
     public $otras_diviciones;
     public $mostrar = 'hidden';
+    public $ocultar_tabla = '';
 
     public $buscar;
     public $fil_status;
@@ -54,6 +55,7 @@ class ListarOrdenTrabajo extends Component
             $codigo_ot = $item->codigo_ot;
         }
         Debugbar::info($codigo);
+        $this->ocultar_tabla = 'hidden';
         $this->mostrar = '';
         $this->codigo_ot = $codigo_ot;
 
