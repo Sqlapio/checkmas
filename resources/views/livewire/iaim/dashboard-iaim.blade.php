@@ -144,9 +144,9 @@ $jj = $qc->getUrl();
                 </div>
             </div>
         </div>
-        {{-- Ots Finalizadas --}}
+        {{-- inventario salida --}}
         <div class="w-full md:w-1/2 lg:w-6/12 xl:w-3/12 px-2">
-            <div class="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-[4.0px_8.0px_8.0px_rgba(255,0,0)]">
+            <div class="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg">
                 <div class="flex-auto p-4">
                     <div class="flex flex-wrap">
                         <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
@@ -192,7 +192,7 @@ $jj = $qc->getUrl();
                 <!-- Graficos de Barras 1 -->
                 <div class="w-full ">
                     <h1 class="w-full text-center text-xl px-8 py-4 font-bold rounded-lg dark:bg-gray-700">
-                        ORDENES DE TRABAJO
+                       TOTAL ORDENES DE TRABAJO:  <span class="font-semibold text-xl text-blueGray-700">{{ $total }}</span>
                     </h1>
                     <div class="w-full shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px] border border-gray-200 rounded-lg dark:bg-gray-600 pt-4 pb-6">
                         <canvas id="myChart5" style="padding: 4% 10%"></canvas>
@@ -255,7 +255,7 @@ $jj = $qc->getUrl();
                 barPercentage: 0.5
             }, {
                 type: 'bar',
-                label: 'Certificadas',
+                label: 'Finalizada',
                 data: [ots_certificadas],
                 fill: false,
                 backgroundColor: 'rgb(217, 186, 244)',
@@ -313,7 +313,7 @@ $jj = $qc->getUrl();
                 type: 'bar',
                 label: 'Creadas(%)',
                 data: [porcent_Otc],
-                backgroundColor: 'rgb(221, 116, 88)',
+                backgroundColor: 'rgb(178, 214, 237)',
                 borderRadius: 10,
                 // borderSkipped: 30,
                 barPercentage: 0.5
@@ -322,16 +322,16 @@ $jj = $qc->getUrl();
                 label: 'Aprobadas(%)',
                 data: [porcent_Ota],
                 fill: false,
-                backgroundColor: 'rgb(237, 219, 3)',
+                backgroundColor: 'rgb(242, 146, 141)',
                 borderRadius: 10,
                 // borderSkipped: 30,
                 barPercentage: 0.5
             }, {
                 type: 'bar',
-                label: 'Certificadas(%)',
+                label: 'Finalizada(%)',
                 data: [porcent_Otcert],
                 fill: false,
-                backgroundColor: 'rgb(165, 219, 189)',
+                backgroundColor: 'rgb(217, 186, 244)',
                 borderRadius: 10,
                 // borderSkipped: 30,
                 barPercentage: 0.5
@@ -432,7 +432,7 @@ $jj = $qc->getUrl();
                         // labels: { color: 'darkred', }
                     },
                     datalabels: {
-                        color: 'rgb(255,255,255,255)',
+                        color: '#000000',
                         font: {
                             size: 12
                         }
