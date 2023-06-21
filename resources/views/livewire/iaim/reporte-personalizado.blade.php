@@ -57,7 +57,7 @@
                         <option value="">...</option>
                         <option value="1">Registrada</option>
                         <option value="2">Aprobada</option>
-                        <option value="3">Certificada</option>
+                        <option value="3">Finalizada</option>
                     </x-native-select>
                 </div>
                 
