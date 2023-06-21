@@ -2,7 +2,8 @@
 use App\Models\Iaim_Articulo;
 use App\Models\IaimOrdenTrabajo;
 $articulos = Iaim_Articulo::all();
-$ots = IaimOrdenTrabajo::all();
+// $ots = IaimOrdenTrabajo::all();
+$hoy = date('d/m/Y');
 
 @endphp
 <div class="p-5">
@@ -10,10 +11,10 @@ $ots = IaimOrdenTrabajo::all();
     <h1 class="text-sm mb-2">Código: {{ $codigo_ot }}</h1>
     <div class="overflow-auto rounded-lg shadow md:block">
         {{-- Fecha --}}
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-4 mb-4 mt-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 lg:grid-cols-5 gap-4 mb-4 mt-8">
             <div class="p-2">
                 <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Fecha</label>
-                <x-input icon="pencil" wire:model="fecha_ot" value="{{ $fecha_ot }}" class="focus:ring-check-blue focus:border-check-blue cursor-none"/>
+                <x-input wire:model="fecha_ot" value="{{ $fecha_ot }}" class="focus:ring-check-blue focus:border-check-blue cursor-none" disabled/>
             </div>
         </div>
         <div class="{{ $ocultar }}">
@@ -80,17 +81,28 @@ $ots = IaimOrdenTrabajo::all();
                 <span>AGREGAR MATERIALES</span>
             </button>
         </div>
+
         <div class="{{ $grid }}">
-            <div class="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4 gap-4 mb-4 mt-8">
-                <div class="p-2 cursor-none">
+            <div class="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-5 xl:grid-cols-5 gap-4 mb-4">
+                
+                {{-- FECHA DE OT --}}
+                <div class="p-2">
+                    <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Fecha orden trabajo</label>
+                    <x-input type="date" wire:model="fil_fecha" value="{{ $hoy }}" class="focus:ring-check-blue focus:border-check-blue cursor-none"/>
+                </div>
+
+                {{-- LISTA OT --}}
+                <div class="p-2">
                     <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Código Ot</label>
-                    <x-native-select wire:model.defer="codigo_ot" class="focus:ring-check-blue focus:border-check-blue">
+                    <x-native-select wire:model="codigo_ot" class="focus:ring-check-blue focus:border-check-blue">
                         <option value="">...</option>
-                            @foreach($ots as $item)
-                                <option value="{{ $item->codigo_ot }}">{{ $item->codigo_ot }}</option>
+                            @foreach($ot_por_fecha as $items)
+                                <option value="{{ $items->codigo_ot }}">{{ $items->codigo_ot }}</option>
                             @endforeach
                     </x-native-select>
-                </div>   
+                </div>
+                
+                {{-- CODIGO OT --}}
                 <div class="p-2">
                     <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Producto</label>
                     <x-native-select wire:model.defer="codigo_producto" class="focus:ring-check-blue focus:border-check-blue">
@@ -100,6 +112,8 @@ $ots = IaimOrdenTrabajo::all();
                             @endforeach
                     </x-native-select>
                 </div>
+
+                {{-- CANTIDAD --}}
                 <div class="p-2" x-data="{ count: 0 }" class="flex items-center gap-x-3">
                     <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Cantidad</label>
                     <x-inputs.number wire:model.defer="cantidad" class="number"/>
@@ -178,10 +192,7 @@ $ots = IaimOrdenTrabajo::all();
                 {{ $data->links() }}
             </div>
             <div class="p-2">
-                <button type="submit" wire:click.prevent="mostrar_grid()" class="flex justify-end rounded-md border border-transparent bg-check-blue py-2 px-4 text-sm font-bold text-white shadow-sm hover:bg-check-green">
-                    <svg xmlns="http://www.w3.org/2000/svg" wire:loading wire:target="mostrar_grid" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="animate-spin h-5 w-5 mr-3">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
-                    </svg>
+                <button type="submit" wire:click.prevent="cancelar()" class="flex justify-end rounded-md border border-transparent bg-check-blue py-2 px-4 text-sm font-bold text-white shadow-sm hover:bg-check-green">
                     <span>FINALIZAR</span>
                 </button>
             </div>
@@ -205,8 +216,6 @@ $ots = IaimOrdenTrabajo::all();
         $('.cantidad').on('input', function () { 
             this.value = this.value.replace(/[^1-9.,]/g,'');
         });
-    </script>
-
     </script>
 </div>
 
