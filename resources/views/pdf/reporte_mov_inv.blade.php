@@ -46,6 +46,7 @@
         font-family: 'Creato Display', sans-serif;
     }
 
+
     .linea {
         border-top: 1px solid black;
         height: 2px;
@@ -90,7 +91,7 @@
 
     .footer {
         position: fixed;
-        bottom: -60px;
+        bottom: 12px;
         left: 0px;
         right: 0px;
         height: 50px;
