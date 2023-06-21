@@ -32,6 +32,17 @@
             font-weight: bold;
             font-size: 0.9rem;
         }
+        .footer {
+        position: fixed;
+        bottom: 12px;
+        left: 0px;
+        right: 0px;
+        height: 50px;
+        text-align: center;
+        line-height: 35px;
+        padding: 10px;
+        font-size: 12px;
+        }
     
         </style>
     <body>

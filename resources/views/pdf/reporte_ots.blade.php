@@ -90,7 +90,7 @@
 
     .footer {
         position: fixed;
-        bottom: -60px;
+        bottom: 12px;
         left: 0px;
         right: 0px;
         height: 50px;
@@ -325,7 +325,7 @@
                     <div>
                         <table>
                             <tr>
-                                <th style="text-align: center; background-color: rgb(0 24 90); color: white;" class="table-primary">Totales</th>
+                                <th style="text-align: center; background-color: rgb(0 24 90); color: white;" class="table-primary">Total OT</th>
                                 <th style=" text-align: center; background-color: rgb(0 24 90); color: white;" class="table-primary">Fecha</th>
                             </tr>
                             @foreach($res2 as $item)

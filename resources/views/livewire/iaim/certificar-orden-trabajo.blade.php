@@ -6,7 +6,6 @@ $ots = IaimOrdenTrabajo::where('status', '2')->get();
 @endphp
 <div class="contents">
     <div class="p-4 tabla_ots">
-
         <h1 class="text-xl mb-4 p-4">Finalizar Orden de trabajo</h1>
         <div class="botton grid md:justify-items-end mt-5 {{ $atr_botton }}">
             {{-- Botton Finalizar orden --}}
@@ -77,6 +76,43 @@ $ots = IaimOrdenTrabajo::where('status', '2')->get();
                                                 <path d="M8.45558 7.25664V7.40664H8.60558H9.66065C9.72481 7.40664 9.74667 7.42274 9.75141 7.42691C9.75148 7.42808 9.75146 7.42993 9.75116 7.43262C9.75001 7.44265 9.74458 7.46304 9.72525 7.49314C9.72522 7.4932 9.72518 7.49326 9.72514 7.49332L7.86959 10.3529L7.86924 10.3534C7.83227 10.4109 7.79863 10.418 7.78568 10.418C7.77272 10.418 7.73908 10.4109 7.70211 10.3534L7.70177 10.3529L5.84621 7.49332C5.84617 7.49325 5.84612 7.49318 5.84608 7.49311C5.82677 7.46302 5.82135 7.44264 5.8202 7.43262C5.81989 7.42993 5.81987 7.42808 5.81994 7.42691C5.82469 7.42274 5.84655 7.40664 5.91071 7.40664H6.96578H7.11578V7.25664V0.633865C7.11578 0.42434 7.29014 0.249976 7.49967 0.249976H8.07169C8.28121 0.249976 8.45558 0.42434 8.45558 0.633865V7.25664Z" fill="currentColor" stroke="currentColor" stroke-width="0.3" />
                                             </svg>
                                         </button>
+                                  </div>
+                            </th>
+                            <th scope="col" class="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-white dark:text-gray-400">
+                            Finalizada por:
+                            </th>
+                            <th scope="col" class="w-20 px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-white dark:text-gray-400">
+                                Fecha Finalización
+                            </th>
+                            <th scope="col" class="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-white dark:text-gray-400">
+                                Rango fechas
+                            </th>
+                            <th scope="col" class="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-white dark:text-gray-400">
+                                Duración y personal
+                            </th>
+                            <th scope="col" class="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-white dark:text-gray-400">
+                                Observaciones
+                            </th>
+                            <th scope="col" class="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-white dark:text-gray-400">
+
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
+                        @foreach ($data as $item)
+                        <tr>
+                            <td class="w-1/3 px-4 py-4 text-sm text-gray-500 text-justify dark:text-gray-300">
+                                <div class="flex items-center gap-x-2 mr-8">
+                                    <div>
+                                        <h2 class="text-xs font-bold text-gray-800 dark:text-white ">{{ $item->codigo_ot }}</h2>
+                                        <h2 class="text-xs font-bold text-gray-800 dark:text-white ">Fecha Finalización: {{ $item->fecha_cer_ot }}</h2>
+                                        <p class="text-xs font-normal text-gray-600 dark:text-gray-400">División: {{ $item->usr_cer_division }}</p>
+                                        <p class="text-xs font-normal text-gray-600 dark:text-gray-400">Coordinación: {{ $item->usr_cer_coordinacion }}</p>
+                                        <div class="mt-2">
+                                                <x-badge emerald label="Finalizada" />
+                                                <p class="mt-1 text-xs font-semibold text-gray-00 dark:text-gray-400">Por: {{ $item->usr_cer_nombre }}</p>
+                                        </div>    
                                     </div>
                                 </th>
                                 <th scope="col" class="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-white dark:text-gray-400">
@@ -182,7 +218,7 @@ $ots = IaimOrdenTrabajo::where('status', '2')->get();
                                         División
                                     </th>
                                     <th scope="col" class="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-white dark:text-gray-400">
-                                    Coordinación
+                                        Coordinación
                                     </th>
                                     <th scope="col" class="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-white dark:text-gray-400">
                                         Fecha
