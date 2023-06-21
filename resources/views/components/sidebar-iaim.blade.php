@@ -80,7 +80,7 @@
                                   </svg>
                                                                     
                             </span>
-                            <span class="ml-3">FINALIZAR</span>
+                            <span class="ml-3">Finalizar</span>
                         </a>
                     </li>
                 </div>
