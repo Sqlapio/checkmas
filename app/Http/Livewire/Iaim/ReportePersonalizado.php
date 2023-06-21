@@ -191,7 +191,7 @@ class ReportePersonalizado extends Component
         } catch (\Throwable $res) {
             $this->notification()->warning(
                 $title = 'Validación!',
-                $description = 'Debe selecionar un fecha valida. No hay información disponible...'
+                $description = 'Debe selecionar un fecha valida. No hay información disponible.'
             );
         }
     }
