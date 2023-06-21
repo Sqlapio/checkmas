@@ -9,9 +9,12 @@ use Barryvdh\Debugbar\Facades\Debugbar;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use WireUi\Traits\Actions;
 
 class ReportePersonalizado extends Component
 {
+    use Actions;
+
     public $buscar;
     public $fecha_inicio_inv;
     public $fecha_fin_inv;
@@ -134,6 +137,8 @@ class ReportePersonalizado extends Component
 
         $this->validateData_t2();
 
+    try {
+
         $res = DB::table("iaim_orden_trabajos")
         ->select(DB::raw("count(codigo_ot) as total_ot"))
         ->where('status', $this->estatus)
@@ -173,7 +178,7 @@ class ReportePersonalizado extends Component
         }
         if ($this->estatus == 3) 
         {
-            $des_estatus = 'Certificada';
+            $des_estatus = 'Finalizada';
         }
 
         $pdf = Pdf::loadView('pdf.reporte_ots', 
@@ -183,6 +188,12 @@ class ReportePersonalizado extends Component
                 "filename.pdf"
            );
 
+        } catch (\Throwable $res) {
+            $this->notification()->warning(
+                $title = 'Validación!',
+                $description = 'Debe selecionar un fecha valida. No hay información disponible...'
+            );
+        }
     }
 
     public function render()
