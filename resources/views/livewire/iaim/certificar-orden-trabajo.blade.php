@@ -5,7 +5,7 @@ $articulos = Iaim_Articulo::all();
 $ots = IaimOrdenTrabajo::where('status', '2')->get();
 @endphp
 <div class="contents">
-    <div class="p-4 tabla_ots">
+    <div class="p-2 tabla_ots">
 
         <h1 class="text-xl mb-4 p-4">Finalizar Orden de trabajo</h1>
         <div class="botton grid md:justify-items-end mt-5 {{ $atr_botton }}">
@@ -170,7 +170,7 @@ $ots = IaimOrdenTrabajo::where('status', '2')->get();
         
 
         {{-- GRID DE TABLAS INPUTS --}}
-        <div class="tablas p-4 {{ $atr_tablas }}">
+        <div class="tablas p-2 {{ $atr_tablas }}">
             {{-- TABLA INPUTS 1 --}}
             <div class="tabla_inputs">
                 <div class="overflow-auto rounded-lg shadow hidden lg:block">
@@ -473,12 +473,12 @@ $ots = IaimOrdenTrabajo::where('status', '2')->get();
 
         {{-- RESPONSIVE --}}
         {{-- ResponsiveBuscardor --}}
-        <div class="flex justify-between p-4 lg:hidden">
+        <div class="flex justify-between p-2 lg:hidden">
             <input wire:model="buscar" type="search" name="buscar" class="border-b border-gray-200 py-2 text-sm rounded-full w-1/2 mb-2 shadow-lg focus:ring-check-blue focus:border-check-blue" placeholder="Buscar..." autocomplete="off">
         </div>
 
         {{-- Tabla de ot finalizadas --}}
-        <div class="grid grid-cols-1 sm:grid-cols-1 gap-4 p-4 lg:hidden">
+        <div class="grid grid-cols-1 sm:grid-cols-1 gap-4 p-2 lg:hidden">
             @foreach ($data as $item)
             <div class="bg-white p-4 rounded-lg shadow">
                 <div class="flex items-center justify-between mb-6">
