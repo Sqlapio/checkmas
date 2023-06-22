@@ -8,18 +8,18 @@
         @if(Auth::user()->empresa == 'IAIM')
         <div class="flex">
             <a href class="flex flex-row items-center">
-                <img src="{{ asset('images/iaim/iaim-logo.png') }}" class="w-8 h-auto" alt="">
-                <span class="flex flex-col ml-2">
+                <img src="{{ asset('images/iaim/iaim-logo.png') }}" class="w-8 h-auto max-[320px]:ml-3 max-[420px]:ml-3 xs:ml-3 sm:ml-3" alt="">
+                <span class="flex flex-col ml-3 max-[320px]:hidden max-[420px]:hidden xs:hidden sm:hidden md:flex">
                     <p class="font-semibold text-xs tracking-wide leading-none text-white">INSTITUTO AEROPUERTO INTERNACIONAL</p>
                     <p class="font-semibold text-white text-xs leading-none mt-1 uppercase">Simón Bolívar de Maiquetía</p>
                 </span>
             </a>
         </div>
         @endif
-        <div x-data="{ dropdownOpen: false }"  class="flex ml-auto relative">
+        <div x-data="{ dropdownOpen: false }"  class="flex ml-auto relative p-2">
             <button @click="dropdownOpen = ! dropdownOpen" class="flex flex-row items-center">
                 <img src="{{ asset('images/user.png') }}" alt class="h-10 w-10 bg-gray-200 border rounded-full" />
-                <span class="flex flex-col">
+                <span class="flex flex-col max-[320px]:hidden max-[420px]:hidden xs:hidden sm:hidden md:flex">
                     <span class="truncate w-40 text-white font-semibold tracking-wide leading-none">{{ Auth::user()->nombre }} {{ Auth::user()->apellido }}</span>
                     <span class="truncate w-40 text-white text-xs leading-none mt-1">{{ Auth::user()->email }}</span>
                 </span>
