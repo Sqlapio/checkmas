@@ -64,7 +64,7 @@
             @foreach ($data as $item)
             <div class="bg-white p-4 rounded-lg shadow">
                 <div class="flex items-center justify-between mb-6">
-                    <img class="object-cover w-auto h-7" src="{{ asset('images/iaim/iaim-logo.png') }}" alt="">
+                    <img class="object-cover w-auto h-7" src="{{ asset('images/iaim/iaim-logo-01.png') }}" alt="">
                 </div>
                 <div class="text-sm font-bold text-gray-800">Codigo: {{ $item->codigo }}</div>
                 <div class="text-sm font-medium text-gray-800">Descripcion: {{ $item->descripcion }}</div>
