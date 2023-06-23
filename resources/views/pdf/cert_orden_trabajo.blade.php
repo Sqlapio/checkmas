@@ -75,7 +75,7 @@
             <table style="border: 0px;">
                 <tr style="border: 0px; background-color: #ebf3fc;">
                     <td style="border: 0px; padding: 5px">
-                        <img class="imagen" src="../public/images/iaim/iaim-logo.png" alt="" width="40" height="auto">
+                        <img class="imagen" src="../public/images/iaim/iaim-logo-01-isotipo-2.png" alt="" width="40" height="auto">
                     </td>
                     <td style="border: 0px; text-align: right;">
                         <img class="imagen" src="../public/images/check_logo.png" alt="" width="150" height="auto">
