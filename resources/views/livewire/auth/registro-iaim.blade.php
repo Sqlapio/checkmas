@@ -3,7 +3,7 @@
         <table>
 
         <tr>
-            <td><x-iaim_logos_registro /></td>
+            <td><x-jet-authentication-card-logo /></td>
         </tr>
 
         </table>
