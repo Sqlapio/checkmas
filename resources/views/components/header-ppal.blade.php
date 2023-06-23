@@ -8,7 +8,7 @@
         @if(Auth::user()->empresa == 'IAIM')
         <div class="flex">
             <a href class="flex flex-row items-center">
-                <img src="{{ asset('images/iaim/iaim-logo-02.png') }}" class="w-8 h-auto max-[320px]:ml-3 max-[420px]:ml-3 xs:ml-3 sm:ml-3" alt="">
+                <img src="{{ asset('images/iaim/iaim-logo.png') }}" class="w-8 h-auto max-[320px]:ml-3 max-[420px]:ml-3 xs:ml-3 sm:ml-3" alt="">
                 <span class="flex flex-col ml-3 max-[320px]:hidden max-[420px]:hidden xs:hidden sm:hidden md:flex">
                     <p class="font-semibold text-xs tracking-wide leading-none text-white">INSTITUTO AEROPUERTO INTERNACIONAL</p>
                     <p class="font-semibold text-white text-xs leading-none mt-1 uppercase">Simón Bolívar de Maiquetía</p>
