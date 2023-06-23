@@ -1,7 +1,7 @@
 
 <div x-cloak :class="sidebarOpen ? 'block' : 'hidden'" @click="sidebarOpen = false" class="fixed inset-0 z-20 transition-opacity bg-black opacity-50 lg:hidden"></div>
 <div x-cloak :class="sidebarOpen ? 'translate-x-0 ease-out' : '-translate-x-full ease-in'" class=" fixed shadow-2xl inset-y-0 left-0 z-30 w-64 overflow-y-auto transition duration-300 transform bg-italgray lg:translate-x-0 lg:static lg:inset-0">
-<aside class="sidebar w-64 md:shadow h-full" style="background-color: rgb(230 240 234);">
+<aside class="sidebar w-64 md:shadow" style="background-color: rgb(230 240 234);">
     <div class="sidebar-header flex items-center justify-center">
         <div class="inline-flex">
             <a href="#" class="inline-flex flex-row items-center">
