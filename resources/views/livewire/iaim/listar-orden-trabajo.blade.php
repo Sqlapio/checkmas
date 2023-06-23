@@ -1,6 +1,6 @@
 <div id="content">
     {{-- TABLA DE OTS --}}
-    <div class="p-2 tabla_ots {{ $ocultar_tabla }}">
+    <div class="p-5 tabla_ots {{ $ocultar_tabla }}">
         <h1 class="text-xl mb-4">Ordenes de trabajo</h1>
         {{-- Filtros --}}
         <div class="py-5 mt-4 hidden lg:block" id="filtros">
@@ -179,7 +179,7 @@
     </div>
 
     {{-- TABLA DE APROBACIÓN DE ORDEN DE TRABAJO --}}
-    <div class="p-2 tabla_materiales {{ $mostrar }}">
+    <div class="p-5 tabla_materiales {{ $mostrar }}">
         <p class="text-sm font-bold">APROBACION</p>
         <p class="text-xs mb-4">Codigo: {{ $codigo_ot }}</p>
 
@@ -392,10 +392,10 @@
     </div>
 
     {{-- Table para mobile app --}}
-    <div class="flex justify-between p-2 lg:hidden {{ $ocultar_tabla }}">
+    <div class="flex justify-between p-5 lg:hidden {{ $ocultar_tabla }}">
         <input wire:model="buscar" type="search" name="buscar" class="border-b border-gray-200 py-2 text-sm rounded-full w-1/2 mb-2 shadow-lg focus:ring-check-blue focus:border-check-blue" placeholder="Buscar..." autocomplete="off">
     </div>
-    <div class="grid grid-cols-1 sm:grid-cols-1 gap-4 p-2 lg:hidden {{ $ocultar_tabla }}">
+    <div class="grid grid-cols-1 sm:grid-cols-1 gap-4 p-5 lg:hidden {{ $ocultar_tabla }}">
         @foreach ($data as $item)
         <div class="bg-white p-4 rounded-lg shadow">
             <div class="flex items-center justify-between mb-6">

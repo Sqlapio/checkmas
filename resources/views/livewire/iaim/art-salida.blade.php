@@ -4,7 +4,7 @@ use App\Models\IaimOrdenTrabajo;
 $articulos = Iaim_Articulo::all();
 $ordenes = IaimOrdenTrabajo::all();
 @endphp
-<div class="p-2">
+<div class="p-5">
     <h1 class="text-xl mb-4">Movimientos de inventario (salida)</h1>
 
     <div class="overflow-auto rounded-lg shadow md:block">
