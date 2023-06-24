@@ -28,7 +28,7 @@ $articulos = Iaim_Articulo::all();
                 </button>
             </div>
         </div>
-        <table class="w-full mt-12">
+        <table class="w-full mt-6">
             <thead class="bg-check-blue">
                 <tr>
                     <th scope="col" class="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-white">
@@ -72,7 +72,7 @@ $articulos = Iaim_Articulo::all();
     </div>
     <script>
         $('.number').on('input', function () { 
-            this.value = this.value.replace(/[^1-9]/g,'');
+            this.value = this.value.replace(/[.,]/g,'');
         });
         $('.cantidad').on('input', function () { 
             this.value = this.value.replace(/[^1-9.,]/g,'');

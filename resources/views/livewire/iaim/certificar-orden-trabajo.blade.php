@@ -7,7 +7,7 @@ $ots = IaimOrdenTrabajo::where('status', '2')->get();
 <div class="contents">
     <div class="p-4 tabla_ots">
 
-        <h1 class="text-xl mb-4 p-4">Finalizar Orden de trabajo</h1>
+        <h1 class="text-xl mb-4 p-4">Finalizar orden de trabajo</h1>
         <div class="botton grid md:justify-items-end mt-5 {{ $atr_botton }}">
             {{-- Botton Finalizar orden --}}
             <div class="p-4 mt-auto">
@@ -63,6 +63,7 @@ $ots = IaimOrdenTrabajo::where('status', '2')->get();
         {{-- TABLA PRINCIPAL PARA LISTAR LAS OREDENES CERTIFICADAS --}}
         <div class="hidden lg:block">
             <div class="overflow-auto rounded-lg shadow {{ $atr_botton }}">
+                <h1 class="text-lg mb-1 p-4">Listado de ordenes finalizadas</h1>
                 <div class="tabla_ots" id="tabla_ot">
                     <table class="w-full">
                         <thead class="bg-check-blue">
@@ -111,7 +112,7 @@ $ots = IaimOrdenTrabajo::where('status', '2')->get();
                                             <p class="text-xs font-normal text-gray-600 dark:text-gray-400">Division: {{ $item->usr_cer_division }}</p>
                                             <p class="text-xs font-normal text-gray-600 dark:text-gray-400">Coordinacion: {{ $item->usr_cer_coordinacion }}</p>
                                             <div class="mt-2">
-                                                    <x-badge emerald label="Certificada" />
+                                                    <x-badge emerald label="Finalizada" />
                                             </div>    
                                         </div>
                                     </div>

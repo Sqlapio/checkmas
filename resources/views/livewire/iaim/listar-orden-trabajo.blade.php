@@ -1,7 +1,7 @@
 <div id="content">
     {{-- TABLA DE OTS --}}
     <div class="p-5 tabla_ots {{ $ocultar_tabla }}">
-        <h1 class="text-xl mb-4">Ordenes de trabajo</h1>
+        <h1 class="text-xl mb-4">Listado de ordenes de trabajo</h1>
         {{-- Filtros --}}
         <div class="py-5 mt-4 hidden lg:block" id="filtros">
             {{-- Filtros --}}

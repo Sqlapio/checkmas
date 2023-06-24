@@ -107,9 +107,9 @@ $jj = $qc->getUrl();
                 }
         }
 </style>
-<div class="flex flex-wrap">
+<div class="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-5 gap-8">
         {{-- Total Ots --}}
-        <div class="w-full md:w-1/2 lg:w-6/12 xl:w-3/12 px-2">
+        <div class="p-2">
             <div class="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg">
                 <div class="flex-auto p-4">
                     <div class="flex flex-wrap">
@@ -127,7 +127,7 @@ $jj = $qc->getUrl();
             </div>
         </div>
         {{-- Total Inventario $ --}}
-        <div class="w-full md:w-1/2 lg:w-6/12 xl:w-3/12 px-2">
+        <div class="p-2">
             <div class="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg">
                 <div class="flex-auto p-4">
                     <div class="flex flex-wrap">
@@ -145,7 +145,7 @@ $jj = $qc->getUrl();
             </div>
         </div>
         {{-- inventario salida --}}
-        <div class="w-full md:w-1/2 lg:w-6/12 xl:w-3/12 px-2">
+        <div class="p-2">
             <div class="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg">
                 <div class="flex-auto p-4">
                     <div class="flex flex-wrap">
@@ -161,14 +161,32 @@ $jj = $qc->getUrl();
                 </div>
             </div>
         </div>
-        {{-- Ots en ejecucion --}}
-        <div class="w-full md:w-1/2 lg:w-6/12 xl:w-3/12 px-2">
+        {{-- Ots aprobadas --}}
+        <div class="p-2">
             <div class="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg">
                 <div class="flex-auto p-4">
                     <div class="flex flex-wrap">
                         <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
                             <h5 class="text-blueGray-400 uppercase text-xs mb-4">Ots<br>finalizadas <br>al {{ Carbon::parse($fecha)->format('d-m-Y') }}</h5>
-                            <x-total_ots_ejecucion_iaim />
+                            <x-total_ots_aprobadas_iaim />
+                        </div>
+                        <div class="relative w-auto pl-4 flex-initial">
+                            <div class="text-white text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full ">
+                                <img src="{{ asset('images/ejecucion.png') }}" class="w-36" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+         {{-- Ots finalizadas --}}
+        <div class="p-2">
+            <div class="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg">
+                <div class="flex-auto p-4">
+                    <div class="flex flex-wrap">
+                        <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
+                            <h5 class="text-blueGray-400 uppercase text-xs mb-4">Ots<br>finalizadas <br>al {{ Carbon::parse($fecha)->format('d-m-Y') }}</h5>
+                            <x-total_ots_finalizadas_iaim />
                         </div>
                         <div class="relative w-auto pl-4 flex-initial">
                             <div class="text-white text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full ">
