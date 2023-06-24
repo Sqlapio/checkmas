@@ -3,7 +3,7 @@ use App\Models\Iaim_Categoria;
 $categorias = Iaim_Categoria::all();
 @endphp
 <div class="p-5">
-    <h1 class="text-xl mb-4">Carga de productos de invantario</h1>
+    <h1 class="text-xl mb-4">Carga de productos con inventario</h1>
     <div class="py-5 mt-4">
         <div class="flex justify-between">
             <input wire:model="buscar" type="search" name="buscar" class="border-b border-gray-200 py-2 text-sm rounded-full sm:w-1/3 md:w-1/4 shadow-lg focus:ring-check-blue focus:border-check-blue" placeholder="Buscar..." autocomplete="off">
@@ -52,7 +52,7 @@ $categorias = Iaim_Categoria::all();
         </div>
         
 
-        <table class="w-full mt-12">
+        <table class="w-full mt-6">
             <thead class="bg-check-blue">
                 <tr>
                     <th scope="col" class="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-white">
@@ -106,7 +106,7 @@ $categorias = Iaim_Categoria::all();
     </div>
     <script>
         $('.number').on('input', function () { 
-            this.value = this.value.replace(/[^1-9]/g,'');
+            this.value = this.value.replace(/[.,]/g,'');
         });
         $('.cantidad').on('input', function () { 
             this.value = this.value.replace(/[^1-9.,]/g,'');
