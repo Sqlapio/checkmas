@@ -2,10 +2,14 @@
 
 namespace App\Http\Livewire\View;
 
+use App\Http\Controllers\UtilsController;
 use App\Models\Agencia;
 use App\Models\Estado;
 use App\Models\FichaTecnica as ModelFichaTecnica;
+use App\Models\Ot;
 use App\Models\Qr;
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -41,10 +45,13 @@ class FichaTecnica extends Component
     public $oficina;
     public $piso;
     public $agencia;
-    public $estado;
     public $otroServicio;
     public $otroTipoRefri;
     public $otroBtu;
+    public $tecRespondable;
+    public $estado;
+
+    
 
 
     public $buscar;
@@ -65,7 +72,8 @@ class FichaTecnica extends Component
         'otro_btu',
     ];
 
-    public function viewForm(){
+    public function viewForm()
+    {
         $this->atr_form = '';
         $this->atr_table = 'hidden';
     }
@@ -73,43 +81,54 @@ class FichaTecnica extends Component
     public function tipo_servicio($value)
     {
         if ($value == 'compacto') {
-                $this->atr = 'hidden';
+            $this->atr = 'hidden';
         }
-    
+
         if ($value != 'compacto') {
-                $this->atr = '';
-                $this->label = $value;
+            $this->atr = '';
+            $this->label = $value;
         }
-    
+
         if ($value == 'otro') {
-                $this->atr_otro_servicio = '';
-                $this->atr_select_tipo_sistema = 'hidden';
+            $this->atr_otro_servicio = '';
+            $this->atr_select_tipo_sistema = 'hidden';
         } else {
-                $this->atr_otro_servicio = 'hidden';
-                $this->atr_select_tipo_sistema = '';
+            $this->atr_otro_servicio = 'hidden';
+            $this->atr_select_tipo_sistema = '';
         }
     }
 
     public function otro_tipo_refri($value)
     {
         if ($value == 'otro') {
-                $this->atr_otro_tipo_refri = '';
-                $this->atr_select_tipo_refri = 'hidden';
+            $this->atr_otro_tipo_refri = '';
+            $this->atr_select_tipo_refri = 'hidden';
         } else {
-                $this->atr_otro_tipo_refri = 'hidden';
-                $this->atr_select_tipo_refri = '';
+            $this->atr_otro_tipo_refri = 'hidden';
+            $this->atr_select_tipo_refri = '';
         }
     }
 
     public function otro_btu($value)
     {
         if ($value == 'otro') {
-                $this->atr_otro_btu = '';
-                $this->atr_select_tipo_btu = 'hidden';
+            $this->atr_otro_btu = '';
+            $this->atr_select_tipo_btu = 'hidden';
         } else {
-                $this->atr_otro_btu = 'hidden';
-                $this->atr_select_tipo_btu = '';
+            $this->atr_otro_btu = 'hidden';
+            $this->atr_select_tipo_btu = '';
         }
+    }
+
+    public function datosTecRes()
+    {
+        $datos = User::where('email', $this->tecRespondable)->get();
+        foreach ($datos as $item) {
+            $nombre = $item->nombre;
+            $apellido = $item->apellido;
+        }
+        $data = $nombre . ' ' . $apellido;
+        return $data;
     }
 
     public function validateData()
@@ -179,7 +198,6 @@ class FichaTecnica extends Component
         $this->oficina = '';
         $this->piso = '';
         $this->agencia = '';
-        $this->estado = '';
     }
 
     protected $messages = [
@@ -220,6 +238,7 @@ class FichaTecnica extends Component
             $desEstado = Estado::where('codigo', $this->estado)->get();
             foreach ($desEstado as $item) {
                 $estadoDes = $item->descripcion;
+                $color = $item->color;
             }
 
             $desAgencia = Agencia::where('codigo', $this->agencia)->get();
@@ -229,13 +248,13 @@ class FichaTecnica extends Component
 
             $qrs = new Qr();
 
-            if ($this->tipoConden == 'compacto') {
+            if ($this->tipoConden == 'compacto') 
+            {
 
                 $uidFt = DB::table('ficha_tecnicas')->latest("id")->first();
 
                 if ($uidFt == NULL) {
                     $fichaTecnica->uid = $this->agencia . '-' . $this->estado . '-1';
-                    
                 } else {
                     $tercerTer = $uidFt->id * 10;
                     $fichaTecnica->uid = $this->agencia . '-' . $this->estado . '-' . $tercerTer;
@@ -244,9 +263,8 @@ class FichaTecnica extends Component
                 /**
                  * Cargamos las imagenes
                  */
-                $img_compresor = $this->imgPlacaCompresor->store($this->qrConden.'/compresor', 'public');
-                $img_ventilador = $this->imgEtiqVentilador->store($this->qrConden.'/ventilador', 'public');
-
+                $img_compresor = $this->imgPlacaCompresor->store($this->qrConden . '/compresor', 'public');
+                $img_ventilador = $this->imgEtiqVentilador->store($this->qrConden . '/ventilador', 'public');
 
                 $fichaTecnica->qrConden     = $this->qrConden;
                 $fichaTecnica->tipoConden   = $this->tipoConden;
@@ -289,11 +307,18 @@ class FichaTecnica extends Component
                  * como asignado
                  */
                 DB::table('qrs')
-                ->where('codigo', $fichaTecnica->qrConden)
-                ->update(['asignado' => 1]);
+                    ->where('codigo', $fichaTecnica->qrConden)
+                    ->update(['asignado' => 1]);
+
+                // NOTIFICACION VALIDA
+                $this->notification()->success(
+                    $title = 'ÉXITO!',
+                    $description = 'La ficha técnica fue registrada con éxito'
+                );
             }
 
-            if ($this->tipoConden != 'compacto') {
+            if ($this->tipoConden != 'compacto') 
+            {
 
                 $uidFt = DB::table('ficha_tecnicas')->latest("id")->first();
 
@@ -307,9 +332,9 @@ class FichaTecnica extends Component
                 /**
                  * Cargamos las imagenes
                  */
-                $img_compresor  = $this->imgPlacaCompresor->store($this->qrConden.'/compresor', 'public');
-                $img_ventilador = $this->imgEtiqVentilador->store($this->qrConden.'/ventilador', 'public');
-                $img_evaporador = $this->imgEvaporador->store($this->qrEvaporador.'/evaporador', 'public');
+                $img_compresor  = $this->imgPlacaCompresor->store($this->qrConden . '/compresor', 'public');
+                $img_ventilador = $this->imgEtiqVentilador->store($this->qrConden . '/ventilador', 'public');
+                $img_evaporador = $this->imgEvaporador->store($this->qrEvaporador . '/evaporador', 'public');
 
                 $fichaTecnica->qrConden = $this->qrConden;
 
@@ -337,7 +362,7 @@ class FichaTecnica extends Component
                 if (isset($this->otroBtu)) {
                     $fichaTecnica->btu = preg_replace('/[^0-9]/', '', $this->otroBtu);
                 } else {
-                    $fichaTecnica->btu = $this->btu;    
+                    $fichaTecnica->btu = $this->btu;
                 }
                 $fichaTecnica->costo = $fichaTecnica->btu * 131.61;
                 $fichaTecnica->tipoCompresor = $this->tipoCompresor;
@@ -359,23 +384,68 @@ class FichaTecnica extends Component
                  * como asignado
                  */
                 DB::table('qrs')
-                ->where('codigo', $fichaTecnica->qrConden)
-                ->update(['asignado' => 1]);
+                    ->where('codigo', $fichaTecnica->qrConden)
+                    ->update(['asignado' => 1]);
 
                 DB::table('qrs')
-                ->where('codigo', $fichaTecnica->qrEvaporador)
-                ->update(['asignado' => 1]);
+                    ->where('codigo', $fichaTecnica->qrEvaporador)
+                    ->update(['asignado' => 1]);
 
-
+                // NOTIFICACION VALIDA
+                $this->notification()->success(
+                    $title = 'ÉXITO!',
+                    $description = 'La ficha técnica fue registrada con éxito'
+                );
             }
+
+
+            /**
+             * Logica para generar el mp al momento de crear el equipo
+             */
+
+            $fecha = date('dmY');
+            $otUid = $fecha . '-' . $fichaTecnica->uid . '-MP';
+
+            $ot = new Ot();
+            $ot->otUid = $otUid;
+            $ot->fechaInicio = date('d-m-Y');
+            $ot->tecRes_NomApe = $this->datosTecRes();
+            $ot->tecRes_email = $this->tecRespondable;
+            $ot->equipoUid = $fichaTecnica->uid;
+            $ot->btu = $fichaTecnica->btu;
+            $ot->codigo_agencia = $this->agencia;
+            $ot->estado = $fichaTecnica->estado;
+            $ot->color = $color;
+            $ot->agencia = $fichaTecnica->agencia;
+            $ot->tipoMantenimiento = 'MP';
+            $ot->owner = $user->email;
+            $ot->statusOts = '1';
+            $ot->total_mp = 1;
+            $ot->save();
+
+            /**
+             * @method total_mp
+             * @param $equipo_uid, $estado
+             * Logica para guardar el acumulado de los MC
+             */
+            UtilsController::total_inversion_mp($fichaTecnica->uid, $ot->estado);
+
+            /**
+             * @method total_mp
+             * @param $estado, estatus
+             * Logica para guardar el acumulado de los MC creados
+             */
+            UtilsController::total_ot_mp_estatus($ot->estado, 1);
 
             $this->reset();
 
             $this->notification()->success(
                 $title = 'ÉXITO!',
-                $description = 'La ficha técnica fue registrada con éxito'
+                $description = 'La orden de trabajo fue registrada con éxito'
             );
+
         } catch (\Throwable $th) {
+            dd($th);
             Log::error($th->getMessage());
             $this->notification()->error(
                 $title = 'ERROR!',

@@ -14,6 +14,7 @@ use App\Models\Ot;
 use App\Models\Tikect;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use WireUi\Traits\Actions;
 use Illuminate\Support\Str;
@@ -48,6 +49,7 @@ class OrdenTrabajo extends Component
     public $atr_info_tikect = 'hidden';
 
     public $porcen = '';
+    public $buscar;
 
     protected $listeners = [
         'selection',
@@ -85,7 +87,6 @@ class OrdenTrabajo extends Component
 
     public function calc($value)
     {
-        // $calc = (($this->costo_oper * 100)/$this->costo_preCli)/100;
         $calc = (($this->costo_preCli/$this->costo_oper)-1)*100;
         $this->porcen = round($calc, 2);
 
@@ -163,6 +164,10 @@ class OrdenTrabajo extends Component
 
     ];
 
+    /**
+     * Funcion para guardar los tipos de mantenimientos
+     * MP y MC
+     */
     public function store()
     {
 
@@ -203,7 +208,23 @@ class OrdenTrabajo extends Component
 
             $ot = new Ot();
 
-            if ($this->tipoMantenimiento == 'MP') {
+            if ($this->tipoMantenimiento == 'MP') 
+            {
+
+                $existe_ot = Ot::where('otUid', $otUid)->get();
+                foreach($existe_ot as $item){
+                    $total_mp = $item->total_mp;
+                }
+                // if(count($existe_ot) >= 1 && $total_mp < 2)
+                // {
+                //     DB::table('ots')
+                //     ->where('otUid', $otUid)
+                //     ->update([
+                //         'total_ticket_cerrados' => $total_ticket_cerrados,
+                //         'total_ticket_abiertos' => $total_ticket_abiertos
+                //     ]);
+
+                // }
 
                 $ot->otUid = $otUid;
                 $ot->fechaInicio = Carbon::createFromFormat('Y-m-d', $this->fechaInicio)->format('d-m-Y');
@@ -218,6 +239,7 @@ class OrdenTrabajo extends Component
                 $ot->tipoMantenimiento = $this->tipoMantenimiento;
                 $ot->owner = $user->email;
                 $ot->statusOts = '1';
+                $ot->total_mp = 1;
                 if($this->tikect_id != 'null' && $this->owner_tikect != 'null')
                 {
                     $ot->tikect_id = $this->tikect_id;
@@ -308,11 +330,18 @@ class OrdenTrabajo extends Component
         }
     }
 
-
-
     public function render()
     {
 
-        return view('livewire.view.orden-trabajo');
+        return view('livewire.view.orden-trabajo', [
+            'data_mp' => Ot::where('tipoMantenimiento', 'MP')
+            ->where('otUid', 'like', "%{$this->buscar}%")
+            ->orderBy('id', 'desc')
+            ->paginate(5),
+            'data_mc' => Ot::where('tipoMantenimiento', 'MP')
+            ->where('otUid', 'like', "%{$this->buscar}%")
+            ->orderBy('id', 'desc')
+            ->paginate(5)
+        ]);
     }
 }
