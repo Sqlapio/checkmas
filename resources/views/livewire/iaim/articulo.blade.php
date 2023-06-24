@@ -2,7 +2,7 @@
 use App\Models\Iaim_Categoria;
 $categorias = Iaim_Categoria::all();
 @endphp
-<div class="p-5">
+<div class="p-2">
     <h1 class="text-xl mb-4">Carga de productos con inventario</h1>
     <div class="py-5 mt-4">
         <div class="flex justify-between">

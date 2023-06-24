@@ -1,4 +1,4 @@
-    <div class="p-3">
+    <div class="p-2">
         <h1 class="text-xl mb-4">Flujo de inventario</h1>
         <div class="py-5 mt-4">
             <div class="flex justify-between">

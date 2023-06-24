@@ -1,10 +1,12 @@
-<div class="p-5">
+<div class="p-2">
     <h1 class="text-xl mb-4">Usuarios activos</h1>
+
     <div class="py-5 mt-4">
         <div class="flex justify-between">
             <input wire:model="buscar" type="search" name="buscar" class="border-b border-gray-200 py-2 text-sm rounded-full sm:w-1/3 md:w-1/4 shadow-lg focus:ring-check-blue focus:border-check-blue" placeholder="Buscar..." autocomplete="off">
         </div>
     </div>
+
     <div class="overflow-auto rounded-lg shadow hidden md:block">
         <table class="w-full">
             <thead class="bg-gray-50 dark:bg-gray-800">
@@ -103,6 +105,7 @@
             {{ $data->links('vendor.livewire.tailwind') }}
         </div>
     </div>
+
     {{-- Table para mobile app --}}
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden">
         @foreach ($data as $item)
@@ -134,6 +137,4 @@
             {{ $data->links() }}
         </div>
     </div>
-
-
 </div>
