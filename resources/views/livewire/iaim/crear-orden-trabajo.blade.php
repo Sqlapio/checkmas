@@ -7,7 +7,7 @@ $hoy = date('d/m/Y');
 
 @endphp
 <div class="p-5">
-    <h1 class="text-xl mb-2 fobt-bold">Orden de Trabajo</h1>
+    <h1 class="text-xl mb-2 fobt-bold">Crear orden de trabajo</h1>
     <h1 class="text-sm mb-2">Código: {{ $codigo_ot }}</h1>
 
     {{-- CONTENEDOR PRINCIPAL --}}
@@ -214,7 +214,7 @@ $hoy = date('d/m/Y');
         });
 
         $('.number').on('input', function () { 
-            this.value = this.value.replace(/[^1-9]/g,'');
+            this.value = this.value.replace(/[.,]/g,'');
         });
 
         $('.cantidad').on('input', function () { 
