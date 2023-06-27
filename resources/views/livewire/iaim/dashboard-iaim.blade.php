@@ -107,15 +107,15 @@ $jj = $qc->getUrl();
                 }
         }
 </style>
-<div class="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-5 gap-8">
+<div class="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-5 gap-8">
         {{-- Total Ots --}}
         <div class="p-2">
             <div class="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg">
                 <div class="flex-auto p-4">
                     <div class="flex flex-wrap">
                         <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
-                            <h5 class="text-blueGray-400 uppercase text-xs mb-4">total<br>orden de trabajo<br>al {{ Carbon::parse($fecha)->format('d-m-Y') }}</h5>
-                            <span class="font-semibold text-xl text-blueGray-700">{{ $total }}</span>
+                            <h5 class="text-blueGray-400 uppercase text-xs mb-4">Ordenes de<br> trabajo<br>al {{ Carbon::parse($fecha)->format('d-m-Y') }}</h5>
+                            <span class="font-semibold text-lg text-blueGray-700">{{ $total }}</span>
                         </div>
                         <div class="relative w-auto pl-4 flex-initial">
                             <div class="text-white text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full ">
@@ -132,7 +132,7 @@ $jj = $qc->getUrl();
                 <div class="flex-auto p-4">
                     <div class="flex flex-wrap">
                         <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
-                            <h5 class="text-blueGray-400 uppercase text-xs mb-4">total<br>inventario<br>al {{ Carbon::parse($fecha)->format('d-m-Y') }} </h5>
+                            <h5 class="text-blueGray-400 uppercase text-xs mb-4">Inventario<br>al<br>{{ Carbon::parse($fecha)->format('d-m-Y') }} </h5>
                             <x-total_existencia />
                         </div>
                         <div class="relative w-auto pl-4 flex-initial">
@@ -162,12 +162,12 @@ $jj = $qc->getUrl();
             </div>
         </div>
         {{-- Ots aprobadas --}}
-        <div class="p-2">
+        <div class="p-2 xl:hidden 2xl:block">
             <div class="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg">
                 <div class="flex-auto p-4">
                     <div class="flex flex-wrap">
                         <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
-                            <h5 class="text-blueGray-400 uppercase text-xs mb-4">Ots<br>finalizadas <br>al {{ Carbon::parse($fecha)->format('d-m-Y') }}</h5>
+                            <h5 class="text-blueGray-400 uppercase text-xs mb-4">Ots<br>aprobadas <br>al {{ Carbon::parse($fecha)->format('d-m-Y') }}</h5>
                             <x-total_ots_aprobadas_iaim />
                         </div>
                         <div class="relative w-auto pl-4 flex-initial">
@@ -180,7 +180,7 @@ $jj = $qc->getUrl();
             </div>
         </div>
          {{-- Ots finalizadas --}}
-        <div class="p-2">
+        <div class="p-2 xl:hidden 2xl:block">
             <div class="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg">
                 <div class="flex-auto p-4">
                     <div class="flex flex-wrap">

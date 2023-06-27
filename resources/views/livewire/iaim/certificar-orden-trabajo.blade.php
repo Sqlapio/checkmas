@@ -374,83 +374,92 @@ $ots = IaimOrdenTrabajo::where('status', '2')->get();
                                 <tr> 
                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
                                         <div class="flex flex-col">
-                                            <input id="" wire:model="foto_antes_1" type="file" class="mb-4 block w-full text-sm text-slate-500
+                                            <input id="" wire:model="foto_antes_1" type="file" class="mb-1 block w-full text-sm text-slate-500
                                             file:mr-4 file:py-2 file:px-4
                                             file:rounded-full file:border-0
                                             file:text-sm file:font-semibold
                                             file:bg-green-50 file:text-check-blue
                                             hover:file:bg-green-100">
                                             @error('foto_antes_1') <span class="error text-xs text-red-700">{{ $message }}</span> @enderror
+                                            <p class="text-sm px-4 mb-4 font-extrabold text-check-blue">Foto ≤ 1024MB</p>
 
-                                            <input id="" wire:model="foto_antes_2" type="file" class="mb-4 block w-full text-sm text-slate-500
+                                            <input id="" wire:model="foto_antes_2" type="file" class="mb-1 block w-full text-sm text-slate-500
                                             file:mr-4 file:py-2 file:px-4
                                             file:rounded-full file:border-0
                                             file:text-sm file:font-semibold
                                             file:bg-green-50 file:text-check-blue
                                             hover:file:bg-green-100">
                                             @error('foto_antes_2') <span class="error text-xs text-red-700">{{ $message }}</span> @enderror
+                                            <p class="text-sm px-4 mb-4 font-extrabold text-check-blue">Foto ≤ 1024MB</p>
 
-                                            <input id="" wire:model="foto_antes_3" type="file" class="block w-full text-sm text-slate-500
+                                            <input id="" wire:model="foto_antes_3" type="file" class="mb-1 block w-full text-sm text-slate-500
                                             file:mr-4 file:py-2 file:px-4
                                             file:rounded-full file:border-0
                                             file:text-sm file:font-semibold
                                             file:bg-green-50 file:text-check-blue
                                             hover:file:bg-green-100">
                                             @error('foto_antes_3') <span class="error text-xs text-red-700">{{ $message }}</span> @enderror
+                                            <p class="text-sm px-4 mb-4 font-extrabold text-check-blue">Foto ≤ 1024MB</p>
                                         </div>
                                     </td>
                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
                                         <div class="flex flex-col">
-                                            <input id="" wire:model="foto_durante_1" type="file" class="mb-4 block w-full text-sm text-slate-500
+                                            <input id="" wire:model="foto_durante_1" type="file" class="mb-1 block w-full text-sm text-slate-500
                                             file:mr-4 file:py-2 file:px-4
                                             file:rounded-full file:border-0
                                             file:text-sm file:font-semibold
                                             file:bg-green-50 file:text-check-blue
                                             hover:file:bg-green-100">
                                             @error('foto_durante_1') <span class="error text-xs text-red-700">{{ $message }}</span> @enderror
+                                            <p class="text-sm px-4 mb-4 font-extrabold text-check-blue">Foto ≤ 1024MB</p>
 
-                                            <input id="" wire:model="foto_durante_2" type="file" class="mb-4 block w-full text-sm text-slate-500
+                                            <input id="" wire:model="foto_durante_2" type="file" class="mb-1 block w-full text-sm text-slate-500
                                             file:mr-4 file:py-2 file:px-4
                                             file:rounded-full file:border-0
                                             file:text-sm file:font-semibold
                                             file:bg-green-50 file:text-check-blue
                                             hover:file:bg-green-100">
                                             @error('foto_durante_2') <span class="error text-xs text-red-700">{{ $message }}</span> @enderror
+                                            <p class="text-sm px-4 mb-4 font-extrabold text-check-blue">Foto ≤ 1024MB</p>
 
-                                            <input id="" wire:model="foto_durante_3" type="file" class="block w-full text-sm text-slate-500
+                                            <input id="" wire:model="foto_durante_3" type="file" class="mb-1 block w-full text-sm text-slate-500
                                             file:mr-4 file:py-2 file:px-4
                                             file:rounded-full file:border-0
                                             file:text-sm file:font-semibold
                                             file:bg-green-50 file:text-check-blue
                                             hover:file:bg-green-100">
                                             @error('foto_durante_3') <span class="error text-xs text-red-700">{{ $message }}</span> @enderror
+                                            <p class="text-sm px-4 mb-4 font-extrabold text-check-blue">Foto ≤ 1024MB</p>
                                         </div>
                                     </td>
                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
                                         <div class="flex flex-col">
-                                            <input id="" wire:model="foto_des_1" type="file" class="mb-4 block w-full text-sm text-slate-500
+                                            <input id="" wire:model="foto_des_1" type="file" class="mb-1 block w-full text-sm text-slate-500
                                             file:mr-4 file:py-2 file:px-4
                                             file:rounded-full file:border-0
                                             file:text-sm file:font-semibold
                                             file:bg-green-50 file:text-check-blue
                                             hover:file:bg-green-100">
                                             @error('foto_des_1') <span class="error text-xs text-red-700">{{ $message }}</span> @enderror
+                                            <p class="text-sm px-4 mb-4 font-extrabold text-check-blue">Foto ≤ 1024MB</p>
 
-                                            <input id="" wire:model="foto_des_2" type="file" class="mb-4 block w-full text-sm text-slate-500
+                                            <input id="" wire:model="foto_des_2" type="file" class="mb-1 block w-full text-sm text-slate-500
                                             file:mr-4 file:py-2 file:px-4
                                             file:rounded-full file:border-0
                                             file:text-sm file:font-semibold
                                             file:bg-green-50 file:text-check-blue
                                             hover:file:bg-green-100">
                                             @error('foto_des_2') <span class="error text-xs text-red-700">{{ $message }}</span> @enderror
+                                            <p class="text-sm px-4 mb-4 font-extrabold text-check-blue">Foto ≤ 1024MB</p>
 
-                                            <input id="" wire:model="foto_des_3" type="file" class="block w-full text-sm text-slate-500
+                                            <input id="" wire:model="foto_des_3" type="file" class="mb-1 block w-full text-sm text-slate-500
                                             file:mr-4 file:py-2 file:px-4
                                             file:rounded-full file:border-0
                                             file:text-sm file:font-semibold
                                             file:bg-green-50 file:text-check-blue
                                             hover:file:bg-green-100">
                                             @error('foto_des_3') <span class="error text-xs text-red-700">{{ $message }}</span> @enderror
+                                            <p class="text-sm px-4 mb-4 font-extrabold text-check-blue">Foto ≤ 1024MB</p>
                                         </div>
                                     </td>
                                 </tr>
