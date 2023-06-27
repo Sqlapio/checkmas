@@ -6,4 +6,4 @@ if($total == 0){
     $total = '0';
 }
 @endphp
-<span class="font-semibold text-xl text-blueGray-700">{{ $total }}</span>
+<span class="font-semibold text-lg text-blueGray-700">{{ $total }}</span>
