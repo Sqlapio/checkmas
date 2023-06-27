@@ -19,4 +19,4 @@ $data2 = IaimCierreInventario::select('*')
         }
 @endphp
 <h5 class="text-blueGray-400 uppercase text-xs mb-4">Inventario<br>Salidas<br>Codigo: 00</h5>
-<span class="font-semibold text-xl text-blueGray-700">Salidas: 00</span>
+<span class="font-semibold text-lg text-blueGray-700">Salidas: 00</span>
