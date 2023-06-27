@@ -21,4 +21,4 @@ use Carbon\Carbon;
     }
     
 @endphp
-<span class="font-semibold text-xl text-blueGray-700">${{ number_format(array_sum($totales), 2, ',', '.') }}</span>
+<span class="font-semibold text-lg text-blueGray-700">${{ number_format(array_sum($totales), 2, ',', '.') }}</span>
