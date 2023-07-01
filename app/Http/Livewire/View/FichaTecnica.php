@@ -235,15 +235,11 @@ class FichaTecnica extends Component
 
             $fichaTecnica = new ModelFichaTecnica();
 
-            $desEstado = Estado::where('codigo', $this->estado)->get();
-            foreach ($desEstado as $item) {
-                $estadoDes = $item->descripcion;
-                $color = $item->color;
-            }
-
             $desAgencia = Agencia::where('codigo', $this->agencia)->get();
             foreach ($desAgencia as $item) {
                 $agenciaDes = $item->descripcion;
+                $estadoDes = $item->estado;
+                $color = $item->color;
             }
 
             $qrs = new Qr();

@@ -188,7 +188,7 @@
                 <label class="text-xs font-extrabold text-black drop-shadow-lg">@lang('messages.label.ubicacion')</label>
             </div>
             {{-- Form Ubicacion --}}
-            <div class="grid grid-cols-1 md:grid-cols-5 gap-4 mb-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
                 <div class="p-2">
                     <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">@lang('messages.label.oficina')</label>
                     <x-input icon="pencil" wire:model="oficina" class="focus:ring-check-blue focus:border-check-blue"/>
@@ -200,10 +200,6 @@
                 <div class="p-2">
                     <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">@lang('messages.label.agencia')</label>
                     <x-agencias />
-                </div>
-                <div class="p-2">
-                    <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">@lang('messages.label.estado')</label>
-                    <x-estados />
                 </div>
                 <div class="p-2">
                     <x-lista-tecnicos></x-lista-tecnicos>
