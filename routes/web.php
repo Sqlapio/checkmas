@@ -99,6 +99,14 @@ Route::middleware(['auth:sanctum','verified'])->group(function () {
         return view('dashboard.mensajes-recibidos');
     })->name('mensajes-recibidos');
 
+    Route::get('ots/mto/preventivo', function () {
+        return view('dashboard.crear-mto-preventivo');
+    })->name('crear-mto-preventivo');
+
+    Route::get('ots/mto/correctivo', function () {
+        return view('dashboard.crear-mto-correctivo');
+    })->name('crear-mto-correctivo');
+
     Route::get('config/valor-tonelada', function () {
         return view('dashboard.valor-tonelada');
     })->name('valor-tonelada');

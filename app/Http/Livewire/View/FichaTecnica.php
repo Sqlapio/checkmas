@@ -49,7 +49,6 @@ class FichaTecnica extends Component
     public $otroTipoRefri;
     public $otroBtu;
     public $tecRespondable;
-    public $estado;
 
     
 
@@ -150,7 +149,6 @@ class FichaTecnica extends Component
                 'oficina'  => 'required',
                 'piso'  => 'required',
                 'agencia'  => 'required',
-                'estado'  => 'required',
             ]);
         }
 
@@ -173,7 +171,6 @@ class FichaTecnica extends Component
                 'oficina'  => 'required',
                 'piso'  => 'required',
                 'agencia'  => 'required',
-                'estado'  => 'required',
 
             ]);
         }
@@ -240,6 +237,7 @@ class FichaTecnica extends Component
                 $agenciaDes = $item->descripcion;
                 $estadoDes = $item->estado;
                 $color = $item->color;
+                $codigo_estado = $item->codigo_estado;
             }
 
             $qrs = new Qr();
@@ -250,10 +248,10 @@ class FichaTecnica extends Component
                 $uidFt = DB::table('ficha_tecnicas')->latest("id")->first();
 
                 if ($uidFt == NULL) {
-                    $fichaTecnica->uid = $this->agencia . '-' . $this->estado . '-1';
+                    $fichaTecnica->uid = $this->agencia . '-' . $codigo_estado . '-1';
                 } else {
                     $tercerTer = $uidFt->id * 10;
-                    $fichaTecnica->uid = $this->agencia . '-' . $this->estado . '-' . $tercerTer;
+                    $fichaTecnica->uid = $this->agencia . '-' . $codigo_estado . '-' . $tercerTer;
                 }
 
                 /**
@@ -319,10 +317,10 @@ class FichaTecnica extends Component
                 $uidFt = DB::table('ficha_tecnicas')->latest("id")->first();
 
                 if ($uidFt == NULL) {
-                    $fichaTecnica->uid = $this->agencia . '-' . $this->estado . '-1';
+                    $fichaTecnica->uid = $this->agencia . '-' . $codigo_estado . '-1';
                 } else {
                     $tercerTer = $uidFt->id * 10;
-                    $fichaTecnica->uid = $this->agencia . '-' . $this->estado . '-' . $tercerTer;
+                    $fichaTecnica->uid = $this->agencia . '-' . $codigo_estado . '-' . $tercerTer;
                 }
 
                 /**

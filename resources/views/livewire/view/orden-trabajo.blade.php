@@ -60,20 +60,6 @@
 
 
     </div>
-    <script type="text/javascript">
-        $('#select').on('change',function(){
-        var selectValor = $(this).val();
-        //alert (selectValor);
-
-        if (selectValor == 'opc1') {
-        $('.cedula').show();
-        }else {
-        $('.cedula').hide();
-        //alert('esta es la opcion 2')
-        }
-    });
-
-    </script>
 </div>
 
 
