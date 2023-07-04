@@ -2,6 +2,9 @@
 
 namespace App\Http\Livewire\Auth;
 
+use App\Models\Iaim_Cargo;
+use App\Models\Iaim_Coordinacion;
+use App\Models\Iaim_Division;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
@@ -28,6 +31,58 @@ class RegistroIaim extends Component
     public $password;
     public $firma_digital;
     public $terminos = false;
+
+    public $atr_otro_cargo = 'hidden';
+    public $atr_select_cargo = '';
+
+    public $atr_otra_division = 'hidden';
+    public $atr_select_division = '';
+
+    public $atr_otra_coordinacion = 'hidden';
+    public $atr_select_coordinacion = '';
+
+    public $otro_cargo;
+    public $otra_division;
+    public $otra_coordinacion;
+
+    protected $listeners = [
+        'otro_cargo',
+        'otra_division',
+        'otra_coordinacion'
+    ];
+
+    public function otro_cargo($value)
+    {
+        if ($value == 'otro') {
+            $this->atr_otro_cargo = '';
+            $this->atr_select_cargo = 'hidden';
+        } else {
+            $this->atr_otro_cargo = 'hidden';
+            $this->atr_select_cargo = '';
+        }
+    }
+
+    public function otra_division($value)
+    {
+        if ($value == 'otro') {
+            $this->atr_otra_division = '';
+            $this->atr_select_division = 'hidden';
+        } else {
+            $this->atr_otra_division = 'hidden';
+            $this->atr_select_division = '';
+        }
+    }
+
+    public function otra_coordinacion($value)
+    {
+        if ($value == 'otro') {
+            $this->atr_otra_coordinacion = '';
+            $this->atr_select_coordinacion = 'hidden';
+        } else {
+            $this->atr_otra_coordinacion = 'hidden';
+            $this->atr_select_coordinacion = '';
+        }
+    }
 
     /**
      * Reglas de validación para todos los campos del formulario
@@ -110,10 +165,48 @@ class RegistroIaim extends Component
             $resgistro->nombre = $this->nombre;
             $resgistro->apellido = $this->apellido;
             $resgistro->ci_rif = $this->ci_rif;
-            $resgistro->cargo = $this->eValcargo($this->cargo);
-            $resgistro->rol = $this->rol($this->cargo);
-            $resgistro->division = $this->division;
-            $resgistro->coordinacion = $this->coordinacion;
+
+            /**
+             * Logica para cargar el tipo de cargo
+             */
+            if (isset($this->otro_cargo)) {
+                $resgistro->cargo = strtoupper($this->otro_cargo);
+                $resgistro->rol = strtoupper($this->otro_cargo);
+                $cargo = new Iaim_Cargo();
+                $cargo->descripcion = $resgistro->cargo;
+                $cargo->save();
+
+            } else {
+                $resgistro->cargo = $this->eValcargo($this->cargo);
+                $resgistro->rol = $this->eValcargo($this->cargo);
+            }
+
+            /**
+             * Logica para cargar el tipo de division
+             */
+            if (isset($this->otra_division)) {
+                $resgistro->division = strtoupper($this->otra_division);
+                $division = new Iaim_Division();
+                $division->descripcion = $resgistro->division;
+                $division->save();
+
+            } else {
+                $resgistro->division = $this->division;
+            }
+
+            /**
+             * Logica para cargar el tipo de coordinacion
+             */
+            if (isset($this->otra_coordinacion)) {
+                $resgistro->coordinacion = strtoupper($this->otra_coordinacion);
+                $coordinacion = new Iaim_Coordinacion();
+                $coordinacion->descripcion = $resgistro->coordinacion;
+                $coordinacion->save();
+
+            } else {
+                $resgistro->coordinacion = $this->coordinacion;
+            }
+
             $resgistro->email = $this->email;
             $resgistro->password = Hash::make($this->password);
             $resgistro->empresa = 'IAIM';

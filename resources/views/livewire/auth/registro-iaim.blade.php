@@ -1,3 +1,11 @@
+@php
+    use App\Models\Iaim_Cargo;
+    use App\Models\Iaim_Division;
+    use App\Models\Iaim_Coordinacion;
+    $cargos = Iaim_Cargo::all();
+    $divisions = Iaim_Division::all();
+    $coordinacions = Iaim_Coordinacion::all();
+@endphp
 <div class="min-h-screen flex flex-col gap-4 sm:justify-center items-center pt-6 sm:pt-0">
     <div>
         <table>
@@ -28,40 +36,62 @@
                 </div>
                 {{-- Cedula y cargo --}}
                 <div class="grid grid-cols-2 md:grid-cols-2 gap-1">
+
                     {{-- cedula --}}
                     <div class="p-2">
                         <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Cédula</label>
                         <x-input wire:model="ci_rif" icon="user"  class="focus:ring-check-blue focus:border-check-blue"/>
                     </div>
+
                     {{-- cargo --}}
-                    <div class="p-2">
+                    <div class="p-2 {{ $atr_select_cargo }}">
                         <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Cargo</label>
-                        <x-native-select wire:model="cargo" class="focus:ring-check-blue focus:border-check-blue">
-                            <option></option>
-                            <option value="Intendente">INTENDENTE</option>
-                            <option value="Jefe de division">JEFE DE DIVISIÓN</option>
-                            <option value="Contratado">CONTRATADO</option>
-                            <option value="Director">DIRECTOR</option>
+                        <x-native-select wire:model="cargo" wire:change="$emit('otro_cargo', $event.target.value)" class="focus:ring-check-blue focus:border-check-blue">
+                            <option value="">...</option>
+                            @foreach ($cargos as $item)
+                            <option value="{{ $item->descripcion }}">{{ $item->descripcion }}</option>
+                            @endforeach 
+                            <option value="otro">Otro</option>
                         </x-native-select>
+                    </div>
+                    <div class="p-2 {{ $atr_otro_cargo }}">
+                        <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Cargo</label>
+                        <x-input wire:model="otro_cargo" class="focus:ring-check-blue focus:border-check-blue" placeholder="agregar cargo" autofocus/>
                     </div>
                 </div>
                 {{-- Devicion y Coordinacion --}}
                 <div class="grid grid-cols-2 md:grid-cols-2 gap-1">
-                    <div class="p-2">
+
+                    {{-- DIVICION --}}
+                    <div class="p-2 {{ $atr_select_division }}">
                         <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Divison</label>
-                        <x-native-select wire:model="division" class="focus:ring-check-blue focus:border-check-blue">
-                            <option></option>
-                            <option value="dhiav">DHIAV</option>
-                            <option value="n/a">No aplica</option>
+                        <x-native-select wire:model="division" wire:change="$emit('otra_division', $event.target.value)" class="focus:ring-check-blue focus:border-check-blue">
+                            <option value="">...</option>
+                            @foreach ($divisions as $item)
+                            <option value="{{ $item->descripcion }}">{{ $item->descripcion }}</option>
+                            @endforeach 
+                            <option value="otro">Otro</option>
                         </x-native-select>
                     </div>
-                    <div class="p-2">
+                    <div class="p-2 {{ $atr_otra_division }}">
+                        <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Division</label>
+                        <x-input wire:model="otra_division" class="focus:ring-check-blue focus:border-check-blue" placeholder="agregar division" autofocus/>
+                    </div>
+
+                    {{-- COORDINACION --}}
+                    <div class="p-2 {{ $atr_select_coordinacion }}">
                         <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Coordinacion</label>
-                        <x-native-select wire:model="coordinacion" class="focus:ring-check-blue focus:border-check-blue">
-                            <option></option>
-                            <option value="iaim_sm">SERVICIO DE MANTENIMIENTO</option>
-                            <option value="n/a">No Aplica</option>
+                        <x-native-select wire:model="coordinacion" wire:change="$emit('otra_coordinacion', $event.target.value)" class="focus:ring-check-blue focus:border-check-blue">
+                            <option value="">...</option>
+                            @foreach ($coordinacions as $item)
+                            <option value="{{ $item->descripcion }}">{{ $item->descripcion }}</option>
+                            @endforeach 
+                            <option value="otro">Otro</option>
                         </x-native-select>
+                    </div>
+                    <div class="p-2 {{ $atr_otra_coordinacion }}">
+                        <label class="opacity-60 mb-1 block text-sm font-medium text-italblue">Coordinacion</label>
+                        <x-input wire:model="otra_coordinacion" class="focus:ring-check-blue focus:border-check-blue" placeholder="agregar coordinacion" autofocus/>
                     </div>
                 </div>
                 {{-- email --}}
