@@ -15,7 +15,9 @@ class Iaim_Movimiento_Inventario extends Model
     protected $fillable = [
         'articulo_id',
         'codigo',
+        'codigo_ot',
         'descripcion',
+        'categoria',
         'entrada',
         'salida',
         'fecha_entrada',
