@@ -117,7 +117,7 @@ use App\Models\Ot;
                 @if($rol == 5 || $rol == 6 || $rol == 7)
                 {{-- Crear Ots --}}
                 <li class="my-px">
-                    <div href="" class="flex flex-row items-center h-10 px-3 rounded-lg text-gray-500 hover:bg-gray-100 hover:text-gray-700">
+                    <div href="" class="flex flex-row items-center h-10 px-3 rounded-lg text-gray-500 hover:bg-gray-100 hover:text-gray-700 cursor-pointer">
                         <span class="flex items-center justify-center text-lg text-gray-400">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />

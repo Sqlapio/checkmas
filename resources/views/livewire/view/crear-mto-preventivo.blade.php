@@ -14,29 +14,29 @@
                 <x-lista-tecnicos></x-lista-tecnicos>
             </div>
         </div>
-        <div class="flex justify-start">
+        <div class="flex justify-start mb-4">
             <input wire:model="buscar" type="search" id="search" name="buscar" class="border-b border-gray-200 py-2 text-sm rounded-full sm:w-1/3 md:w-1/4 shadow-lg focus:ring-check-blue focus:border-check-blue" placeholder="Buscar por codigo del equipo...." autocomplete="off">
                 <svg wire:click="reset_filtros" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 font-bold text-gray-500 my-auto ml-3">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
                 </svg>
         </div>
-        <div class="overflow-auto rounded-lg shadow a">
-            <table class="w-full mt-4" id="tabla_ots_mp">
-                <thead class="bg-check-blue">
+        <div class="overflow-auto rounded-lg shadow">
+            <table class="w-full" id="tabla_ots_mp">
+                <thead class="bg-gray-50">
                     <tr>
-                        <th scope="col" class="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-white">
+                        <th scope="col" class="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-gray-500">
                             Nro. Ot
                         </th>
-                        <th scope="col" class="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-white">
+                        <th scope="col" class="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-gray-500">
                             Codigo Equipo
                         </th>
-                        <th scope="col" class="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-white">
+                        <th scope="col" class="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-gray-500">
                             Agencia
                         </th>
-                        <th scope="col" class="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-white">
+                        <th scope="col" class="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-gray-500">
                             Estado
                         </th>
-                        <th scope="col" class="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-white">
+                        <th scope="col" class="px-4 py-3.5 text-sm font-semibold text-left rtl:text-right text-gray-500">
 
                         </th>
                     </tr>
