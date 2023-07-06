@@ -240,7 +240,10 @@ $estados_ticket_ot = $tikcet_ot->pluck('estados');
                 
                 <!-- Graficos de torta -->
                 <div class="w-full ">
-                    <h1 class="w-full text-center text-xs px-8 py-4 font-bold rounded-lg dark:bg-gray-700">
+                    <h1 class="w-full text-center text-xs px-8 font-bold rounded-lg dark:bg-gray-700">
+                        TOP 5
+                    </h1>
+                    <h1 class="w-full text-center text-xs px-8 mb-4 font-bold rounded-lg dark:bg-gray-700">
                         OTS FINALIZADAS POR ESTADO
                     </h1>
 
@@ -261,7 +264,10 @@ $estados_ticket_ot = $tikcet_ot->pluck('estados');
                 </div>
                 <!-- Graficos de dona 2 -->
                 <div class="w-full ">
-                    <h1 class="w-full text-center font-bold text-xs px-8 py-4 rounded-lg dark:bg-gray-700">
+                    <h1 class="w-full text-center text-xs px-8 font-bold rounded-lg dark:bg-gray-700">
+                        TOP 5
+                    </h1>
+                    <h1 class="w-full text-center font-bold text-xs px-8 mb-4 rounded-lg dark:bg-gray-700">
                         INVERSION POR ESTADOS
                     </h1>
                                            
@@ -280,7 +286,10 @@ $estados_ticket_ot = $tikcet_ot->pluck('estados');
                 </div>
                 <!-- Graficos de dona 3 -->
                 <div class="w-full">
-                    <h1 class="w-full text-center text-xs font-bold px-8 py-4 rounded-lg dark:bg-gray-700">
+                    <h1 class="w-full text-center text-xs px-8 font-bold rounded-lg dark:bg-gray-700">
+                        TOP 5
+                    </h1>
+                    <h1 class="w-full text-center text-xs font-bold px-8 mb-4 rounded-lg dark:bg-gray-700">
                         TICKETS GENERADOS
                     </h1>
                     <div class="shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px] border border-gray-200 rounded-lg dark:bg-gray-600 pt-4 pb-6">
