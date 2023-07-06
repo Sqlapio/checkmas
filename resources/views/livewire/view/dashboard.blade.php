@@ -33,6 +33,13 @@ $estOts = $otsList->pluck('estados');
 $ots = $otsList->pluck('ots');
 
 
+$total_ots = Ot::select(DB::raw("count(*) as ots"), DB::raw("estado as estados"), DB::raw("color as colores"))
+            ->where('statusOts', 5)
+            ->orderBy('ots', 'desc')
+            ->groupBy(DB::raw("estado, color"))
+            ->get();
+
+
 $estados = Estado::select(DB::raw("descripcion as estados"))
             ->orderBy('estados', 'asc')
             ->get();
@@ -52,6 +59,12 @@ $colores = $porList->pluck('colores');
 $estados = $porList->pluck('estados');
 $valores = $porList->pluck('totales');
 
+$total_inversion = Estadistica::select(DB::raw("total_inversion_mp_mc as totales"), DB::raw("estado as estados"), DB::raw("color as colores"))
+            ->where('total_inversion_mp_mc', '>', 0.00)
+            ->orderBy('totales', 'desc')
+            ->get();
+
+
 /*
 Logica para calcular el Nro. de tikects creados por estado
 GRAFICO DE DONA
@@ -65,6 +78,13 @@ $tikectList = Tikect::select(DB::raw("count(*) as tikects"), DB::raw("estado as 
 $colorTi = $tikectList->pluck('colores');
 $estTi = $tikectList->pluck('estados');
 $tikects = $tikectList->pluck('tikects');
+
+$total_tikect = Tikect::select(DB::raw("count(*) as tikects"), DB::raw("estado as estados"), DB::raw("color as colores"))
+            ->orderBy('tikects', 'desc')
+            ->groupBy(DB::raw("estado, color"))
+            ->get();
+
+
 
 $tikcet_g3 = Tikect::select(DB::raw("count(*) as tikects"), DB::raw("estado as estados"))
             ->orderBy('estados', 'asc')
@@ -229,7 +249,7 @@ $estados_ticket_ot = $tikcet_ot->pluck('estados');
                     </div>
                     {{-- <button id="pdf" onclick="downloadPDF()">PDF</button> --}}
                     <div class="mx-auto mt-8 w-full sm:w-auto divide-y">
-                        @foreach($otsList as $item)
+                        @foreach($total_ots as $item)
                         <div class="flex items-center">
                             <div class="w-3 h-3 mr-3 rounded-full" style="background-color:{{ $item->colores }}"></div>
                             <span class="text-xs">{{ $item->estados }}</span>
@@ -249,7 +269,7 @@ $estados_ticket_ot = $tikcet_ot->pluck('estados');
                         <canvas id="myChart2" width="270" height="270"</canvas>
                     </div>
                     <div class="mx-auto mt-8 w-full sm:w-auto divide-y">
-                        @foreach($porList as $item)
+                        @foreach($total_inversion as $item)
                         <div class="flex items-center">
                             <div class="w-3 h-3 mr-3 rounded-full" style="background-color:{{ $item->colores }}"></div>
                             <span class="text-xs">{{ $item->estados }}</span>
@@ -267,7 +287,7 @@ $estados_ticket_ot = $tikcet_ot->pluck('estados');
                         <canvas id="chartDoughnut" width="270" height="270"></canvas>
                     </div>
                     <div class="mx-auto mt-8 w-full sm:w-auto divide-y">
-                        @foreach($tikectList as $item)
+                        @foreach($total_tikect as $item)
                         <div class="flex items-center">
                             <div class="w-3 h-3 mr-3 rounded-full" style="background-color:{{ $item->colores }}"></div>
                             <span class="text-xs">{{ $item->estados }}</span>
