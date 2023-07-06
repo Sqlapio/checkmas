@@ -24,8 +24,9 @@ GRAFICO Nro. 1
 */
 $otsList = Ot::select(DB::raw("count(*) as ots"), DB::raw("estado as estados"), DB::raw("color as colores"))
             ->where('statusOts', 5)
-            ->orderBy('estados', 'asc')
+            ->orderBy('ots', 'desc')
             ->groupBy(DB::raw("estado, color"))
+            ->limit(5)
             ->get();
 $colorOts = $otsList->pluck('colores');
 $estOts = $otsList->pluck('estados');
@@ -44,7 +45,8 @@ GRAFICO Nro. 2
 */
 $porList = Estadistica::select(DB::raw("total_inversion_mp_mc as totales"), DB::raw("estado as estados"), DB::raw("color as colores"))
             ->where('total_inversion_mp_mc', '>', 0.00)
-            ->orderBy('estados', 'asc')
+            ->orderBy('totales', 'desc')
+            ->limit(5)
             ->get();
 $colores = $porList->pluck('colores');
 $estados = $porList->pluck('estados');
@@ -56,7 +58,8 @@ GRAFICO DE DONA
 GRAFICO Nro. 3
 */
 $tikectList = Tikect::select(DB::raw("count(*) as tikects"), DB::raw("estado as estados"), DB::raw("color as colores"))
-            ->orderBy('estados', 'asc')
+            ->orderBy('tikects', 'desc')
+            ->limit(5)
             ->groupBy(DB::raw("estado, color"))
             ->get();
 $colorTi = $tikectList->pluck('colores');

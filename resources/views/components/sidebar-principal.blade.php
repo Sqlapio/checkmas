@@ -199,7 +199,7 @@ use App\Models\Ot;
                     </a>
                 </li>
                 @endif
-                <li class="my-px">
+                {{-- <li class="my-px">
                     <span class="flex font-medium text-sm text-gray-400 px-4 my-4 uppercase">Mensajeria</span>
                 </li>
                 <li class="my-px">
@@ -229,7 +229,7 @@ use App\Models\Ot;
                         <span class="ml-3">Recibidos</span>
                         <span class="flex items-center justify-center text-xs text-check-blue font-bold bg-green-100 h-6 px-2 rounded-full ml-auto"></span>
                     </a>
-                </li>
+                </li> --}}
                 <li class="my-px">
                     <span class="flex font-medium text-sm text-gray-400 px-4 my-4 uppercase">@lang('messages.menu.reportes')</span>
                 </li>
@@ -255,7 +255,7 @@ use App\Models\Ot;
                         <span class="ml-3">@lang('messages.reportes.ticket')</span>
                     </a>
                 </li>
-                @if($rol == 5)
+                {{-- @if($rol == 5)
                 <li class="my-px">
                     <span class="flex font-medium text-sm text-gray-400 px-4 my-4 uppercase">Configuracion</span>
                 </li>
@@ -269,7 +269,7 @@ use App\Models\Ot;
                         <span class="ml-3">Tonelada($)</span>
                     </a>
                 </li>
-                @endif
+                @endif --}}
             </ul>
         </div>
     </aside>
