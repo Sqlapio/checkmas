@@ -65,9 +65,6 @@
                     </main>
                 </div>
             </div>
-
-
-
         @stack('modals')
 
         @livewireScripts
