@@ -8,6 +8,7 @@ use App\Models\FichaTecnica;
 use App\Models\Ot;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
@@ -58,6 +59,7 @@ class CrearMtoPreventivo extends Component
                 $btu = $item->btu;
                 $agencia = $item->agencia;
                 $estado = $item->estado;
+                $totalMp = $item->total_mp;
             }
 
             $cod_agencia = Agencia::where('descripcion', $agencia)->get();
@@ -83,6 +85,16 @@ class CrearMtoPreventivo extends Component
             $ot->statusOts = '1';
             $ot->total_mp = '2';
             $ot->save();
+
+            /**
+             * Funcion para actualizar el contador de 
+             * MP en la ficha tecnica
+             */
+            DB::table('ficha_tecnicas')
+                ->where('uid', $this->equipos[$i])
+                ->update([
+                    'total_mp' => '2',
+                ]);
 
             /**
              * @method total_mp
@@ -113,9 +125,13 @@ class CrearMtoPreventivo extends Component
     public function render()
     {
         return view('livewire.view.crear-mto-preventivo',[
-            'data' => Ot::where('tipoMantenimiento', 'MP')
-                ->Where('total_mp', '1')
-                ->Where('equipoUid', 'like', "%{$this->buscar}%")
+            // 'data' => Ot::where('tipoMantenimiento', 'MP')
+            //     ->Where('total_mp', '1')
+            //     ->Where('equipoUid', 'like', "%{$this->buscar}%")
+            //     ->orderBy('id', 'desc')
+            //     ->paginate(8)
+             'data' => FichaTecnica::Where('total_mp', '1')
+                ->Where('uid', 'like', "%{$this->buscar}%")
                 ->orderBy('id', 'desc')
                 ->paginate(8)
         ]);

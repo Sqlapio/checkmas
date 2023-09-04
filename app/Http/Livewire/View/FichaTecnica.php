@@ -294,6 +294,7 @@ class FichaTecnica extends Component
                 $fichaTecnica->piso         = $this->piso;
                 $fichaTecnica->agencia      = $agenciaDes;
                 $fichaTecnica->estado       = $estadoDes;
+                $fichaTecnica->total_mp       = '1';
                 $fichaTecnica->save();
 
                 /**
@@ -371,6 +372,7 @@ class FichaTecnica extends Component
                 $fichaTecnica->piso = $this->piso;
                 $fichaTecnica->agencia      = $agenciaDes;
                 $fichaTecnica->estado       = $estadoDes;
+                $fichaTecnica->total_mp       = '1';
                 $fichaTecnica->save();
 
                 /**
